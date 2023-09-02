@@ -1,0 +1,22 @@
+{
+	"name": "awesomecoder/lumi",
+	"description": "Lumi is fast, fully customizable & beautiful WordPress theme suitable for business website and WooCommerce storefront.",
+	"type": "project",
+	"license": "MIT",
+	"autoload": {
+		"psr-4": {
+			"AwesomeCoder\\Lumi\\": "app/",
+			"AwesomeCoder\\Lumi\\": "includes/"
+		},
+		"files": [
+			"includes/Hooks/Woocommerce.php",
+			"includes/Core/helper.php"
+		]
+	},
+	"authors": [
+		{
+			"name": "Mohammad Ibrahim Kholil"
+		}
+	],
+	"require": {}
+}
