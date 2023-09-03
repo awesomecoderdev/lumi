@@ -152,7 +152,7 @@ class Lumi
 		$this->loader->add_action('admin_enqueue_scripts', $template_admin, 'enqueue_scripts', 99999999);
 
 		/** register dashboard menu */
-		$this->loader->add_action('admin_menu', $template_admin, 'ac_restaurant_admin_menu');
+		$this->loader->add_action('admin_menu', $template_admin, 'lumi_admin_menu');
 		/** after setup theme */
 		$this->loader->add_action('after_setup_theme', $template_admin, 'lumi_after_setup_theme');
 		/** register ajax */

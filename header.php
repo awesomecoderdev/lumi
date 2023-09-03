@@ -33,3 +33,9 @@ if (!defined('ABSPATH')) {
 
 <body <?php body_class(); ?>>
     <?php wp_body_open(); ?>
+
+    <!-- start:header -->
+    <header class="relative container bg-primary-500 h-20">
+        <?php echo is_admin_bar_showing() ? "is_admin_bar_showing()" : "aldfjalkdfkalsdjf" ?>
+    </header>
+    <!-- end:header -->

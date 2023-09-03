@@ -748,11 +748,46 @@ body{
 .static{
   position: static;
 }
+.fixed{
+  position: fixed;
+}
+.absolute{
+  position: absolute;
+}
+.relative{
+  position: relative;
+}
+.inset-0{
+  inset: 0px;
+}
+.z-\[99999999999\]{
+  z-index: 99999999999;
+}
+.block{
+  display: block;
+}
 .table{
   display: table;
 }
 .contents{
   display: contents;
+}
+.h-20{
+  height: 5rem;
+}
+.h-screen{
+  height: 100vh;
+}
+.overflow-hidden{
+  overflow: hidden;
+}
+.bg-primary-500{
+  --tw-bg-opacity: 1;
+  background-color: rgb(146 177 147 / var(--tw-bg-opacity));
+}
+.bg-white{
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 .text-4xl{
   font-size: 2.25rem;
@@ -798,11 +833,17 @@ body{
   --tw-text-opacity: 1;
   color: rgb(64 121 80 / var(--tw-text-opacity));
 }
+.opacity-0{
+  opacity: 0;
+}
 .outline{
   outline-style: solid;
 }
 .filter{
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+.duration-500{
+  transition-duration: 500ms;
 }
 @keyframes enter{
   from{
@@ -815,6 +856,9 @@ body{
     opacity: var(--tw-exit-opacity, 1);
     transform: translate3d(var(--tw-exit-translate-x, 0), var(--tw-exit-translate-y, 0), 0) scale3d(var(--tw-exit-scale, 1), var(--tw-exit-scale, 1), var(--tw-exit-scale, 1)) rotate(var(--tw-exit-rotate, 0));
   }
+}
+.duration-500{
+  animation-duration: 500ms;
 }
 .running{
   animation-play-state: running;
@@ -867,6 +911,9 @@ body {
 		--tw-bg-opacity: 1 !important;
 		background-color: rgb(203 213 225 / var(--tw-bg-opacity)) !important;
 	}
+}
+.has-adminbar {
+	/* @apply mt-4; */
 }
 
 

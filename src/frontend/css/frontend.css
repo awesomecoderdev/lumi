@@ -160,3 +160,7 @@ body {
 		background-color: rgb(203 213 225 / var(--tw-bg-opacity)) !important;
 	}
 }
+
+.has-adminbar {
+	/* @apply mt-4; */
+}

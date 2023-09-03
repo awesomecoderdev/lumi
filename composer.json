@@ -10,6 +10,8 @@
 		},
 		"files": [
 			"includes/Hooks/Woocommerce.php",
+			"includes/Hooks/Filter.php",
+			"includes/Hooks/Action.php",
 			"includes/Core/helper.php"
 		]
 	},

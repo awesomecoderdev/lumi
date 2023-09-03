@@ -1,19 +1,6 @@
 <?php
 
 /**
- * The file that defines the core template class
- *
- * A class definition that includes attributes and functions used across both the
- * public-facing side of the site and the admin area.
- *
- * @link       https://awesomecoder.org/
- * @since      1.0.0
- *
- * @package    Ac_Restaurant
- * @subpackage Ac_Restaurant/includes
- */
-
-/**
  * The core template class.
  *
  * This is used to define internationalization, admin-specific hooks, and
@@ -23,8 +10,8 @@
  * version of the template.
  *
  * @since      1.0.0
- * @package    Ac_Restaurant
- * @subpackage Ac_Restaurant/includes
+ * @package    Lumi
+ * @subpackage Lumi/includes
  * @author     Md Ibrahim Kholil <awesomecoder.org@gmail.com>
  *
  *                                                              _
