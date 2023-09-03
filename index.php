@@ -26,6 +26,6 @@ if (!defined('ABSPATH')) {
 <?php get_header(); ?>
 
 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis blanditiis temporibus repellat! Molestiae, perferendis pariatur. Consequatur, minus provident voluptates eum maxime modi aperiam tempore? Nesciunt labore praesentium officiis qui voluptatum.</p>
-<p class="text-4xl text-primary-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat nostrum quas aperiam molestias dicta placeat, debitis odio cum doloribus? Perferendis illo repellendus officiis consequatur. Consequuntur blanditiis veniam dolor beatae sequi!</p>
+<p class="text-4xl text-red-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat nostrum quas aperiam molestias dicta placeat, debitis odio cum doloribus? Perferendis illo repellendus officiis consequatur. Consequuntur blanditiis veniam dolor beatae sequi!</p>
 
 <?php get_footer(); ?>

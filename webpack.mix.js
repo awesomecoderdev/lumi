@@ -10,6 +10,8 @@ const mix = require("laravel-mix");
  |
  */
 
+//  npx tailwindcss -i ./src/frontend/css/frontend.css -o ./assets/frontend/css/frontend.css
+
 mix.webpackConfig({ stats: { children: false } })
 	// .js("src/backend/js/backend.js", "assets/backend/js")
 	// .js("src/backend/js/metabox.js", "assets/backend/js")

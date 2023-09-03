@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
 	darkMode: ["class"],
-	content: ["./**/*.{php}", "*.{php}"],
+	content: ["./**/*.php"],
 	theme: {
 		fontSize: {
 			"2xs": ["0.75rem", { lineHeight: "1.25rem" }],
