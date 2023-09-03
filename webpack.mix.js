@@ -11,13 +11,13 @@ const mix = require("laravel-mix");
  */
 
 mix.webpackConfig({ stats: { children: false } })
-	.js("src/backend/js/backend.js", "assets/backend/js")
-	.js("src/backend/js/metabox.js", "assets/backend/js")
-	.postCss("src/backend/css/backend.css", "assets/backend/css", [
-		require("postcss-import"),
-		require("tailwindcss"),
-		require("autoprefixer"),
-	])
+	// .js("src/backend/js/backend.js", "assets/backend/js")
+	// .js("src/backend/js/metabox.js", "assets/backend/js")
+	// .postCss("src/backend/css/backend.css", "assets/backend/css", [
+	// 	require("postcss-import"),
+	// 	require("tailwindcss"),
+	// 	require("autoprefixer"),
+	// ])
 	// .postCss("src/backend/css/metabox.css", "assets/backend/css", [
 	// 	require("postcss-import"),
 	// 	require("tailwindcss"),
@@ -28,7 +28,7 @@ mix.webpackConfig({ stats: { children: false } })
 		require("tailwindcss"),
 		require("autoprefixer"),
 	])
-	.js("src/frontend/js/frontend.js", "assets/frontend/js")
-	.react()
+	// .js("src/frontend/js/frontend.js", "assets/frontend/js")
+	// .react()
 	.sourceMaps(false, "source-map")
 	.disableSuccessNotifications();

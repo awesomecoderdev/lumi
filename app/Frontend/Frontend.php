@@ -56,11 +56,13 @@ class Frontend
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-		wp_enqueue_style($this->template_name . '-font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css', array(), $this->version, 'all');
-		wp_enqueue_style($this->template_name . '-box-icon', 'https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css', array(), $this->version, 'all');
+		wp_enqueue_style("$this->template_name-font-awesome", 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css', array(), $this->version, 'all');
+		wp_enqueue_style("$this->template_name-box-icon", 'https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css', array(), $this->version, 'all');
 
-		wp_enqueue_style($this->template_name . '-styles', LUMI_THEME_URL . 'assets/css/styles.css', array(), $this->version, 'all');
-		wp_enqueue_style($this->template_name, LUMI_THEME_URL . 'assets/frontend/css/lumi-public.css', array(), $this->version, 'all');
+		wp_enqueue_style("$this->template_name-style", LUMI_THEME_URL . 'assets/css/styles.css', array(), $this->version, 'all');
+		wp_enqueue_style("$this->template_name-lumi-public", LUMI_THEME_URL . 'assets/frontend/css/lumi-public.css', array(), lami_version("assets/frontend/css/lumi-public.css", $this->version), 'all');
+		wp_enqueue_style($this->template_name, LUMI_THEME_URL . 'assets/frontend/css/frontend.css', array(), lami_version("assets/frontend/css/frontend.css", $this->version), 'all');
+
 		wp_enqueue_style($this->template_name . '-style', LUMI_THEME_URL . 'style.css', array(), $this->version, 'all');
 	}
 

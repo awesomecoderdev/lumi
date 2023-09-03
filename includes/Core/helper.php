@@ -20,8 +20,32 @@
 
 use AwesomeCoder\Lumi\Core\Lumi;
 
+/**
+ * The loader of the Theme.
+ *
+ * @link              https://awesomecoder.dev/
+ * @since             1.0.0
+ *
+ */
 function lami()
 {
     $instance = new Lumi();
     return $instance;
+}
+
+
+/**
+ * The loader of the Theme.
+ *
+ * @link              https://awesomecoder.dev/
+ * @since             1.0.0
+ *
+ */
+function lami_version($file, $version)
+{
+    if ($file && file_exists(file_exists(get_template_directory("$file")))) {
+        $version = filemtime(file_exists(get_template_directory("$file")));
+    }
+
+    return $version;
 }
