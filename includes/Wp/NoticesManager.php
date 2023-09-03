@@ -2,8 +2,9 @@
 
 namespace AwesomeCoder\Lumi\Wp;
 
-use AwesomeCoder\Plugin\Utils\Arrays;
-use AwesomeCoder\Plugin\Utils\Functions;
+use AwesomeCoder\Lumi\Utils\Arrays;
+use AwesomeCoder\Lumi\Utils\Functions;
+
 
 class NoticesManager
 {
@@ -92,7 +93,7 @@ class NoticesManager
     /** Actually enqueues the script and localizes it */
     public function enqueueScripts()
     {
-        wp_enqueue_script('plagiarism-admin-notices', $this->script, ['jquery'], PLAGIARISM_VERSION, true);
+        wp_enqueue_script('plagiarism-admin-notices', $this->script, ['jquery'], LUMI_VERSION, true);
 
         wp_localize_script('plagiarism-admin-notices', 'plagiarismNoticesL10n', [
             'ajaxUrl' => admin_url('admin-ajax.php'),
