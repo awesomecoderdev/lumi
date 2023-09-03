@@ -758,13 +758,45 @@ body{
   font-size: 2.25rem;
   line-height: 2.5rem;
 }
+.text-primary-100{
+  --tw-text-opacity: 1;
+  color: rgb(194 214 196 / var(--tw-text-opacity));
+}
+.text-primary-200{
+  --tw-text-opacity: 1;
+  color: rgb(182 206 183 / var(--tw-text-opacity));
+}
+.text-primary-300{
+  --tw-text-opacity: 1;
+  color: rgb(165 190 166 / var(--tw-text-opacity));
+}
+.text-primary-400{
+  --tw-text-opacity: 1;
+  color: rgb(161 187 162 / var(--tw-text-opacity));
+}
+.text-primary-50{
+  --tw-text-opacity: 1;
+  color: rgb(210 224 211 / var(--tw-text-opacity));
+}
 .text-primary-500{
   --tw-text-opacity: 1;
-  color: rgb(16 185 129 / var(--tw-text-opacity));
+  color: rgb(146 177 147 / var(--tw-text-opacity));
 }
-.text-red-500{
+.text-primary-600{
   --tw-text-opacity: 1;
-  color: rgb(239 68 68 / var(--tw-text-opacity));
+  color: rgb(126 159 130 / var(--tw-text-opacity));
+}
+.text-primary-700{
+  --tw-text-opacity: 1;
+  color: rgb(106 141 114 / var(--tw-text-opacity));
+}
+.text-primary-800{
+  --tw-text-opacity: 1;
+  color: rgb(86 139 97 / var(--tw-text-opacity));
+}
+.text-primary-900{
+  --tw-text-opacity: 1;
+  color: rgb(64 121 80 / var(--tw-text-opacity));
 }
 .outline{
   outline-style: solid;
