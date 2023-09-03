@@ -1,6 +1,6 @@
 <?php
 
-namespace AwesomeCoder\Lumi;
+namespace AwesomeCoder\Lumi\Localization;
 
 class L18n
 {

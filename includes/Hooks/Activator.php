@@ -1,10 +1,10 @@
 <?php
 
-namespace AwesomeCoder\Lumi;
+
+namespace AwesomeCoder\Lumi\Hooks;
 
 class Activator
 {
-
     /**
      * Short Description. (use period)
      *

@@ -1,34 +1,8 @@
 <?php
 
-/**
- * The admin-specific functionality of the template.
- *
- * @link       https://awesomecoder.org/
- * @since      1.0.0
- *
- * @package    Ac_Restaurant
- * @subpackage Ac_Restaurant/admin
- */
+namespace AwesomeCoder\Lumi;
 
-/**
- * The admin-specific functionality of the template.
- *
- * Defines the template name, version, and two examples hooks for how to
- * enqueue the admin-specific stylesheet and JavaScript.
- *
- * @package    Ac_Restaurant
- * @subpackage Ac_Restaurant/admin
- * @author     Md Ibrahim Kholil <awesomecoder.org@gmail.com>
- *
- *                                                              _           
- *                                                             | |          
- *    __ ___      _____  ___  ___  _ __ ___   ___  ___ ___   __| | ___ _ __ 
- *   / _` \ \ /\ / / _ \/ __|/ _ \| '_ ` _ \ / _ \/ __/ _ \ / _` |/ _ \ '__|
- *  | (_| |\ V  V /  __/\__ \ (_) | | | | | |  __/ (_| (_) | (_| |  __/ |   
- *   \__,_| \_/\_/ \___||___/\___/|_| |_| |_|\___|\___\___/ \__,_|\___|_|   
- *
- */
-class Ac_Restaurant_Admin
+class Backend
 {
 
 	/**
@@ -75,15 +49,15 @@ class Ac_Restaurant_Admin
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Ac_Restaurant_Loader as all of the hooks are defined
+		 * defined in Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Ac_Restaurant_Loader will then create the relationship
+		 * The Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_style($this->template_name, AC_RESTAURANT_THEME_URL . 'admin/css/ac-restaurant-admin.css', array(), $this->version, 'all');
+		wp_enqueue_style($this->template_name, LUMI_THEME_URL . 'admin/css/ac-restaurant-admin.css', array(), $this->version, 'all');
 	}
 
 	/**
@@ -98,21 +72,25 @@ class Ac_Restaurant_Admin
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Ac_Restaurant_Loader as all of the hooks are defined
+		 * defined in Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Ac_Restaurant_Loader will then create the relationship
+		 * The Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_script($this->template_name, AC_RESTAURANT_THEME_URL . 'admin/js/ac-restaurant-admin.js', array('jquery'), $this->version, false);
+		wp_enqueue_script($this->template_name, LUMI_THEME_URL . 'assets/backend/js/lumi-admin.js', array('jquery'), $this->version, false);
 
 		// Some local vairable to get ajax url
-		wp_localize_script($this->template_name, 'ac_restaurant', array(
-			"name"		=> "awesomeCoder",
-			"author" 	=>	"MD Ibrahim Kholil",
-			"url" 		=> get_bloginfo('url'),
+		wp_localize_script($this->template_name, 'lumi', array(
+			"author"  	=> [
+				"author" 	=>	"Mohammad Ibrahim Kholil",
+				"email" 	=>	"awesomecoder.dev@gmail.com",
+				"url" 	=>	"https://www.awesomecoder.dev",
+			],
+			"url" 		=> trailingslashit(get_bloginfo('url')),
+			"carturl" 	=> trailingslashit(get_bloginfo('url')) . "?wc-ajax=add_to_cart",
 			"ajaxurl"	=> admin_url("admin-ajax.php")
 		));
 
@@ -125,7 +103,7 @@ class Ac_Restaurant_Admin
 	 *
 	 * @since    1.0.0
 	 */
-	public function ac_restaurant_after_setup_theme()
+	public function lumi_after_setup_theme()
 	{
 		/**
 		 * Register the nav menu for the admin area.
@@ -233,19 +211,19 @@ class Ac_Restaurant_Admin
 		 *
 		 * @since    1.0.0
 		 */
-		function awesomecoder_custom_sidebar()
-		{
-			register_sidebar(array(
-				'name'          => 'Restaurant Sidebar',
-				'id'            => 'awesomecoder_sidebar',
-				'description'   => 'Widgets in this area will be shown on all posts and pages.',
-				'before_widget' => '<li id="%1$s" class="widget %2$s">',
-				'after_widget'  => '</li>',
-				'before_title'  => '<h2 class="widgettitle">',
-				'after_title'   => '</h2>',
-			));
-		}
-		add_action('widgets_init', 'awesomecoder_custom_sidebar');
+		// function awesomecoder_custom_sidebar()
+		// {
+		// 	register_sidebar(array(
+		// 		'name'          => 'Restaurant Sidebar',
+		// 		'id'            => 'awesomecoder_sidebar',
+		// 		'description'   => 'Widgets in this area will be shown on all posts and pages.',
+		// 		'before_widget' => '<li id="%1$s" class="widget %2$s">',
+		// 		'after_widget'  => '</li>',
+		// 		'before_title'  => '<h2 class="widgettitle">',
+		// 		'after_title'   => '</h2>',
+		// 	));
+		// }
+		// add_action('widgets_init', 'awesomecoder_custom_sidebar');
 
 		/**
 		 * ======================================================================================
@@ -343,7 +321,7 @@ class Ac_Restaurant_Admin
 	public function ac_restaurant_dashboard_callback()
 	{
 		ob_start();
-		include_once AC_RESTAURANT_THEME_PATH . 'admin/partials/ac-restaurant-admin-dashboard.php';
+		// include_once AC_RESTAURANT_THEME_PATH . 'admin/partials/ac-restaurant-admin-dashboard.php';
 		$dashboard = ob_get_contents();
 		ob_end_clean();
 		echo $dashboard;

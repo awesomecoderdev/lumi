@@ -10,8 +10,8 @@
  * Theme URI:         https://awesomecoder.dev/
  * Description:       Lumi is fast, fully customizable & beautiful WordPress theme suitable for business website and WooCommerce storefront.
  * Version:           1.0.0
- * Author:            Md Ibrahim Kholil
- * Author URI:        https://www.fiverr.com/mkholilulla
+ * Author:            Mohammad Ibrahim Kholil
+ * Author URI:        https://awesomecoder.dev/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       Lumi
@@ -32,6 +32,9 @@ if (!defined('WPINC')) {
     die;
 }
 
+// AutoLoader
+if (defined('WPINC') && file_exists(get_template_directory("vendor/autoload.php"))) require "vendor/autoload.php";
+
 /**
  * Currently template version.
  * Start at version 1.0.0 and use SemVer - https://semver.org
@@ -40,3 +43,34 @@ if (!defined('WPINC')) {
 define('LUMI_VERSION', '1.0.0');
 define('LUMI_THEME_URL', trailingslashit(esc_url(get_template_directory_uri())));
 define('LUMI_THEME_PATH', trailingslashit(get_template_directory()));
+
+
+/**
+ * The code that runs during template activation.
+ * This action is documented in includes/class-ac-restaurant-activator.php
+ */
+function activate_lumi($oldName, $oldTheme = false)
+{
+    AwesomeCoder\Lumi\Hooks\Activator::activate($oldName, $oldTheme);
+}
+
+/**
+ * The code that runs during template deactivation.
+ * This action is documented in includes/class-ac-restaurant-deactivator.php
+ */
+function deactivate_lumi($newName, $newTheme)
+{
+    AwesomeCoder\Lumi\Hooks\Deactivator::deactivate($newName, $newTheme);
+}
+
+
+add_action("after_switch_theme", "activate_lumi", 10, 2);
+add_action("switch_theme", "deactivate_lumi", 10, 2);
+
+
+/**
+ * Begins execution of the Template
+ * @since    1.0.0
+ */
+
+lami()->run();

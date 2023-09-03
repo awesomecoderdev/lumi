@@ -1,6 +1,6 @@
 <?php
 
-namespace AwesomeCoder\Lumi;
+namespace AwesomeCoder\Lumi\Hooks;
 
 class Deactivator
 {
@@ -14,5 +14,6 @@ class Deactivator
 	 */
 	public static function deactivate()
 	{
+		//
 	}
 }

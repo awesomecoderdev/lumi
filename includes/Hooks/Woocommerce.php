@@ -27,12 +27,12 @@
  * @subpackage Ac_Restaurant/includes
  * @author     Md Ibrahim Kholil <awesomecoder.org@gmail.com>
  *
- *                                                              _           
- *                                                             | |          
- *    __ ___      _____  ___  ___  _ __ ___   ___  ___ ___   __| | ___ _ __ 
+ *                                                              _
+ *                                                             | |
+ *    __ ___      _____  ___  ___  _ __ ___   ___  ___ ___   __| | ___ _ __
  *   / _` \ \ /\ / / _ \/ __|/ _ \| '_ ` _ \ / _ \/ __/ _ \ / _` |/ _ \ '__|
- *  | (_| |\ V  V /  __/\__ \ (_) | | | | | |  __/ (_| (_) | (_| |  __/ |   
- *   \__,_| \_/\_/ \___||___/\___/|_| |_| |_|\___|\___\___/ \__,_|\___|_|   
+ *  | (_| |\ V  V /  __/\__ \ (_) | | | | | |  __/ (_| (_) | (_| |  __/ |
+ *   \__,_| \_/\_/ \___||___/\___/|_| |_| |_|\___|\___\___/ \__,_|\___|_|
  *
  */
 
@@ -50,7 +50,7 @@
  * @since    1.0.0
  * <section class="menu section bd-container" id="menu">
  *	<div class="menu__container bd-grid products columns-<?php echo esc_attr(wc_get_loop_prop('columns')); ?>
- * 
+ *
  */
 function open_container_before_woocommerce_after_main_contents()
 {
@@ -64,7 +64,7 @@ add_action("woocommerce_before_main_content", "open_container_before_woocommerce
  * Add custom code after the woocommerce contents
  *
  * @since    1.0.0
- * 
+ *
  */
 function close_container_after_woocommerce_after_main_contents()
 {
@@ -85,7 +85,7 @@ add_action("woocommerce_after_main_content", "close_container_after_woocommerce_
  * modify the product loop title
  *
  * @since    1.0.0
- * 
+ *
  */
 add_action('woocommerce_shop_loop_item_title', 'woocommerce_template_loop_product_title', 10);
 function woocommerce_template_loop_product_title()
@@ -104,7 +104,7 @@ function woocommerce_template_loop_product_title()
  * modify the product title with eht exceript
  *
  * @since    1.0.0
- * 
+ *
  */
 // add_action('woocommerce_shop_loop_item_title', 'the_excerpt');
 
@@ -113,7 +113,7 @@ function woocommerce_template_loop_product_title()
  * modify the product loop thumbnail
  *
  * @since    1.0.0
- * 
+ *
  */
 add_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10);
 function woocommerce_template_loop_product_thumbnail()
@@ -127,7 +127,7 @@ function woocommerce_template_loop_product_thumbnail()
  * modify the product loop add to cart loop
  *
  * @since    1.0.0
- * 
+ *
  */
 add_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10, 1);
 function woocommerce_template_loop_add_to_cart($args)
@@ -149,10 +149,10 @@ function woocommerce_template_loop_add_to_cart($args)
 
 
 /**
- * modify the product single add to cart 
+ * modify the product single add to cart
  *
  * @since    1.0.0
- * 
+ *
  */
 add_action("woocommerce_simple_add_to_cart", "woocommerce_simple_add_to_cart", 30);
 function woocommerce_simple_add_to_cart()
@@ -176,7 +176,7 @@ function woocommerce_simple_add_to_cart()
  * modify the single product title
  *
  * @since    1.0.0
- * 
+ *
  */
 add_action("woocommerce_single_product_summary", "woocommerce_template_single_title", 5);
 function woocommerce_template_single_title()
@@ -209,9 +209,9 @@ function ac_add_to_cart_fragment($fragments)
 
 /**
  * Customize the "shop" title on the main shop page
- * 
+ *
  * @since    1.0.0
- * 
+ *
  */
 add_filter('woocommerce_show_page_title', 'custom_shop_page_title');
 function custom_shop_page_title()
@@ -229,7 +229,7 @@ function custom_shop_page_title()
  * remove woocommerce sidebar
  *
  * @since    1.0.0
- * 
+ *
  */
 // remove_action("woocommerce_sidebar", "woocommerce_get_sidebar");
 
@@ -238,7 +238,7 @@ function custom_shop_page_title()
  * remove woocommerce breadcrumb
  *
  * @since    1.0.0
- * 
+ *
  */
 remove_action("woocommerce_before_main_content", "woocommerce_breadcrumb", 20);
 
@@ -247,7 +247,7 @@ remove_action("woocommerce_before_main_content", "woocommerce_breadcrumb", 20);
  * remove woocommerce result_count
  *
  * @since    1.0.0
- * 
+ *
  */
 // remove_action("woocommerce_before_shop_loop", "woocommerce_result_count", 20);
 
@@ -257,16 +257,16 @@ remove_action("woocommerce_before_main_content", "woocommerce_breadcrumb", 20);
  * remove woocommerce ordering
  *
  * @since    1.0.0
- * 
+ *
  */
 // remove_action("woocommerce_before_shop_loop", "woocommerce_catalog_ordering", 30);
 
 
 /**
  * Removes the "shop" title on the main shop page
- * 
+ *
  * @since    1.0.0
- * 
+ *
  */
 // add_filter('woocommerce_show_page_title', '__return_false');
 
@@ -281,7 +281,7 @@ remove_action("woocommerce_before_main_content", "woocommerce_breadcrumb", 20);
  * move the rating location on single product page
  *
  * @since    1.0.0
- * 
+ *
  */
 remove_action("woocommerce_single_product_summary", "woocommerce_template_single_rating", 10);
 add_action("woocommerce_single_product_summary", "woocommerce_template_single_rating", 25);
@@ -291,7 +291,7 @@ add_action("woocommerce_single_product_summary", "woocommerce_template_single_ra
  *  move the price location on single product page
  *
  * @since    1.0.0
- * 
+ *
  */
 remove_action("woocommerce_single_product_summary", "woocommerce_template_single_price", 10);
 add_action("woocommerce_single_product_summary", "woocommerce_template_single_price", 26);
@@ -307,7 +307,7 @@ add_action("woocommerce_single_product_summary", "woocommerce_template_single_pr
  *  Rggister customize settings
  *
  * @since    1.0.0
- * 
+ *
  */
 add_action("customize_register", 'ac_restaurant_customize_register');
 function ac_restaurant_customize_register($wp_customize)
@@ -317,7 +317,7 @@ function ac_restaurant_customize_register($wp_customize)
      *  Add section
      *
      * @since    1.0.0
-     * 
+     *
      */
     $wp_customize->add_section("sec_copyright", array(
         "title"             => "Copyright Settings",
@@ -334,7 +334,7 @@ function ac_restaurant_customize_register($wp_customize)
      *  adding copyright text
      *
      * @since    1.0.0
-     * 
+     *
      */
     $wp_customize->add_setting("copyright_text", array(
         "type" => "theme_mod",
@@ -353,7 +353,7 @@ function ac_restaurant_customize_register($wp_customize)
      *  adding copyright year
      *
      * @since    1.0.0
-     * 
+     *
      */
     $wp_customize->add_setting("copyright_year", array(
         "type" => "theme_mod",
@@ -372,7 +372,7 @@ function ac_restaurant_customize_register($wp_customize)
      *  adding hover color
      *
      * @since    1.0.0
-     * 
+     *
      */
     $wp_customize->add_setting("text_color", array(
         "type" => "theme_mod",
@@ -392,7 +392,7 @@ function ac_restaurant_customize_register($wp_customize)
      *  adding hover color
      *
      * @since    1.0.0
-     * 
+     *
      */
     $wp_customize->add_setting("first_color", array(
         "type" => "theme_mod",
@@ -410,7 +410,7 @@ function ac_restaurant_customize_register($wp_customize)
      *  adding hover color
      *
      * @since    1.0.0
-     * 
+     *
      */
     $wp_customize->add_setting("hover_color", array(
         "type" => "theme_mod",

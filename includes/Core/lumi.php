@@ -1,6 +1,11 @@
 <?php
 
-namespace AwesomeCoder\Lumi;
+namespace AwesomeCoder\Lumi\Core;
+
+use AwesomeCoder\Lumi\Loader;
+use AwesomeCoder\Lumi\Backend;
+use AwesomeCoder\Lumi\Frontend;
+use AwesomeCoder\Lumi\Localization\L18n;
 
 class Lumi
 {
@@ -75,30 +80,42 @@ class Lumi
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core template.
 		 */
-		require_once LUMI_THEME_PATH . 'includes/class-ac-restaurant-loader.php';
+		require_once LUMI_THEME_PATH . 'includes/Loader/Loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the template.
 		 */
-		require_once LUMI_THEME_PATH . 'includes/class-ac-restaurant-i18n.php';
+		require_once LUMI_THEME_PATH . 'includes/Localization/I18n.php';
 
 		/**
 		 * The class responsible for defining hooks functionality
 		 * of the template.
 		 */
-		require_once LUMI_THEME_PATH . 'includes/class-ac-restaurant-hooks.php';
+		require_once LUMI_THEME_PATH . 'includes/Hooks/Activator.php';
+
+		/**
+		 * The class responsible for defining hooks functionality
+		 * of the template.
+		 */
+		require_once LUMI_THEME_PATH . 'includes/Hooks/Deactivator.php';
+
+		/**
+		 * The class responsible for defining hooks functionality
+		 * of the template.
+		 */
+		// require_once LUMI_THEME_PATH . 'includes/Hooks/Woocommerce.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once LUMI_THEME_PATH . 'admin/class-ac-restaurant-admin.php';
+		require_once LUMI_THEME_PATH . 'app/Backend/Backend.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once LUMI_THEME_PATH . 'public/class-ac-restaurant-public.php';
+		require_once LUMI_THEME_PATH . 'app/Frontend/Frontend.php';
 
 		$this->loader = new Loader();
 	}
@@ -129,7 +146,7 @@ class Lumi
 	 */
 	private function define_admin_hooks()
 	{
-		$template_admin = new Ac_Restaurant_Admin($this->get_template_name(), $this->get_version());
+		$template_admin = new Backend($this->get_template_name(), $this->get_version());
 
 		$this->loader->add_action('admin_enqueue_scripts', $template_admin, 'enqueue_styles', 99999999);
 		$this->loader->add_action('admin_enqueue_scripts', $template_admin, 'enqueue_scripts', 99999999);
@@ -137,7 +154,7 @@ class Lumi
 		/** register dashboard menu */
 		$this->loader->add_action('admin_menu', $template_admin, 'ac_restaurant_admin_menu');
 		/** after setup theme */
-		$this->loader->add_action('after_setup_theme', $template_admin, 'ac_restaurant_after_setup_theme');
+		$this->loader->add_action('after_setup_theme', $template_admin, 'lumi_after_setup_theme');
 		/** register ajax */
 		$this->loader->add_action("wp_ajax_ac_restaurant_ajax_request", $template_admin, 'handel_ac_restaurant_admin_ajax_requests');
 	}
@@ -152,7 +169,7 @@ class Lumi
 	private function define_public_hooks()
 	{
 
-		$template_public = new Ac_Restaurant_Public($this->get_template_name(), $this->get_version());
+		$template_public = new Frontend($this->get_template_name(), $this->get_version());
 
 		$this->loader->add_action('wp_enqueue_scripts', $template_public, 'enqueue_styles', 99999999);
 		$this->loader->add_action('wp_enqueue_scripts', $template_public, 'enqueue_scripts', 99999999);
