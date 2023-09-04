@@ -46,8 +46,8 @@ if (!function_exists('lami')) {
 if (!function_exists('lami_version')) {
     function lami_version($file, $version)
     {
-        if ($file && file_exists(file_exists(get_template_directory("$file")))) {
-            $version = filemtime(file_exists(get_template_directory("$file")));
+        if ($file && file_exists(get_template_directory("$file"))) {
+            $version = filemtime(get_template_directory("$file"));
         }
 
         return $version;
@@ -152,5 +152,53 @@ if (!function_exists('lumi_resource')) {
             return $output;
             die;
         }
+    }
+}
+
+
+/**
+ * The lumi_resource function.
+ *
+ * @link              https://awesomecoder.dev/
+ * @since             1.0.0
+ *
+ */
+if (!function_exists('lumi_resource')) {
+    function lumi_resource(string $view = null, bool $echo = true, array $atts = [])
+    {
+
+        $path = LUMI_THEME_PATH . "app/Backend/partials/$view.php";
+        if ($view != null && file_exists($path)) {
+            ob_start();
+            include_once $path;
+            $output = ob_get_contents();
+            ob_end_clean();
+        } else {
+            $output = '<div id="lumiLoadingScreen" class="fixed inset-0 z-[99999999999] h-screen overflow-hidden block bg-white duration-500"></div>';
+            // $output .= '<script>const lumiLoadingScreen=document.getElementById("lumiLoadingScreen"),plStyles=document.querySelectorAll("link"),plScripts=document.querySelectorAll("script"),plStyleTags=document.querySelectorAll("style");plStyles.forEach((e=>{const t=e.getAttribute("rel"),l=e.getAttribute("id");"stylesheet"==t&&"wp-plagiarism-backend-css"!=l&&e.remove()})),plStyleTags.forEach((e=>{e.remove()})),plScripts.forEach((e=>{e.getAttribute("src")&&e.remove()})),setTimeout((()=>{lumiLoadingScreen&&(lumiLoadingScreen.classList.add("opacity-0"),lumiLoadingScreen.remove())}),1e3);</script>';
+        }
+
+        if ($echo) {
+            echo $output;
+            die;
+        } else {
+            return $output;
+            die;
+        }
+    }
+}
+
+
+/**
+ * The is_shop function.
+ *
+ * @link              https://awesomecoder.dev/
+ * @since             1.0.0
+ *
+ */
+if (!function_exists('is_shop')) {
+    function is_shop()
+    {
+        return is_front_page();
     }
 }
