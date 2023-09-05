@@ -77,7 +77,7 @@ if (!defined('ABSPATH')) {
                 <nav class="lg:w-[40%] w-1/2 relative flex justify-end">
                     <ul class="relative flex space-x-4">
                         <li>
-                            <a href="<?php echo site_url("/account") ?>" class="flex justify-center items-center">
+                            <a href="<?php echo site_url("/account") ?>" class="flex justify-center items-center <?php echo lumi_path("account") ? "text-primary-500 dark:text-white" : "" ?>">
                                 <svg class="mr-1.5" width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
                                 </svg>
@@ -85,9 +85,9 @@ if (!defined('ABSPATH')) {
                             </a>
                         </li>
                         <li>
-                            <a href="<?php echo site_url("/wishlist") ?>" class="flex justify-center items-center">
+                            <a href="<?php echo site_url("/wishlist") ?>" class="flex justify-center items-center <?php echo lumi_path("wishlist") ? "text-primary-500 dark:text-white" : "" ?>">
                                 <svg class="mr-1.5" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12 20.355C11.9013 20.3556 11.8034 20.3367 11.7121 20.2993C11.6207 20.262 11.5376 20.207 11.4675 20.1375L4.57499 13.245C3.78931 12.4583 3.25438 11.4565 3.03775 10.366C2.82111 9.27553 2.9325 8.1453 3.35783 7.11807C3.78317 6.09085 4.50338 5.21271 5.42749 4.59456C6.35161 3.97641 7.43819 3.64598 8.54999 3.645C9.79938 3.64019 11.0142 4.05483 12 4.8225C13.0833 3.98581 14.4339 3.57163 15.8 3.65718C17.1661 3.74274 18.4545 4.32219 19.425 5.2875C20.477 6.34444 21.0676 7.775 21.0676 9.26625C21.0676 10.7575 20.477 12.1881 19.425 13.245L12.5325 20.1375C12.4624 20.207 12.3793 20.262 12.2879 20.2993C12.1965 20.3367 12.0987 20.3556 12 20.355ZM8.54999 5.145C8.00797 5.14317 7.47099 5.24897 6.97017 5.45625C6.46936 5.66352 6.01467 5.96816 5.63249 6.3525C4.86214 7.12808 4.4298 8.17686 4.4298 9.27C4.4298 10.3631 4.86214 11.4119 5.63249 12.1875L12 18.5475L18.3675 12.1875C19.1378 11.4119 19.5702 10.3631 19.5702 9.27C19.5702 8.17686 19.1378 7.12808 18.3675 6.3525C17.9844 5.96925 17.5296 5.66523 17.029 5.45781C16.5284 5.25039 15.9919 5.14363 15.45 5.14363C14.9081 5.14363 14.3716 5.25039 13.871 5.45781C13.3704 5.66523 12.9156 5.96925 12.5325 6.3525C12.4628 6.4228 12.3798 6.47859 12.2884 6.51667C12.197 6.55474 12.099 6.57435 12 6.57435C11.901 6.57435 11.8029 6.55474 11.7116 6.51667C11.6202 6.47859 11.5372 6.4228 11.4675 6.3525C11.0853 5.96816 10.6306 5.66352 10.1298 5.45625C9.62898 5.24897 9.092 5.14317 8.54999 5.145Z" fill="black" />
+                                    <path d="M12 20.355C11.9013 20.3556 11.8034 20.3367 11.7121 20.2993C11.6207 20.262 11.5376 20.207 11.4675 20.1375L4.57499 13.245C3.78931 12.4583 3.25438 11.4565 3.03775 10.366C2.82111 9.27553 2.9325 8.1453 3.35783 7.11807C3.78317 6.09085 4.50338 5.21271 5.42749 4.59456C6.35161 3.97641 7.43819 3.64598 8.54999 3.645C9.79938 3.64019 11.0142 4.05483 12 4.8225C13.0833 3.98581 14.4339 3.57163 15.8 3.65718C17.1661 3.74274 18.4545 4.32219 19.425 5.2875C20.477 6.34444 21.0676 7.775 21.0676 9.26625C21.0676 10.7575 20.477 12.1881 19.425 13.245L12.5325 20.1375C12.4624 20.207 12.3793 20.262 12.2879 20.2993C12.1965 20.3367 12.0987 20.3556 12 20.355ZM8.54999 5.145C8.00797 5.14317 7.47099 5.24897 6.97017 5.45625C6.46936 5.66352 6.01467 5.96816 5.63249 6.3525C4.86214 7.12808 4.4298 8.17686 4.4298 9.27C4.4298 10.3631 4.86214 11.4119 5.63249 12.1875L12 18.5475L18.3675 12.1875C19.1378 11.4119 19.5702 10.3631 19.5702 9.27C19.5702 8.17686 19.1378 7.12808 18.3675 6.3525C17.9844 5.96925 17.5296 5.66523 17.029 5.45781C16.5284 5.25039 15.9919 5.14363 15.45 5.14363C14.9081 5.14363 14.3716 5.25039 13.871 5.45781C13.3704 5.66523 12.9156 5.96925 12.5325 6.3525C12.4628 6.4228 12.3798 6.47859 12.2884 6.51667C12.197 6.55474 12.099 6.57435 12 6.57435C11.901 6.57435 11.8029 6.55474 11.7116 6.51667C11.6202 6.47859 11.5372 6.4228 11.4675 6.3525C11.0853 5.96816 10.6306 5.66352 10.1298 5.45625C9.62898 5.24897 9.092 5.14317 8.54999 5.145Z" fill="currentColor" />
                                 </svg>
                                 wishlist
                             </a>
@@ -146,10 +146,10 @@ if (!defined('ABSPATH')) {
                 </div>
 
                 <div class="relative w-full flex justify-between items-center space-x-3 text-slate-600 dark:text-white font-normal leading-normal">
-                    <a class="relative py-2 px-3 <?php echo is_front_page() ? "text-primary-500 dark:text-white border-b-2" : "border-slate-100 border-b-2" ?>" href="#">All</a>
-                    <a class="relative py-2 px-3 <?php echo is_front_page() ? "text-primary-500 dark:text-white border-b-2" : "border-slate-100 border-b-2" ?>" href="<?php echo site_url("/woman") ?>">Woman</a>
-                    <a class="relative py-2 px-3 <?php echo is_front_page() ? "text-primary-500 dark:text-white border-b-2" : "border-slate-100 border-b-2" ?>" href="<?php echo site_url("/man") ?>">Men</a>
-                    <a class="relative py-2 px-3 <?php echo is_front_page() ? "text-primary-500 dark:text-white border-b-2" : "border-slate-100 border-b-2" ?>" href="<?php echo site_url("/kids") ?>">Kids</a>
+                    <a class="relative py-2 px-3 <?php echo is_front_page() ? "text-primary-500 dark:text-white border-b-2" : "border-slate-100 border-b-2" ?>" href="<?php echo site_url("/") ?>">All</a>
+                    <a class="relative py-2 px-3 <?php echo lumi_path("woman") ? "text-primary-500 dark:text-white border-b-2" : "border-slate-100 border-b-2" ?>" href="<?php echo site_url("/woman") ?>">Woman</a>
+                    <a class="relative py-2 px-3 <?php echo lumi_path("man")  ? "text-primary-500 dark:text-white border-b-2" : "border-slate-100 border-b-2" ?>" href="<?php echo site_url("/man") ?>">Men</a>
+                    <a class="relative py-2 px-3 <?php echo lumi_path("kids")  ? "text-primary-500 dark:text-white border-b-2" : "border-slate-100 border-b-2" ?>" href="<?php echo site_url("/kids") ?>">Kids</a>
                 </div>
             </div>
 
@@ -163,7 +163,7 @@ if (!defined('ABSPATH')) {
                             Shop
                         </span>
                     </a>
-                    <a class="relative flex flex-col py-2 px-3  <?php echo is_shop() ? "text-primary-500 dark:text-white" : "text-gray-600 dark:text-white" ?> " href="<?php echo site_url("/categories") ?>">
+                    <a class="relative flex flex-col py-2 px-3  <?php echo lumi_path("categories") ? "text-primary-500 dark:text-white" : "text-gray-600 dark:text-white" ?> " href="<?php echo site_url("/categories") ?>">
                         <svg class="mx-auto" width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor">
                             <g clip-path="url(#clip0_40_8729)">
                                 <path d="M6.85133 2.85033L6.85193 2.8498C7.41782 2.34885 8.34481 1.83579 9.29857 1.44774C10.2529 1.05945 11.2254 0.799864 11.8813 0.799864H12.2625V5.15611V9.51236H7.90629H3.55004V8.92486C3.55004 8.43646 3.71658 7.71155 3.97613 6.97029C4.23538 6.22992 4.58524 5.47942 4.94778 4.94026L4.94821 4.93962L4.94821 4.93961C5.13092 4.65853 5.26955 4.44471 5.36982 4.28239C5.46952 4.121 5.5334 4.00724 5.56458 3.92743C5.58006 3.88781 5.58954 3.85157 5.58852 3.81947C5.58741 3.78416 5.57336 3.75365 5.54478 3.73286C5.51971 3.71463 5.48821 3.70754 5.45905 3.70403C5.42895 3.70041 5.39368 3.69986 5.35629 3.69986C5.22651 3.69986 5.08957 3.79174 4.95429 3.93152C4.81657 4.07383 4.6705 4.27644 4.52253 4.52021C4.22635 5.00814 3.9181 5.66848 3.65027 6.36153C3.38239 7.05473 3.15419 7.78264 3.01875 8.40624C2.95105 8.718 2.90629 9.00472 2.89158 9.24859C2.87695 9.49113 2.89166 9.69659 2.94704 9.8426L2.94736 9.84344L2.94736 9.84343C2.96416 9.88543 2.98935 9.92375 3.03002 9.95709C3.06995 9.98984 3.12262 10.016 3.19193 10.0376C3.32939 10.0803 3.54292 10.108 3.87946 10.1256C4.55403 10.1608 5.74189 10.1561 7.85048 10.1374L7.85063 10.1374L12.5944 10.0811L12.6432 10.0805L12.6438 10.0317L12.7 5.1942L12.7 5.194L12.7375 0.375253L12.7379 0.323885L12.6866 0.324873L11.7125 0.343614C11.7124 0.343614 11.7122 0.343614 11.7121 0.343614C11.1627 0.343699 10.2205 0.49457 9.63479 0.683494L6.85133 2.85033ZM6.85133 2.85033C6.52244 3.13223 6.24958 3.31542 6.05555 3.38665C5.96017 3.42166 5.8719 3.43415 5.80426 3.40378C5.72988 3.37037 5.70004 3.2957 5.70004 3.20611C5.70004 3.12608 5.74442 3.03684 5.81205 2.94544M6.85133 2.85033L5.81205 2.94544M5.81205 2.94544C5.88102 2.85224 5.98005 2.74906 6.10191 2.63979M5.81205 2.94544L6.10191 2.63979M6.10191 2.63979C6.34583 2.42106 6.68641 2.17331 7.07559 1.92639M6.10191 2.63979L7.07559 1.92639M7.07559 1.92639C7.85372 1.43272 8.83257 0.938351 9.63469 0.683528L7.07559 1.92639Z" fill="currentColor" stroke="currentColor" stroke-width="0.5" />
@@ -184,7 +184,7 @@ if (!defined('ABSPATH')) {
                             Categories
                         </span>
                     </a>
-                    <a class="relative flex flex-col py-2 px-3  <?php echo is_shop() ? "text-primary-500 dark:text-white" : "text-gray-600 dark:text-white" ?>" href="<?php echo site_url("/brand") ?>">
+                    <a class="relative flex flex-col py-2 px-3 <?php echo lumi_path("brand") ? "text-primary-500 dark:text-white" : "text-gray-600 dark:text-white" ?>" href="<?php echo site_url("/brand") ?>">
                         <svg class="mx-auto" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor">
                             <g clip-path="url(#clip0_40_8715)">
                                 <path d="M11.25 1.5C11.25 1.875 11.625 2.25 12 2.25C12.45 2.25 12.75 1.875 12.75 1.5C12.75 1.05 12.45 0.75 12 0.75C11.625 0.75 11.25 1.05 11.25 1.5Z" fill="currentColor" />
@@ -205,7 +205,7 @@ if (!defined('ABSPATH')) {
                             Brand
                         </span>
                     </a>
-                    <a class="relative flex flex-col py-2 px-3  <?php echo is_shop() ? "text-primary-500 dark:text-white" : "text-gray-600 dark:text-white" ?> " href="<?php echo site_url("/account") ?>">
+                    <a class="relative flex flex-col py-2 px-3  <?php echo lumi_path("account") ? "text-primary-500 dark:text-white" : "text-gray-600 dark:text-white" ?> " href="<?php echo site_url("/account") ?>">
                         <svg class="mx-auto" class="mr-1.5" width="25" height="24" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 25 24" stroke-width="1.5" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
                         </svg>
@@ -220,10 +220,3 @@ if (!defined('ABSPATH')) {
 
     </header>
     <!-- end:header -->
-
-
-    <?php
-
-    echo "<pre>";
-    print_r(lumi_path());
-    echo "</pre>";
