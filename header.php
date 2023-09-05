@@ -64,11 +64,11 @@ if (!defined('ABSPATH')) {
             <div class="relative container md:flex hidden justify-between items-center h-full w-full mx-auto">
                 <div class="lg:w-[60%] w-1/2 relative flex lg:justify-between justify-start items-center space-x-4">
                     <a href="<?php echo site_url("/") ?>"><img class="h-auto lg:w-[120px] w-20" src="<?php echo url("img/logo.png") ?>" alt="<?php echo bloginfo("title") ?>"></a>
-                    <div class="relative border border-primary-100 rounded-full lg:py-1.5 py-0.5 lg:px-5 px-3 xl:w-[420px] lg:w-96 w-full">
-                        <svg class="absolute left-4 top-[50%] translate-y-[-50%]" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <div class="relative border border-primary-100 rounded-full py-0.5 px-3 xl:w-[420px] lg:w-96 w-full">
+                        <svg class="absolute left-2.5 top-[50%] translate-y-[-50%]" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M21.7555 20.6065L18.3182 17.2458L18.2376 17.1233C18.0878 16.9742 17.883 16.8902 17.6692 16.8902C17.4554 16.8902 17.2505 16.9742 17.1007 17.1233C14.1795 19.8033 9.67815 19.949 6.58201 17.4637C3.48586 14.9784 2.75567 10.6334 4.87568 7.31017C6.9957 3.98697 11.3081 2.71685 14.9528 4.34214C18.5976 5.96743 20.4438 9.98379 19.267 13.7276C19.1823 13.9981 19.2515 14.2922 19.4487 14.4992C19.6459 14.7062 19.9411 14.7946 20.223 14.7311C20.505 14.6676 20.7309 14.4619 20.8156 14.1914C22.2224 9.74864 20.0977 4.96755 15.8161 2.94106C11.5345 0.914562 6.38084 2.25082 3.68905 6.08542C0.99727 9.92001 1.57518 15.1021 5.04893 18.2795C8.52268 21.4569 13.8498 21.6759 17.5841 18.7949L20.6277 21.7705C20.942 22.0765 21.4502 22.0765 21.7645 21.7705C22.0785 21.4602 22.0785 20.9606 21.7645 20.6503L21.7555 20.6065Z" fill="#575757" />
                         </svg>
-                        <form class="relative pl-4 overflow-hidden" action="<?php echo site_url("/") ?>" method="GET">
+                        <form class="relative pl-5 overflow-hidden" action="<?php echo site_url("/") ?>" method="GET">
                             <input type="text" name="s" id="" placeholder="search for product" class="bg-transparent outline-none border-none border-transparent outline-transparent focus:outline-none focus-visible:outline-none focus:ring-transparent w-full">
                         </form>
                     </div>
@@ -146,7 +146,7 @@ if (!defined('ABSPATH')) {
                 </div>
 
                 <div class="relative w-full flex justify-between items-center space-x-3 text-slate-600 dark:text-white font-normal leading-normal">
-                    <a class="relative py-2 px-3 <?php echo is_front_page() ? "text-primary-500 dark:text-white border-b-2" : "border-slate-100 border-b-2" ?>" href="<?php echo site_url("/") ?>">All</a>
+                    <a class="relative py-2 px-3 <?php echo is_front_page() || is_shop() ? "text-primary-500 dark:text-white border-b-2" : "border-slate-100 border-b-2" ?>" href="<?php echo site_url("/") ?>">All</a>
                     <a class="relative py-2 px-3 <?php echo lumi_path("woman") ? "text-primary-500 dark:text-white border-b-2" : "border-slate-100 border-b-2" ?>" href="<?php echo site_url("/woman") ?>">Woman</a>
                     <a class="relative py-2 px-3 <?php echo lumi_path("man")  ? "text-primary-500 dark:text-white border-b-2" : "border-slate-100 border-b-2" ?>" href="<?php echo site_url("/man") ?>">Men</a>
                     <a class="relative py-2 px-3 <?php echo lumi_path("kids")  ? "text-primary-500 dark:text-white border-b-2" : "border-slate-100 border-b-2" ?>" href="<?php echo site_url("/kids") ?>">Kids</a>
@@ -154,7 +154,7 @@ if (!defined('ABSPATH')) {
             </div>
 
             <div class="fixed bottom-0 w-full md:hidden border-t border-primary-50/50 bg-white z-50">
-                <div class="relative flex justify-between items-center px-2.5  ">
+                <div class="relative flex justify-between items-center px-2.5 text-xs font-medium ">
                     <a class="relative flex flex-col py-2 px-3 <?php echo is_front_page() || is_shop() ? "text-primary-500 dark:text-white" : "text-gray-600 dark:text-white" ?>" href="<?php echo site_url("/shop") ?>">
                         <svg class="mx-auto" width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M20.5 8.00001L14.5 2.74001C13.95 2.24805 13.2379 1.97607 12.5 1.97607C11.762 1.97607 11.05 2.24805 10.5 2.74001L4.49997 8.00001C4.18234 8.28408 3.92887 8.63256 3.75644 9.02225C3.58402 9.41194 3.49659 9.83389 3.49997 10.26V19C3.49997 19.7957 3.81604 20.5587 4.37865 21.1213C4.94126 21.6839 5.70432 22 6.49997 22H18.5C19.2956 22 20.0587 21.6839 20.6213 21.1213C21.1839 20.5587 21.5 19.7957 21.5 19V10.25C21.5019 9.82557 21.4138 9.40555 21.2414 9.01769C21.0691 8.62983 20.8163 8.28296 20.5 8.00001ZM14.5 20H10.5V15C10.5 14.7348 10.6053 14.4804 10.7929 14.2929C10.9804 14.1054 11.2348 14 11.5 14H13.5C13.7652 14 14.0195 14.1054 14.2071 14.2929C14.3946 14.4804 14.5 14.7348 14.5 15V20ZM19.5 19C19.5 19.2652 19.3946 19.5196 19.2071 19.7071C19.0195 19.8946 18.7652 20 18.5 20H16.5V15C16.5 14.2044 16.1839 13.4413 15.6213 12.8787C15.0587 12.3161 14.2956 12 13.5 12H11.5C10.7043 12 9.94126 12.3161 9.37865 12.8787C8.81604 13.4413 8.49997 14.2044 8.49997 15V20H6.49997C6.23476 20 5.9804 19.8946 5.79287 19.7071C5.60533 19.5196 5.49997 19.2652 5.49997 19V10.25C5.50015 10.108 5.53057 9.9677 5.58919 9.83839C5.64781 9.70907 5.7333 9.59372 5.83997 9.50001L11.84 4.25001C12.0225 4.08969 12.2571 4.00127 12.5 4.00127C12.7429 4.00127 12.9775 4.08969 13.16 4.25001L19.16 9.50001C19.2666 9.59372 19.3521 9.70907 19.4108 9.83839C19.4694 9.9677 19.4998 10.108 19.5 10.25V19Z" fill="currentColor" />
