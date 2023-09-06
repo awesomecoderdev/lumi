@@ -242,7 +242,7 @@ module.exports = ({ theme }: { theme: any }) => ({
 			h1: {
 				color: "var(--tw-prose-headings)",
 				fontWeight: "700",
-				fontSize: theme("fontSize.2xl")[0],
+				fontSize: theme("fontSize.3xl")[0],
 				...theme("fontSize.2xl")[1],
 				marginBottom: theme("spacing.2"),
 			},
@@ -283,7 +283,12 @@ module.exports = ({ theme }: { theme: any }) => ({
 			},
 
 			// Media
-			"img, video, figure": {
+			"img,figure": {
+				marginTop: theme("spacing.8"),
+				marginBottom: theme("spacing.8"),
+				borderRadius: theme("2xl"),
+			},
+			video: {
 				marginTop: theme("spacing.8"),
 				marginBottom: theme("spacing.8"),
 			},

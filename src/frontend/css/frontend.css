@@ -228,3 +228,21 @@ body {
 .has-adminbar {
 	/* @apply mt-4; */
 }
+
+/* content css  */
+.prose img,
+figure {
+	@apply rounded-xl xl:aspect-[10/5] lg:aspect-[10/6] md:aspect-[10/6] aspect-[10/6] w-full;
+}
+
+.prose .aligncenter {
+	@apply mx-auto;
+}
+
+.prose .alignleft {
+	@apply mr-auto;
+}
+
+.prose .alignright {
+	@apply ml-auto;
+}
