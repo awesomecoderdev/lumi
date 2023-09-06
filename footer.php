@@ -24,7 +24,7 @@ if (!defined('ABSPATH')) {
 
 
 <!-- start:footer -->
-<footer id="footer" class="relative bg-primary-500 dark:bg-[#2D2D2D] py-10 text-slate-100 <?php echo wp_is_mobile() ? "md:pb-0 pb-20" : "" ?>">
+<footer id="footer" class="relative bg-primary-500 dark:bg-[#2D2D2D] py-10 text-slate-100 <?php echo wp_is_mobile() ? "md:pb-10 pb-20" : "" ?>">
     <div class="container grid xl:grid-cols-10 gap-4">
         <div class="relative xl:col-span-6">
             <div class="relative w-full grid md:grid-cols-5 gap-6">
