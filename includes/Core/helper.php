@@ -87,7 +87,7 @@ if (!function_exists('url')) {
         if (strpos($path, "?") !== false) {
             $path = "$path&";
         } else {
-            $path = "$path?";
+            $path = $params ? "$path?" : $path;
         }
 
         return $path . $params;
@@ -183,6 +183,41 @@ if (!function_exists('is_cart')) {
     }
 }
 
+
+/**
+ * The wp_is_tablet function.
+ *
+ * @link              https://awesomecoder.dev/
+ * @since             1.0.0
+ *
+ */
+if (!function_exists('wp_is_tablet')) {
+    function wp_is_tablet()
+    {
+        $userAgent = $_SERVER['HTTP_USER_AGENT'];
+
+        // Check for common tablet User-Agent strings
+        $tabletUserAgents = array(
+            'iPad',
+            'Android',
+            'Kindle',
+            'SamsungTablet',
+            'Nexus 7',
+            // Add more tablet user agents as needed
+        );
+
+        foreach ($tabletUserAgents as $agent) {
+            if (stripos($userAgent, $agent) !== false) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+}
+
+
+
 /**
  * The lumi_path function.
  *
@@ -198,5 +233,38 @@ if (!function_exists('lumi_path')) {
         $slug = isset($slug[0]) && !empty($slug[0]) ? $slug[0] : (isset($slug[1]) && !empty($slug[1]) ? $slug[1] : $url);
 
         return $path ? ($slug == $path) : $slug;
+    }
+}
+
+
+/**
+ * The lumi_path function.
+ *
+ * @link              https://awesomecoder.dev/
+ * @since             1.0.0
+ *
+ */
+if (!function_exists('get_lumi_categories')) {
+    function get_lumi_categories($args = [])
+    {
+        $default = array(
+            'taxonomy'      => 'product_cat', // Taxonomy for product categories
+            'title_li'      => '', // Remove the default title
+            'orderby'       => 'count', // Order by the number of products
+            'order'         => 'DESC',  // Descending order (most products first)
+            // 'child_of'      => 0,
+            // 'parent'        => 0,
+            'fields'        => 'all',
+            'hide_empty'    => false,
+            'number'        => 4,
+        );
+
+        $args = array_merge($default, $args);
+
+        $categories = new \WP_Term_Query($default);
+        // $terms = get_terms($args);
+        $terms = $categories->terms;
+
+        return $terms;
     }
 }

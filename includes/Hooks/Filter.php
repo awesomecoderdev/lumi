@@ -81,6 +81,7 @@ if (!function_exists("lumi_body_class")) {
             'is-embed'             => is_embed(),
             // Mobile
             'is-mobile'            => wp_is_mobile(),
+            'is-tablet'            => wp_is_tablet(),
             'is-desktop'            => !wp_is_mobile(),
             // Common
             'has-blocks'           => function_exists('has_blocks') && has_blocks(),
