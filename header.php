@@ -22,7 +22,7 @@ if (!defined('ABSPATH')) {
 
 ?>
 <!doctype html>
-<html <?php language_attributes(); ?>>
+<html <?php language_attributes(); ?> class="dark">
 
 <head>
     <meta charset="<?php bloginfo('charset'); ?>" />
@@ -146,16 +146,16 @@ if (!defined('ABSPATH')) {
                 </div>
 
                 <div class="relative w-full flex justify-between items-center space-x-3 text-slate-600 dark:text-white font-normal leading-normal">
-                    <a class="relative py-2 px-3 <?php echo is_front_page() || is_shop() ? "text-primary-500 dark:text-white border-b-2" : "border-slate-100 border-b-2" ?>" href="<?php echo site_url("/") ?>">All</a>
-                    <a class="relative py-2 px-3 <?php echo lumi_path("woman") ? "text-primary-500 dark:text-white border-b-2" : "border-slate-100 border-b-2" ?>" href="<?php echo site_url("/woman") ?>">Woman</a>
-                    <a class="relative py-2 px-3 <?php echo lumi_path("man")  ? "text-primary-500 dark:text-white border-b-2" : "border-slate-100 border-b-2" ?>" href="<?php echo site_url("/man") ?>">Men</a>
-                    <a class="relative py-2 px-3 <?php echo lumi_path("kids")  ? "text-primary-500 dark:text-white border-b-2" : "border-slate-100 border-b-2" ?>" href="<?php echo site_url("/kids") ?>">Kids</a>
+                    <a href="<?php echo site_url("/") ?>" class="relative py-2 px-3 border-b-2 <?php echo is_front_page() || is_shop() ? "text-primary-500 dark:text-primary-500 border-primary-50 dark:border-primary-500" : "border-slate-100 dark:border-primary-50/5" ?>">All</a>
+                    <a href="<?php echo site_url("/woman") ?>" class="relative py-2 px-3 border-b-2 <?php echo lumi_path("woman") ? "text-primary-500 dark:text-primary-500 border-primary-50 dark:border-primary-500" : "border-slate-100 dark:border-primary-50/5" ?>">Woman</a>
+                    <a href="<?php echo site_url("/man") ?>" class="relative py-2 px-3 border-b-2 <?php echo lumi_path("man")  ? "text-primary-500 dark:text-primary-500 border-primary-50 dark:border-primary-500" : "border-slate-100 dark:border-primary-50/5" ?>">Men</a>
+                    <a href="<?php echo site_url("/kids") ?>" class="relative py-2 px-3 border-b-2 <?php echo lumi_path("kids")  ? "text-primary-500 dark:text-primary-500 border-primary-50 dark:border-primary-500" : "border-slate-100 dark:border-primary-50/5" ?>">Kids</a>
                 </div>
             </div>
 
-            <div class="fixed bottom-0 w-full md:hidden border-t border-primary-50/50 bg-white dark:bg-dark z-50">
+            <div class="fixed bottom-0 w-full md:hidden border-t border-primary-50/50 dark:border-slate-100/5 bg-white dark:bg-dark z-50">
                 <div class="relative flex justify-between items-center px-2.5 text-xs font-medium ">
-                    <a class="relative flex flex-col py-2 px-3 <?php echo is_front_page() || is_shop() ? "text-primary-500 dark:text-white" : "text-gray-600 dark:text-white" ?>" href="<?php echo site_url("/shop") ?>">
+                    <a class="relative flex flex-col py-2 px-3 <?php echo is_front_page() || is_shop() ? "text-primary-500 dark:text-primary-600 " : "text-gray-600 dark:text-white" ?>" href="<?php echo site_url("/shop") ?>">
                         <svg class="mx-auto" width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M20.5 8.00001L14.5 2.74001C13.95 2.24805 13.2379 1.97607 12.5 1.97607C11.762 1.97607 11.05 2.24805 10.5 2.74001L4.49997 8.00001C4.18234 8.28408 3.92887 8.63256 3.75644 9.02225C3.58402 9.41194 3.49659 9.83389 3.49997 10.26V19C3.49997 19.7957 3.81604 20.5587 4.37865 21.1213C4.94126 21.6839 5.70432 22 6.49997 22H18.5C19.2956 22 20.0587 21.6839 20.6213 21.1213C21.1839 20.5587 21.5 19.7957 21.5 19V10.25C21.5019 9.82557 21.4138 9.40555 21.2414 9.01769C21.0691 8.62983 20.8163 8.28296 20.5 8.00001ZM14.5 20H10.5V15C10.5 14.7348 10.6053 14.4804 10.7929 14.2929C10.9804 14.1054 11.2348 14 11.5 14H13.5C13.7652 14 14.0195 14.1054 14.2071 14.2929C14.3946 14.4804 14.5 14.7348 14.5 15V20ZM19.5 19C19.5 19.2652 19.3946 19.5196 19.2071 19.7071C19.0195 19.8946 18.7652 20 18.5 20H16.5V15C16.5 14.2044 16.1839 13.4413 15.6213 12.8787C15.0587 12.3161 14.2956 12 13.5 12H11.5C10.7043 12 9.94126 12.3161 9.37865 12.8787C8.81604 13.4413 8.49997 14.2044 8.49997 15V20H6.49997C6.23476 20 5.9804 19.8946 5.79287 19.7071C5.60533 19.5196 5.49997 19.2652 5.49997 19V10.25C5.50015 10.108 5.53057 9.9677 5.58919 9.83839C5.64781 9.70907 5.7333 9.59372 5.83997 9.50001L11.84 4.25001C12.0225 4.08969 12.2571 4.00127 12.5 4.00127C12.7429 4.00127 12.9775 4.08969 13.16 4.25001L19.16 9.50001C19.2666 9.59372 19.3521 9.70907 19.4108 9.83839C19.4694 9.9677 19.4998 10.108 19.5 10.25V19Z" fill="currentColor" />
                         </svg>
@@ -163,7 +163,7 @@ if (!defined('ABSPATH')) {
                             Shop
                         </span>
                     </a>
-                    <a class="relative flex flex-col py-2 px-3  <?php echo lumi_path("categories") ? "text-primary-500 dark:text-white" : "text-gray-600 dark:text-white" ?> " href="<?php echo site_url("/categories") ?>">
+                    <a class="relative flex flex-col py-2 px-3  <?php echo lumi_path("categories") ? "text-primary-500 dark:text-primary-600 " : "text-gray-600 dark:text-white" ?> " href="<?php echo site_url("/categories") ?>">
                         <svg class="mx-auto" width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor">
                             <g clip-path="url(#clip0_40_8729)">
                                 <path d="M6.85133 2.85033L6.85193 2.8498C7.41782 2.34885 8.34481 1.83579 9.29857 1.44774C10.2529 1.05945 11.2254 0.799864 11.8813 0.799864H12.2625V5.15611V9.51236H7.90629H3.55004V8.92486C3.55004 8.43646 3.71658 7.71155 3.97613 6.97029C4.23538 6.22992 4.58524 5.47942 4.94778 4.94026L4.94821 4.93962L4.94821 4.93961C5.13092 4.65853 5.26955 4.44471 5.36982 4.28239C5.46952 4.121 5.5334 4.00724 5.56458 3.92743C5.58006 3.88781 5.58954 3.85157 5.58852 3.81947C5.58741 3.78416 5.57336 3.75365 5.54478 3.73286C5.51971 3.71463 5.48821 3.70754 5.45905 3.70403C5.42895 3.70041 5.39368 3.69986 5.35629 3.69986C5.22651 3.69986 5.08957 3.79174 4.95429 3.93152C4.81657 4.07383 4.6705 4.27644 4.52253 4.52021C4.22635 5.00814 3.9181 5.66848 3.65027 6.36153C3.38239 7.05473 3.15419 7.78264 3.01875 8.40624C2.95105 8.718 2.90629 9.00472 2.89158 9.24859C2.87695 9.49113 2.89166 9.69659 2.94704 9.8426L2.94736 9.84344L2.94736 9.84343C2.96416 9.88543 2.98935 9.92375 3.03002 9.95709C3.06995 9.98984 3.12262 10.016 3.19193 10.0376C3.32939 10.0803 3.54292 10.108 3.87946 10.1256C4.55403 10.1608 5.74189 10.1561 7.85048 10.1374L7.85063 10.1374L12.5944 10.0811L12.6432 10.0805L12.6438 10.0317L12.7 5.1942L12.7 5.194L12.7375 0.375253L12.7379 0.323885L12.6866 0.324873L11.7125 0.343614C11.7124 0.343614 11.7122 0.343614 11.7121 0.343614C11.1627 0.343699 10.2205 0.49457 9.63479 0.683494L6.85133 2.85033ZM6.85133 2.85033C6.52244 3.13223 6.24958 3.31542 6.05555 3.38665C5.96017 3.42166 5.8719 3.43415 5.80426 3.40378C5.72988 3.37037 5.70004 3.2957 5.70004 3.20611C5.70004 3.12608 5.74442 3.03684 5.81205 2.94544M6.85133 2.85033L5.81205 2.94544M5.81205 2.94544C5.88102 2.85224 5.98005 2.74906 6.10191 2.63979M5.81205 2.94544L6.10191 2.63979M6.10191 2.63979C6.34583 2.42106 6.68641 2.17331 7.07559 1.92639M6.10191 2.63979L7.07559 1.92639M7.07559 1.92639C7.85372 1.43272 8.83257 0.938351 9.63469 0.683528L7.07559 1.92639Z" fill="currentColor" stroke="currentColor" stroke-width="0.5" />
@@ -179,12 +179,11 @@ if (!defined('ABSPATH')) {
                                 </clipPath>
                             </defs>
                         </svg>
-
                         <span class="pt-1">
                             Categories
                         </span>
                     </a>
-                    <a class="relative flex flex-col py-2 px-3 <?php echo lumi_path("brand") ? "text-primary-500 dark:text-white" : "text-gray-600 dark:text-white" ?>" href="<?php echo site_url("/brand") ?>">
+                    <a class="relative flex flex-col py-2 px-3 <?php echo lumi_path("brand") ? "text-primary-500 dark:text-primary-600 " : "text-gray-600 dark:text-white" ?>" href="<?php echo site_url("/brand") ?>">
                         <svg class="mx-auto" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor">
                             <g clip-path="url(#clip0_40_8715)">
                                 <path d="M11.25 1.5C11.25 1.875 11.625 2.25 12 2.25C12.45 2.25 12.75 1.875 12.75 1.5C12.75 1.05 12.45 0.75 12 0.75C11.625 0.75 11.25 1.05 11.25 1.5Z" fill="currentColor" />
@@ -200,16 +199,14 @@ if (!defined('ABSPATH')) {
                                 </clipPath>
                             </defs>
                         </svg>
-
                         <span class="pt-1">
                             Brand
                         </span>
                     </a>
-                    <a class="relative flex flex-col py-2 px-3  <?php echo lumi_path("account") ? "text-primary-500 dark:text-white" : "text-gray-600 dark:text-white" ?> " href="<?php echo site_url("/account") ?>">
+                    <a class="relative flex flex-col py-2 px-3  <?php echo lumi_path("account") ? "text-primary-500 dark:text-primary-600 " : "text-gray-600 dark:text-white" ?> " href="<?php echo site_url("/account") ?>">
                         <svg class="mx-auto" class="mr-1.5" width="25" height="24" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 25 24" stroke-width="1.5" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
                         </svg>
-
                         <span class="pt-1">
                             Account
                         </span>
@@ -220,3 +217,8 @@ if (!defined('ABSPATH')) {
 
     </header>
     <!-- end:header -->
+
+
+    <br>
+    <br>
+    <br>
