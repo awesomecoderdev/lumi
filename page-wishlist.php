@@ -25,7 +25,7 @@ if (!defined('ABSPATH')) {
 
 <?php get_header(); ?>
 
-<main id="main" class="relative prose dark:prose-invert min-h-[calc(60vh-112px)] lg:px-8 sm:px-7 xs:px-5 px-4 xl:overflow-visible overflow-hidden">
+<main id="main" class="<?php echo lumi_container(); ?>">
     <div class="relative w-full h-full max-w-4xl flex lg:flex-row flex-col justify-between lg:items-center py-10">
         <div class="relative">
             <h1 class="xl:text-5xl lg:text-4xl text-3xl font-semibold"><?php _e("This is wishlist page.", "lumi"); ?></h1>

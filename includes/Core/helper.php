@@ -216,8 +216,6 @@ if (!function_exists('wp_is_tablet')) {
     }
 }
 
-
-
 /**
  * The lumi_path function.
  *
@@ -238,7 +236,7 @@ if (!function_exists('lumi_path')) {
 
 
 /**
- * The lumi_path function.
+ * The get_lumi_categories function.
  *
  * @link              https://awesomecoder.dev/
  * @since             1.0.0
@@ -266,5 +264,21 @@ if (!function_exists('get_lumi_categories')) {
         $terms = $categories->terms;
 
         return $terms;
+    }
+}
+
+/**
+ * The lumi_container function.
+ *
+ * @link              https://awesomecoder.dev/
+ * @since             1.0.0
+ *
+ */
+if (!function_exists('lumi_container')) {
+    function lumi_container($extra = "")
+    {
+        $default = "relative container prose dark:prose-invert min-h-[calc(60vh-112px)] lg:px-8 sm:px-7 xs:px-5 px-4 xl:overflow-visible overflow-hidden ";
+
+        return "$default $extra";
     }
 }

@@ -41,7 +41,12 @@ if (!defined('ABSPATH')) {
 <main id="main" class="<?php echo lumi_container(); ?>">
     <?php if (have_posts()) : ?>
         <?php while (have_posts()) : the_post(); ?>
-            <?php the_content(); ?>
+            <a href="<?php the_permalink() ?>" class="not-prose">
+                <div class="relative prose dark:prose-invert">
+                    <h1 class="text-3xl font-semibold mt-2 scroll-mt-24"><?php the_title(); ?></h1>
+                    <?php the_content(); ?>
+                </div>
+            </a>
         <?php endwhile; ?>
     <?php endif; ?>
 </main>

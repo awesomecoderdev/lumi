@@ -38,7 +38,7 @@ if (!defined('ABSPATH')) {
  -->
 
 
-<main id="main" class="relative prose dark:prose-invert min-h-[calc(60vh-112px)] lg:px-8 sm:px-7 xs:px-5 px-4 xl:overflow-visible overflow-hidden">
+<main id="main" class="<?php echo lumi_container(); ?>">
     <?php if (have_posts()) : ?>
         <?php while (have_posts()) : the_post(); ?>
             <?php the_content(); ?>
