@@ -293,7 +293,9 @@ if (!function_exists('lumi_get_wishlist')) {
             $wishlist = get_option("lumi_wishlist_$user_id", $session_wishlist);
             $wishlist = is_array($wishlist) ? $wishlist : $session_wishlist;
 
-            $new_wishlist = array_unique(array_values($wishlist));
+            $unique_wishlist = array_merge($session_wishlist, $wishlist);
+            $new_wishlist = array_unique(array_values($unique_wishlist));
+
             update_option("lumi_wishlist_$user_id", $new_wishlist);
         } else {
             $wishlist = is_array($session_wishlist) ? $session_wishlist : [];
