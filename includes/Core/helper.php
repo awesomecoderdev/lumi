@@ -259,13 +259,38 @@ if (!function_exists('get_lumi_categories')) {
 
         $args = array_merge($default, $args);
 
-        $categories = new \WP_Term_Query($default);
+        $categories = new \WP_Term_Query($args);
         // $terms = get_terms($args);
         $terms = $categories->terms;
+        // $terms = $categories;
 
         return $terms;
     }
 }
+
+/**
+ * The get_lumi_categories_image function.
+ *
+ * @link              https://awesomecoder.dev/
+ * @since             1.0.0
+ *
+ */
+if (!function_exists('get_lumi_categories_image')) {
+    function get_lumi_categories_image($id = false)
+    {
+        if ($id) {
+            $thumbnail_id = get_term_meta($id, 'thumbnail_id', true);
+            $image = wp_get_attachment_url($thumbnail_id);
+
+            if (!empty($image)) {
+                return $image;
+            }
+        }
+
+        return url('img/category/lumi.png');
+    }
+}
+
 
 /**
  * The lumi_container function.
@@ -277,7 +302,7 @@ if (!function_exists('get_lumi_categories')) {
 if (!function_exists('lumi_container')) {
     function lumi_container($extra = "")
     {
-        $default = "relative container prose dark:prose-invert min-h-[calc(60vh-112px)] lg:px-8 sm:px-7 xs:px-5 px-4 xl:overflow-visible overflow-hidden ";
+        $default = "relative container prose dark:prose-invert min-h-[calc(60vh-112px)] lg:px-8 sm:px-7 xs:px-5 px-4 xl:overflow-visible overflow-hidden";
 
         return "$default $extra";
     }

@@ -25,7 +25,7 @@ if (!defined('ABSPATH')) {
 
 <?php get_header(); ?>
 
-<main id="main" class="<?php echo lumi_container(); ?>">
+<main id="main" class="<?php echo lumi_container("py-10"); ?>">
     <?php if (have_posts()) : ?>
         <?php while (have_posts()) : the_post(); ?>
             <div class="about__container bd-grid">

@@ -1196,6 +1196,12 @@ body{
 .right-0{
 	right: 0px;
 }
+.right-4{
+	right: 1rem;
+}
+.top-4{
+	top: 1rem;
+}
 .top-\[50\%\]{
 	top: 50%;
 }
@@ -1207,6 +1213,9 @@ body{
 }
 .col-span-2{
 	grid-column: span 2 / span 2;
+}
+.col-span-8{
+	grid-column: span 8 / span 8;
 }
 .mx-auto{
 	margin-left: auto;
@@ -1263,15 +1272,6 @@ body{
 .h-screen{
 	height: 100vh;
 }
-.min-h-\[calc\(100vh-75px\)\]{
-	min-height: calc(100vh - 75px);
-}
-.min-h-\[calc\(100vh-112px\)\]{
-	min-height: calc(100vh - 112px);
-}
-.min-h-\[calc\(80vh-112px\)\]{
-	min-height: calc(80vh - 112px);
-}
 .min-h-\[calc\(60vh-112px\)\]{
 	min-height: calc(60vh - 112px);
 }
@@ -1309,8 +1309,17 @@ body{
 .transform{
 	transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
+.cursor-pointer{
+	cursor: pointer;
+}
 .scroll-mt-24{
 	scroll-margin-top: 6rem;
+}
+.grid-cols-10{
+	grid-template-columns: repeat(10, minmax(0, 1fr));
+}
+.grid-cols-4{
+	grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 .flex-row{
 	flex-direction: row;
@@ -1336,11 +1345,17 @@ body{
 .justify-between{
 	justify-content: space-between;
 }
+.justify-evenly{
+	justify-content: space-evenly;
+}
 .gap-4{
 	gap: 1rem;
 }
 .gap-6{
 	gap: 1.5rem;
+}
+.gap-8{
+	gap: 2rem;
 }
 .space-x-2 > :not([hidden]) ~ :not([hidden]){
 	--tw-space-x-reverse: 0;
@@ -1384,6 +1399,10 @@ body{
 }
 .border-\[1\.5px\]{
 	border-width: 1.5px;
+}
+.border-y{
+	border-top-width: 1px;
+	border-bottom-width: 1px;
 }
 .border-b-2{
 	border-bottom-width: 2px;
@@ -1430,16 +1449,15 @@ body{
 	--tw-bg-opacity: 1;
 	background-color: rgb(241 245 249 / var(--tw-bg-opacity));
 }
-.bg-slate-50{
-	--tw-bg-opacity: 1;
-	background-color: rgb(248 250 252 / var(--tw-bg-opacity));
-}
 .bg-transparent{
 	background-color: transparent;
 }
 .bg-white{
 	--tw-bg-opacity: 1;
 	background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+.p-1{
+	padding: 0.25rem;
 }
 .px-2{
 	padding-left: 0.5rem;
@@ -1477,6 +1495,14 @@ body{
 	padding-top: 0.5rem;
 	padding-bottom: 0.5rem;
 }
+.py-3{
+	padding-top: 0.75rem;
+	padding-bottom: 0.75rem;
+}
+.py-4{
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+}
 .py-5{
 	padding-top: 1.25rem;
 	padding-bottom: 1.25rem;
@@ -1508,9 +1534,6 @@ body{
 }
 .pt-10{
 	padding-top: 2.5rem;
-}
-.pt-24{
-	padding-top: 6rem;
 }
 .pt-4{
 	padding-top: 1rem;
@@ -1606,6 +1629,10 @@ body{
 	--tw-text-opacity: 1;
 	color: rgb(71 85 105 / var(--tw-text-opacity));
 }
+.text-white{
+	--tw-text-opacity: 1;
+	color: rgb(255 255 255 / var(--tw-text-opacity));
+}
 .opacity-0{
 	opacity: 0;
 }
@@ -1696,42 +1723,49 @@ body {
 		background-color: rgb(203 213 225 / var(--tw-bg-opacity)) !important;
 	}
 }
+.glass {
+	background: rgba(255, 255, 255, 0.25);
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	backdrop-filter: blur(4px);
+	-webkit-backdrop-filter: blur(4px);
+	border: 1px solid rgba(255, 255, 255, 0.18);
+}
 .has-adminbar {
 	/* @apply mt-4; */
 }
 /* content css  */
-.prose img,
+.contents.prose img,
 figure{
 	aspect-ratio: 10/6;
 	width: 100%;
 	border-radius: 0.75rem;
 }
 @media (min-width: 768px){
-	.prose img,
+	.contents.prose img,
 figure{
 		aspect-ratio: 10/6;
 	}
 }
 @media (min-width: 1024px){
-	.prose img,
+	.contents.prose img,
 figure{
 		aspect-ratio: 10/6;
 	}
 }
 @media (min-width: 1280px){
-	.prose img,
+	.contents.prose img,
 figure{
 		aspect-ratio: 10/5;
 	}
 }
-.prose .aligncenter{
+.contents.prose .aligncenter{
 	margin-left: auto;
 	margin-right: auto;
 }
-.prose .alignleft{
+.contents.prose .alignleft{
 	margin-right: auto;
 }
-.prose .alignright{
+.contents.prose .alignright{
 	margin-left: auto;
 }
 :is(.dark .dark\:prose-invert){
@@ -1782,6 +1816,9 @@ figure{
 :is(.dark .dark\:border-slate-100\/5){
 	border-color: rgb(241 245 249 / 0.05);
 }
+:is(.dark .dark\:border-slate-50\/25){
+	border-color: rgb(248 250 252 / 0.25);
+}
 :is(.dark .dark\:bg-\[\#2D2D2D\]){
 	--tw-bg-opacity: 1;
 	background-color: rgb(45 45 45 / var(--tw-bg-opacity));
@@ -1793,6 +1830,10 @@ figure{
 :is(.dark .dark\:bg-primary-500){
 	--tw-bg-opacity: 1;
 	background-color: rgb(146 177 147 / var(--tw-bg-opacity));
+}
+:is(.dark .dark\:bg-slate-400){
+	--tw-bg-opacity: 1;
+	background-color: rgb(148 163 184 / var(--tw-bg-opacity));
 }
 :is(.dark .dark\:text-primary-500){
 	--tw-text-opacity: 1;
@@ -1932,6 +1973,9 @@ figure{
 	}
 	.xl\:hidden{
 		display: none;
+	}
+	.xl\:aspect-\[3\/4\]{
+		aspect-ratio: 3/4;
 	}
 	.xl\:w-\[420px\]{
 		width: 420px;

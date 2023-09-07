@@ -217,8 +217,3 @@ if (!defined('ABSPATH')) {
 
     </header>
     <!-- end:header -->
-
-
-    <br>
-    <br>
-    <br>

@@ -225,24 +225,32 @@ body {
 	}
 }
 
+.glass {
+	background: rgba(255, 255, 255, 0.25);
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	backdrop-filter: blur(4px);
+	-webkit-backdrop-filter: blur(4px);
+	border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
 .has-adminbar {
 	/* @apply mt-4; */
 }
 
 /* content css  */
-.prose img,
+.contents.prose img,
 figure {
 	@apply rounded-xl xl:aspect-[10/5] lg:aspect-[10/6] md:aspect-[10/6] aspect-[10/6] w-full;
 }
 
-.prose .aligncenter {
+.contents.prose .aligncenter {
 	@apply mx-auto;
 }
 
-.prose .alignleft {
+.contents.prose .alignleft {
 	@apply mr-auto;
 }
 
-.prose .alignright {
+.contents.prose .alignright {
 	@apply ml-auto;
 }

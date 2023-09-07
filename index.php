@@ -25,17 +25,8 @@ if (!defined('ABSPATH')) {
 
 <?php get_header(); ?>
 
-<main id="main" class="<?php echo lumi_container(); ?>">
-    <p class="text-4xl text-primary-50">Lorem ipsum dolor </p>
-    <p class="text-4xl text-primary-100">Lorem ipsum dolor</p>
-    <p class="text-4xl text-primary-200">Lorem ipsum dolor</p>
-    <p class="text-4xl text-primary-300">Lorem ipsum dolor</p>
-    <p class="text-4xl text-primary-400">Lorem ipsum dolor</p>
-    <p class="text-4xl text-primary-500">Lorem ipsum dolor</p>
-    <p class="text-4xl text-primary-600">Lorem ipsum dolor</p>
-    <p class="text-4xl text-primary-700">Lorem ipsum dolor</p>
-    <p class="text-4xl text-primary-800">Lorem ipsum dolor</p>
-    <p class="text-4xl text-primary-900">Lorem ipsum dolor</p>
+<main id="main" class="<?php echo lumi_container("py-10"); ?>">
+    <!-- get_lumi_categories(["number" => 8]) -->
 </main>
 
 
