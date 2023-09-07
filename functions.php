@@ -32,6 +32,9 @@ if (!defined('WPINC')) {
     die;
 }
 
+// start session
+@session_start();
+
 // AutoLoader
 if (defined('WPINC') && file_exists(get_template_directory("vendor/autoload.php"))) require "vendor/autoload.php";
 

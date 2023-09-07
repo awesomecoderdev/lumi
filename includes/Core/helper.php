@@ -49,7 +49,6 @@ if (!function_exists('lami_version')) {
         if ($file && file_exists(get_template_directory("$file"))) {
             $version = filemtime(get_template_directory("$file"));
         }
-
         return $version;
     }
 }
@@ -267,6 +266,37 @@ if (!function_exists('get_lumi_categories')) {
         return $terms;
     }
 }
+
+
+/**
+ * The lumi_get_wishlist function.
+ *
+ * @link              https://awesomecoder.dev/
+ * @since             1.0.0
+ *
+ */
+if (!function_exists('lumi_get_wishlist')) {
+    function lumi_get_wishlist($extra = "")
+    {
+        // $items = [];
+        // foreach (range(1, 10) as $key => $item) {
+        //     $session_wishlist = isset($_SESSION["lumi_wishlist"]) ? $_SESSION["lumi_wishlist"] : [];
+        //     $items[] = $item;
+        // }
+        // $_SESSION["lumi_wishlist"] = $items;
+
+        if (is_user_logged_in()) {
+            $user_id = get_current_user_id();
+            $session_wishlist = isset($_SESSION["lumi_wishlist"]) ? $_SESSION["lumi_wishlist"] : [];
+            $wishlist = get_option("lumi_wishlist_$user_id", $session_wishlist);
+        } else {
+            $wishlist = isset($_SESSION["lumi_wishlist"]) ? $_SESSION["lumi_wishlist"] : [];
+        }
+
+        return is_array($wishlist) ? $wishlist : [];
+    }
+}
+
 
 /**
  * The get_lumi_categories_image function.
