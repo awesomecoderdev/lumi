@@ -31,6 +31,56 @@ $(document).ready(function () {
 	console.log("LumiAjaxUrl", LumiAjaxUrl);
 	console.log("LumiCartUrl", LumiCartUrl);
 
+	function LumiAddToWishlist(product_id = false) {
+		if (product_id) {
+			$.ajax({
+				type: "POST",
+				url: LumiCartUrl,
+				data: postdata,
+				success: function (data) {
+					$("#product_id_" + product_id + " .bx").removeClass(
+						"bx-cart-alt"
+					);
+					if (data.error) {
+						$("#product_id_" + product_id).css(
+							"background",
+							"#9c0606"
+						);
+						$("#product_id_" + product_id + " .bx").addClass(
+							"bx-error-alt"
+						);
+						window.location = data.product_url;
+						return;
+					} else {
+						var response = data.fragments;
+						response = Object.values(response)[0];
+						// console.log( response );
+						// $( "div.widget_shopping_cart_content" ).html( response );
+						$("#product_id_" + product_id + " .bx").addClass(
+							"bx-check-circle"
+						);
+
+						var postdata =
+							"action=ac_restaurant_ajax_request&ac_action=cart_count";
+						$.ajax({
+							type: "POST",
+							url: ajaxurl,
+							data: postdata,
+							success: function (data) {
+								// console.log( data );
+								$(".nav_cart .nav__link").html(
+									"Cart<span id='cartCount'>" +
+										data +
+										"</span></i>"
+								);
+							},
+						}); // End ajax
+					}
+				},
+			}); // End ajax
+		}
+	}
+
 	// Ajax Add to Cart Function
 	$(document).on("click", ".restaurant_cart_btn", function (e) {
 		e.preventDefault();
