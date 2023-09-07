@@ -55,28 +55,23 @@ class LumiAjaxController
             if (is_user_logged_in()) {
                 $user_id = get_current_user_id();
                 $wishlist = get_option("lumi_wishlist_$user_id", $session_wishlist);
-                $wishlist = array_values($wishlist);
-                $wishlist = array_unique(array_merge($wishlist, $session_wishlist));
                 $wishlist = is_array($wishlist) ? $wishlist : $session_wishlist;
 
                 if (in_array($product_id, $wishlist)) {
                     unset($wishlist[array_search($product_id, $wishlist)]);
-                    $new_wishlist = array_unique($wishlist);
+                    $new_wishlist = array_unique(array_values($wishlist));
                 } else {
                     $new_wishlist = array_unique(array_merge([$product_id], $wishlist));
                 }
 
-                $new_wishlist = array_values($new_wishlist);
                 update_option("lumi_wishlist_$user_id", $new_wishlist);
             } else {
                 if (in_array($product_id, $session_wishlist)) {
                     unset($session_wishlist[array_search($product_id, $session_wishlist)]);
-                    $new_wishlist = array_unique($session_wishlist);
+                    $new_wishlist = array_unique(array_values($session_wishlist));
                 } else {
                     $new_wishlist = array_unique(array_merge([$product_id], $session_wishlist));
                 }
-
-                $new_wishlist = array_values($new_wishlist);
             }
 
             // set session wishlist

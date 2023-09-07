@@ -291,8 +291,6 @@ if (!function_exists('lumi_get_wishlist')) {
         if (is_user_logged_in()) {
             $user_id = get_current_user_id();
             $wishlist = get_option("lumi_wishlist_$user_id", $session_wishlist);
-            $wishlist = array_values($wishlist);
-            $wishlist = array_unique(array_merge($wishlist, $session_wishlist));
             $wishlist = is_array($wishlist) ? $wishlist : $session_wishlist;
 
             $new_wishlist = array_unique(array_values($wishlist));
