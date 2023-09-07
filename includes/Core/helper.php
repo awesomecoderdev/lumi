@@ -284,6 +284,7 @@ if (!function_exists('lumi_get_wishlist')) {
         //     $items[] = $item;
         // }
         // $_SESSION["lumi_wishlist"] = $items;
+        // $_SESSION["lumi_wishlist"] = [33, 34, 26];
 
         if (is_user_logged_in()) {
             $user_id = get_current_user_id();

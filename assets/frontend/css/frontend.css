@@ -1272,6 +1272,12 @@ body{
 .h-screen{
 	height: 100vh;
 }
+.h-6{
+	height: 1.5rem;
+}
+.h-4{
+	height: 1rem;
+}
 .min-h-\[calc\(60vh-112px\)\]{
 	min-height: calc(60vh - 112px);
 }
@@ -1298,6 +1304,12 @@ body{
 }
 .w-full{
 	width: 100%;
+}
+.w-6{
+	width: 1.5rem;
+}
+.w-4{
+	width: 1rem;
 }
 .max-w-4xl{
 	max-width: 56rem;
