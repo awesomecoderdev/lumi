@@ -21,20 +21,17 @@ if (typeof $ === "undefined") {
 
 // progress the operation
 $(document).ready(function () {
-	//================================================== variables ================================================
-	$(document).on("click", function (e) {
+	// start category dropdown
+	$(document).on("click", "#sidebar-categories-dropdown", function (e) {
 		e.preventDefault();
-
-		alert("hi");
+		$(".sidebar-categories").toggleClass("hidden");
+		$(".sidebar-categories-arrow").toggleClass("rotate-180");
 	});
-	//=============================================================================================================
 
-	//================================================== variables ================================================
-	let AjaxUrl = lumi.ajaxurl;
-	let CartUrl = lumi.carturl;
-	//=============================================================================================================
+	console.log("LumiAjaxUrl", LumiAjaxUrl);
+	console.log("LumiCartUrl", LumiCartUrl);
 
-	//===============================================  Ajax Add to Cart Function =============================================
+	// Ajax Add to Cart Function
 	$(document).on("click", ".restaurant_cart_btn", function (e) {
 		e.preventDefault();
 		var product_sku = $(this).data("product_sku");
@@ -46,7 +43,7 @@ $(document).ready(function () {
 		var postdata = `product_sku=${product_sku}&quantity=${quantity}&product_id=${product_id}`;
 		$.ajax({
 			type: "POST",
-			url: carturl,
+			url: LumiCartUrl,
 			data: postdata,
 			success: function (data) {
 				$("#product_id_" + product_id + " .bx").removeClass(
@@ -101,9 +98,8 @@ $(document).ready(function () {
 			$("#product_id_" + product_id).prop("disabled", false);
 		}, 5000);
 	});
-	//==================================================================================================================
 
-	//============================================================ User login Function ======================================================
+	// User login Function
 	$("#music_login").validate({
 		// rules: {
 		//     email: {
@@ -138,5 +134,4 @@ $(document).ready(function () {
 		//     } ); // End ajax
 		// }
 	});
-	//==================================================================================================================
 });

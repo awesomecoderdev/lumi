@@ -38,7 +38,7 @@ if (!defined('ABSPATH')) {
  -->
 
 
-<main id="main" class="<?php echo lumi_container("py-10 contents"); ?>">
+<main id="main" class="<?php echo lumi_container("py-10 lumi-contents"); ?>">
 	<?php if (is_single()) : ?>
 		<?php while (have_posts()) : the_post(); ?>
 			<h1 class="xl:text-6xl lg:text-5xl md:text-4xl text-3xl font-semibold mt-2 scroll-mt-24"><?php the_title(); ?></h1>

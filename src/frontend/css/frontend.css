@@ -238,19 +238,19 @@ body {
 }
 
 /* content css  */
-.contents.prose img,
+.lumi-contents.prose img,
 figure {
 	@apply rounded-xl xl:aspect-[10/5] lg:aspect-[10/6] md:aspect-[10/6] aspect-[10/6] w-full;
 }
 
-.contents.prose .aligncenter {
+.lumi-contents.prose .aligncenter {
 	@apply mx-auto;
 }
 
-.contents.prose .alignleft {
+.lumi-contents.prose .alignleft {
 	@apply mr-auto;
 }
 
-.contents.prose .alignright {
+.lumi-contents.prose .alignright {
 	@apply ml-auto;
 }
