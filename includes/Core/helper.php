@@ -309,6 +309,51 @@ if (!function_exists('lumi_get_wishlist')) {
 }
 
 
+
+/**
+ * The lumi_get_products function.
+ *
+ * @link              https://awesomecoder.dev/
+ * @since             1.0.0
+ *
+ */
+if (!function_exists('lumi_get_products')) {
+    function lumi_get_products($args = [])
+    {
+        $default = array(
+            'post_type'         => 'product',
+            'posts_per_page'    => -1, // Set to -1 to get all products
+            'order_by'          => "name",
+            'order'             => "ASC"
+        );
+
+        $args = array_merge($default, $args);
+
+        $products = new \WP_Query($args);
+
+        return $products;
+    }
+}
+
+
+
+/**
+ * The wc_price function.
+ *
+ * @link              https://awesomecoder.dev/
+ * @since             1.0.0
+ *
+ */
+if (!function_exists('wc_price')) {
+    function wc_price($price = 0)
+    {
+        return $price;
+    }
+}
+
+
+
+
 /**
  * The get_lumi_categories_image function.
  *
