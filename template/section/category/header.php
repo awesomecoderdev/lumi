@@ -4,7 +4,9 @@
             "number" => 12,
             'parent'        => 0,
         ]) as $key => $category) : ?>
-            <a class="px-2" href="<?php echo get_term_link($category); ?>"><?php echo $category->name; ?></a>
+            <a class="lg:px-4 px-2 py-1 <?php echo  $category->term_id == get_queried_object_id() ? "bg-primary-500 rounded-full text-white" : "" ?>" href="<?php echo get_term_link($category); ?>">
+                <?php echo $category->name; ?>
+            </a>
         <?php endforeach; ?>
     </div>
 </section>
