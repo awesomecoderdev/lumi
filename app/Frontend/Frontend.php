@@ -2,6 +2,8 @@
 
 namespace AwesomeCoder\Lumi;
 
+use AwesomeCoder\Lumi\Wp\Asset;
+
 class Frontend
 {
 
@@ -56,14 +58,13 @@ class Frontend
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-		wp_enqueue_style("$this->template_name-font-awesome", 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css', array(), $this->version, 'all');
-		wp_enqueue_style("$this->template_name-box-icon", 'https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css', array(), $this->version, 'all');
 
-		wp_enqueue_style("$this->template_name-style", LUMI_THEME_URL . 'assets/css/styles.css', array(), $this->version, 'all');
-		wp_enqueue_style("$this->template_name-lumi-public", LUMI_THEME_URL . 'assets/frontend/css/lumi-public.css', array(), lami_version("assets/frontend/css/lumi-public.css", $this->version), 'all');
-		wp_enqueue_style($this->template_name, LUMI_THEME_URL . 'assets/frontend/css/frontend.css', array(), lami_version("assets/frontend/css/frontend.css", $this->version), 'all');
-
-		wp_enqueue_style($this->template_name . '-style', LUMI_THEME_URL . 'style.css', array(), $this->version, 'all');
+		Asset::style($this->template_name, 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css', $this->version, [],  'all', true);
+		Asset::style($this->template_name, 'https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css', $this->version, [], 'all', true);
+		Asset::style($this->template_name, 'css/styles.css', $this->version, [], 'all');
+		Asset::style($this->template_name, 'frontend/css/lumi-public.css', $this->version, [],  'all');
+		Asset::style($this->template_name, 'frontend/css/frontend.css', $this->version, [], 'all');
+		Asset::style($this->template_name, 'style.css', $this->version, [], 'all', true);
 	}
 
 	/**
@@ -85,14 +86,13 @@ class Frontend
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-
-		wp_enqueue_script($this->template_name . "-jquery", LUMI_THEME_URL . 'assets/js/jquery.js', array('jquery', 'wp-embed'), $this->version, true);
-		wp_enqueue_script($this->template_name . "-sweetalert", LUMI_THEME_URL . 'assets/js/sweetalert.min.js', array('jquery', 'wp-embed'), $this->version, true);
-		wp_enqueue_script($this->template_name . "-validate", LUMI_THEME_URL . 'assets/js/jquery.validate.min.js', array('jquery', 'wp-embed'), $this->version, true);
-
-		wp_enqueue_script($this->template_name . "-scrollreveal", LUMI_THEME_URL . 'assets/js/scrollreveal.js', array('jquery', 'wp-embed'), $this->version, true);
-		wp_enqueue_script($this->template_name . "-main", LUMI_THEME_URL . 'assets/js/main.js', array('jquery', 'wp-embed'), $this->version, true);
-		wp_enqueue_script($this->template_name, LUMI_THEME_URL . 'public/js/ac-restaurant-public.js', array('jquery'), $this->version, true);
+		Asset::script($this->template_name, "frontend/js/init.js", $this->version, ['jquery'], false, true);
+		Asset::script($this->template_name, "js/jquery.js", $this->version, ['jquery', 'wp-embed']);
+		Asset::script($this->template_name, "js/sweetalert.min.js", $this->version, ['jquery', 'wp-embed']);
+		Asset::script($this->template_name, "js/jquery.validate.min.js", $this->version, ['jquery', 'wp-embed']);
+		Asset::script($this->template_name, "js/scrollreveal.js", $this->version, ['jquery', 'wp-embed']);
+		Asset::script($this->template_name, "js/main.js", $this->version, ['jquery', 'wp-embed']);
+		Asset::script($this->template_name, "frontend/js/lumi-public.js", $this->version, ['jquery']);
 
 		// Some local vairable to get ajax url
 		wp_localize_script($this->template_name, 'lumi', array(

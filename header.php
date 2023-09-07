@@ -22,7 +22,7 @@ if (!defined('ABSPATH')) {
 
 ?>
 <!doctype html>
-<html <?php language_attributes(); ?> class="dark">
+<html <?php language_attributes(); ?> class="darks">
 
 <head>
     <meta charset="<?php bloginfo('charset'); ?>" />
@@ -33,8 +33,6 @@ if (!defined('ABSPATH')) {
 
 <body <?php body_class("bg-white dark:bg-dark"); ?>>
     <?php wp_body_open(); ?>
-
-
 
     <!-- start:header -->
     <header class="relative" id="header">

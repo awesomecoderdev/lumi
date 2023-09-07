@@ -1,109 +1,142 @@
-$( document ).ready( function () {
-    //================================================== variables ================================================	 
-    var ajaxurl = ac_restaurant.ajaxurl;
-    var carturl = ac_restaurant.carturl;
-    //=============================================================================================================
+/**
+ * The public of the Theme.
+ *
+ * @link              https://awesomecoder.dev/
+ * @since             1.0.0
+ * @package           lumi
+ *
+ *                                                              _
+ *                                                             | |
+ *    __ ___      _____  ___  ___  _ __ ___   ___  ___ ___   __| | ___ _ __
+ *   / _` \ \ /\ / / _ \/ __|/ _ \| '_ ` _ \ / _ \/ __/ _ \ / _` |/ _ \ '__|
+ *  | (_| |\ V  V /  __/\__ \ (_) | | | | | |  __/ (_| (_) | (_| |  __/ |
+ *   \__,_| \_/\_/ \___||___/\___/|_| |_| |_|\___|\___\___/ \__,_|\___|_|
+ *
+ */
 
-    //===============================================  Ajax Add to Cart Function =============================================	 
-    $( document ).on( "click", ".restaurant_cart_btn", function ( e ) {
-        e.preventDefault();
-        var product_sku = $( this ).data( "product_sku" );
-        var product_id = $( this ).data( "product_id" );
-        var quantity = $( this ).data( "quantity" );
+// check jquery is exist
+if (typeof $ === "undefined") {
+	let $ = jQuery;
+}
 
-        $( "#product_id_" + product_id ).prop( "disabled", true );
+// progress the operation
+$(document).ready(function () {
+	//================================================== variables ================================================
+	$(document).on("click", function (e) {
+		e.preventDefault();
 
-        var postdata = `product_sku=${product_sku}&quantity=${quantity}&product_id=${product_id}`;
-        $.ajax( {
-            type: "POST",
-            url: carturl,
-            data: postdata,
-            success: function ( data ) {
-                $( "#product_id_" + product_id + " .bx" ).removeClass( "bx-cart-alt" );
-                if ( data.error ) {
-                    $( "#product_id_" + product_id ).css( "background", "#9c0606" );
-                    $( "#product_id_" + product_id + " .bx" ).addClass( "bx-error-alt" );
-                    window.location = data.product_url;
-                    return;
-                } else {
-                    var response = data.fragments;
-                    response = Object.values( response )[ 0 ];
-                    // console.log( response );
-                    // $( "div.widget_shopping_cart_content" ).html( response );
-                    $( "#product_id_" + product_id + " .bx" ).addClass( "bx-check-circle" );
+		alert("hi");
+	});
+	//=============================================================================================================
 
-                    var postdata = "action=ac_restaurant_ajax_request&ac_action=cart_count";
-                    $.ajax( {
-                        type: "POST",
-                        url: ajaxurl,
-                        data: postdata,
-                        success: function ( data ) {
-                            // console.log( data );
-                            $( ".nav_cart .nav__link" ).html( "Cart<span id='cartCount'>" + data + "</span></i>" );
-                        }
-                    } ); // End ajax
-                }
-            }
-        } ); // End ajax
+	//================================================== variables ================================================
+	let AjaxUrl = lumi.ajaxurl;
+	let CartUrl = lumi.carturl;
+	//=============================================================================================================
 
-        setTimeout( () => {
-            if ( $( "#product_id_" + product_id + " .bx" ).hasClass( "bx-check-circle" ) ) {
-                $( "#product_id_" + product_id + " .bx" ).removeClass( "bx-check-circle" );
-                $( "#product_id_" + product_id + " .bx" ).addClass( "bx-cart-alt" );
-            }
-            $( "#product_id_" + product_id ).prop( "disabled", false );
+	//===============================================  Ajax Add to Cart Function =============================================
+	$(document).on("click", ".restaurant_cart_btn", function (e) {
+		e.preventDefault();
+		var product_sku = $(this).data("product_sku");
+		var product_id = $(this).data("product_id");
+		var quantity = $(this).data("quantity");
 
-        }, 5000 );
+		$("#product_id_" + product_id).prop("disabled", true);
 
-    } );
-    //==================================================================================================================	 
+		var postdata = `product_sku=${product_sku}&quantity=${quantity}&product_id=${product_id}`;
+		$.ajax({
+			type: "POST",
+			url: carturl,
+			data: postdata,
+			success: function (data) {
+				$("#product_id_" + product_id + " .bx").removeClass(
+					"bx-cart-alt"
+				);
+				if (data.error) {
+					$("#product_id_" + product_id).css("background", "#9c0606");
+					$("#product_id_" + product_id + " .bx").addClass(
+						"bx-error-alt"
+					);
+					window.location = data.product_url;
+					return;
+				} else {
+					var response = data.fragments;
+					response = Object.values(response)[0];
+					// console.log( response );
+					// $( "div.widget_shopping_cart_content" ).html( response );
+					$("#product_id_" + product_id + " .bx").addClass(
+						"bx-check-circle"
+					);
 
+					var postdata =
+						"action=ac_restaurant_ajax_request&ac_action=cart_count";
+					$.ajax({
+						type: "POST",
+						url: ajaxurl,
+						data: postdata,
+						success: function (data) {
+							// console.log( data );
+							$(".nav_cart .nav__link").html(
+								"Cart<span id='cartCount'>" +
+									data +
+									"</span></i>"
+							);
+						},
+					}); // End ajax
+				}
+			},
+		}); // End ajax
 
-    //============================================================ User login Function ======================================================	 
-    $( "#music_login" ).validate( {
-        // rules: {
-        //     email: {
-        //         required: true,
-        //         email: true
-        //     },
-        //     password: {
-        //         required: true,
-        //         minlength: 8
-        //     }
-        // },
-        // messages: {
-        //     password: {
-        //         required: "Please provide a password",
-        //         minlength: "Password must be at least 8 characters"
-        //     },
-        //     email: "Please enter a valid email address"
-        // },
-        // submitHandler: function ( form ) {
-        //     var from_data = $( "#music_login" ).serialize();
+		setTimeout(() => {
+			if (
+				$("#product_id_" + product_id + " .bx").hasClass(
+					"bx-check-circle"
+				)
+			) {
+				$("#product_id_" + product_id + " .bx").removeClass(
+					"bx-check-circle"
+				);
+				$("#product_id_" + product_id + " .bx").addClass("bx-cart-alt");
+			}
+			$("#product_id_" + product_id).prop("disabled", false);
+		}, 5000);
+	});
+	//==================================================================================================================
 
-        //     $( "#loginBtn" ).val( "Loading..." );
-        //     $( "#loginBtn" ).attr( "disabled", true );
-
-        //     var postdata = "action=music_ajax_request&ac_action=user_login&" + from_data;
-        //     $.ajax( {
-        //         type: "POST",
-        //         url: ajaxurl,
-        //         data: postdata,
-        //         success: function ( data ) {
-        //             // var response = $.parseJSON( data );
-        //             console.log( data );
-        //         } // Success
-
-
-        //     } ); // End ajax
-
-        // }
-
-
-
-
-    } );
-    //==================================================================================================================	 
-
-
-} );
+	//============================================================ User login Function ======================================================
+	$("#music_login").validate({
+		// rules: {
+		//     email: {
+		//         required: true,
+		//         email: true
+		//     },
+		//     password: {
+		//         required: true,
+		//         minlength: 8
+		//     }
+		// },
+		// messages: {
+		//     password: {
+		//         required: "Please provide a password",
+		//         minlength: "Password must be at least 8 characters"
+		//     },
+		//     email: "Please enter a valid email address"
+		// },
+		// submitHandler: function ( form ) {
+		//     var from_data = $( "#music_login" ).serialize();
+		//     $( "#loginBtn" ).val( "Loading..." );
+		//     $( "#loginBtn" ).attr( "disabled", true );
+		//     var postdata = "action=music_ajax_request&ac_action=user_login&" + from_data;
+		//     $.ajax( {
+		//         type: "POST",
+		//         url: ajaxurl,
+		//         data: postdata,
+		//         success: function ( data ) {
+		//             // var response = $.parseJSON( data );
+		//             console.log( data );
+		//         } // Success
+		//     } ); // End ajax
+		// }
+	});
+	//==================================================================================================================
+});

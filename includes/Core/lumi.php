@@ -54,7 +54,7 @@ class Lumi
 		} else {
 			$this->version = '1.0.0';
 		}
-		$this->template_name = 'ac-restaurant';
+		$this->template_name = 'lumi';
 
 		$this->load_dependencies();
 		$this->set_locale();

@@ -130,14 +130,20 @@ class Asset
      *
      * @return static
      */
-    public static function script(string $file, string $ver = null, array $deps = [], bool $in_footer = true)
+    public static function script(string $handler = "awesomecoder", string $file, string $ver = null, array $deps = [], bool $in_footer = true, bool $disable_handler = false)
     {
         // return new static(static::SCRIPT, $url, $ver, $deps);
         $url = LUMI_THEME_URL . "assets/$file";
         $path =  LUMI_THEME_PATH . "assets/$file";
-        $handler = "wp-plagiarism-" . basename($path, ".js");
+        $basename = basename($path, ".js");
+        $handler = $disable_handler ? $handler : "$handler-$basename";
         if (file_exists($path)) {
-            $version = is_null($ver) ? filemtime($path) : $ver;
+            $version = is_null($ver) ? "0.0.1" : $ver;
+
+            if (file_exists(get_template_directory("$path"))) {
+                $version = filemtime(get_template_directory("$path")) ?? $version;
+            }
+
             wp_enqueue_script($handler, $url, $deps, $version, $in_footer);
         }
     }
@@ -153,15 +159,26 @@ class Asset
      *
      * @return static
      */
-    public static function style(string $file, string $ver = null, array $deps = [], $media = null)
+    public static function style(string $handler = "awesomecoder", string $file, string $ver = null, array $deps = [], $media = null, bool $disable_handler = false)
     {
         // return new static(static::STYLE, $url, $ver, $deps);
         $url = LUMI_THEME_URL . "assets/$file";
         $path =  LUMI_THEME_PATH . "assets/$file";
-        $handler = "wp-plagiarism-" . basename($path, ".css");
-        if (file_exists($path)) {
-            $version = is_null($ver) ? filemtime($path) : $ver;
+        $basename = basename($path, ".css");
+        $handler = $disable_handler ? $handler : "$handler-$basename";
+
+        if ($disable_handler) {
+            $url = substr($file, 0, 4) == "http" ? $file : LUMI_THEME_URL . "$file";
+            $version = is_null($ver) ? "0.0.1" : $ver;
             wp_enqueue_style($handler, $url, $deps, $version, $media);
+        } else {
+            if (file_exists($path)) {
+                $version = is_null($ver) ? "0.0.1" : $ver;
+                if (file_exists(get_template_directory("$path"))) {
+                    $version = filemtime(get_template_directory("$path")) ?? $version;
+                }
+                wp_enqueue_style($handler, $url, $deps, $version, $media);
+            }
         }
     }
 

@@ -1404,6 +1404,9 @@ body{
 	border-top-width: 1px;
 	border-bottom-width: 1px;
 }
+.border-b{
+	border-bottom-width: 1px;
+}
 .border-b-2{
 	border-bottom-width: 2px;
 }
@@ -1459,6 +1462,9 @@ body{
 .p-1{
 	padding: 0.25rem;
 }
+.p-3{
+	padding: 0.75rem;
+}
 .px-2{
 	padding-left: 0.5rem;
 	padding-right: 0.5rem;
@@ -1513,6 +1519,9 @@ body{
 }
 .pb-20{
 	padding-bottom: 5rem;
+}
+.pl-0{
+	padding-left: 0px;
 }
 .pl-5{
 	padding-left: 1.25rem;
