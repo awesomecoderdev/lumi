@@ -286,15 +286,23 @@ if (!function_exists('lumi_get_wishlist')) {
         // $_SESSION["lumi_wishlist"] = $items;
         // $_SESSION["lumi_wishlist"] = [33, 34, 26];
 
+        $session_wishlist = isset($_SESSION["lumi_wishlist"]) && is_array($_SESSION["lumi_wishlist"]) ? $_SESSION["lumi_wishlist"] : [];
+
         if (is_user_logged_in()) {
             $user_id = get_current_user_id();
-            $session_wishlist = isset($_SESSION["lumi_wishlist"]) ? $_SESSION["lumi_wishlist"] : [];
             $wishlist = get_option("lumi_wishlist_$user_id", $session_wishlist);
+            $wishlist = array_values($wishlist);
+            $wishlist = array_unique(array_merge($wishlist, $session_wishlist));
+            $wishlist = is_array($wishlist) ? $wishlist : $session_wishlist;
+
+            $new_wishlist = array_unique(array_values($wishlist));
+            update_option("lumi_wishlist_$user_id", $new_wishlist);
         } else {
-            $wishlist = isset($_SESSION["lumi_wishlist"]) ? $_SESSION["lumi_wishlist"] : [];
+            $wishlist = is_array($session_wishlist) ? $session_wishlist : [];
+            $new_wishlist = array_unique(array_values($session_wishlist));
         }
 
-        return is_array($wishlist) ? $wishlist : [];
+        return $new_wishlist;
     }
 }
 
@@ -336,5 +344,39 @@ if (!function_exists('lumi_container')) {
         $default = "relative container prose dark:prose-invert min-h-[calc(60vh-112px)] lg:px-8 sm:px-7 xs:px-5 px-4 xl:overflow-visible overflow-hidden";
 
         return "$default $extra";
+    }
+}
+
+
+/**
+ * The lumi_response function.
+ *
+ * @link              https://awesomecoder.dev/
+ * @since             1.0.0
+ *
+ */
+if (!function_exists('lumi_response')) {
+    function lumi_response(array $contents = [], $status = 200, array $headers = [])
+    {
+        $response = [
+            "success" => true,
+            "status" => $status,
+            "message" => "Successfully Authorized.",
+        ];
+
+        $response = array_merge($response, $contents);
+
+        // Set the HTTP response code
+        http_response_code($status);
+
+        // Set the response headers
+        foreach ($headers as $header) {
+            header($header);
+        }
+
+        // Encode the content as JSON and send it as the response body
+        header('Content-Type: application/json');
+        echo json_encode($response);
+        wp_die();
     }
 }

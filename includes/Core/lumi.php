@@ -6,6 +6,7 @@ use AwesomeCoder\Lumi\Loader;
 use AwesomeCoder\Lumi\Backend;
 use AwesomeCoder\Lumi\Frontend;
 use AwesomeCoder\Lumi\Localization\L18n;
+use AwesomeCoder\Lumi\Wp\Ajax;
 
 class Lumi
 {
@@ -60,6 +61,7 @@ class Lumi
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
+		$this->define_ajax_hooks();
 	}
 
 	/**
@@ -155,8 +157,6 @@ class Lumi
 		$this->loader->add_action('admin_menu', $template_admin, 'lumi_admin_menu');
 		/** after setup theme */
 		$this->loader->add_action('after_setup_theme', $template_admin, 'lumi_after_setup_theme');
-		/** register ajax */
-		$this->loader->add_action("wp_ajax_ac_restaurant_ajax_request", $template_admin, 'handel_ac_restaurant_admin_ajax_requests');
 	}
 
 	/**
@@ -173,9 +173,28 @@ class Lumi
 
 		$this->loader->add_action('wp_enqueue_scripts', $template_public, 'enqueue_styles', 99999999);
 		$this->loader->add_action('wp_enqueue_scripts', $template_public, 'enqueue_scripts', 99999999);
+	}
 
-		// register ajax
-		$this->loader->add_action("wp_ajax_nopriv_ac_restaurant_ajax_request", $template_public, 'handel_ac_restaurant_public_ajax_requests');
+
+	/**
+	 * Register all of the hooks related to the public-facing functionality
+	 * of the template.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 */
+	private function define_ajax_hooks()
+	{
+		$template_admin = new Backend($this->get_template_name(), $this->get_version());
+		$template_public = new Frontend($this->get_template_name(), $this->get_version());
+		$template_both = new LumiAjaxController($this->get_template_name(), $this->get_version());
+
+		/** register ajax */
+		// $this->loader->add_action("wp_ajax_ac_restaurant_ajax_request", $template_admin, 'handel_ac_restaurant_admin_ajax_requests');
+		Ajax::both($this->loader, "wishlist", $template_both, "wishlist");
+
+		/** register frontend only ajax */
+		// $this->loader->add_action("wp_ajax_nopriv_ac_restaurant_ajax_request", $template_public, 'handel_ac_restaurant_public_ajax_requests');
 	}
 
 	/**

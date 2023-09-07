@@ -44,11 +44,10 @@ class Ajax
      * @param    object               $component        A reference to the instance of the object on which the filter is defined.
      * @param    string               $callback         The name of the function definition on the $component.
      *
-     * @return static
      */
-    public static function frontend(string $action = "awesomecoder", $component, $callback, ...$args)
+    public static function frontend(Loader $loader, string $action = "awesomecoder", $component, $callback, ...$args)
     {
-        self::$loader->add_action("wp_ajax_nopriv_{$action}", $component, $callback, ...$args);
+        $loader->add_action("wp_ajax_nopriv_lumi_{$action}", $component, $callback, ...$args);
     }
 
     /**
@@ -59,11 +58,10 @@ class Ajax
      * @param    object               $component        A reference to the instance of the object on which the filter is defined.
      * @param    string               $callback         The name of the function definition on the $component.
      *
-     * @return static
      */
-    public static function backend(string $action = "awesomecoder", $component, $callback, ...$args)
+    public static function backend(Loader $loader, string $action = "awesomecoder", $component, $callback, ...$args)
     {
-        self::$loader->add_action("wp_ajax_{$action}", $component, $callback, ...$args);
+        $loader->add_action("wp_ajax_lumi_{$action}", $component, $callback, ...$args);
     }
 
 
@@ -75,12 +73,11 @@ class Ajax
      * @param    object               $component        A reference to the instance of the object on which the filter is defined.
      * @param    string               $callback         The name of the function definition on the $component.
      *
-     * @return static
      */
-    public static function both(string $action = "awesomecoder", $component, $callback, ...$args)
+    public static function both(Loader $loader, string $action = "awesomecoder", $component, $callback, ...$args)
     {
-        self::$loader->add_action("wp_ajax_{$action}", $component, $callback, ...$args);
-        self::$loader->add_action("wp_ajax_nopriv_{$action}", $component, $callback, ...$args);
+        $loader->add_action("wp_ajax_lumi_$action", $component, $callback, ...$args);
+        $loader->add_action("wp_ajax_nopriv_lumi_$action", $component, $callback, ...$args);
     }
 
     /**
