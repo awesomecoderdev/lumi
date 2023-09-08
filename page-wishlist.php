@@ -103,7 +103,7 @@ $products = lumi_get_products([
                             </svg>
                             <!-- start:category sidebar -->
                             <?php get_template_part("template/components/loading", null, [
-                                "class" => "hidden",
+                                "class" => "text-slate-300 hidden",
                                 "id" => "add-to-cart-loading"
                             ]); ?>
                         </button>
