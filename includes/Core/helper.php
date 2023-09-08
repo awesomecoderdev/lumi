@@ -308,6 +308,27 @@ if (!function_exists('lumi_get_wishlist')) {
     }
 }
 
+/**
+ * The lumi_get_cart_count function.
+ *
+ * @link              https://awesomecoder.dev/
+ * @since             1.0.0
+ *
+ */
+if (!function_exists('lumi_get_cart_count')) {
+    function lumi_get_cart_count()
+    {
+        try {
+            global $woocommerce;
+            return $woocommerce?->cart?->cart_contents_count ?? 0;
+        } catch (\Exception $e) {
+            //throw $e;
+        }
+
+        return 0;
+    }
+}
+
 
 
 /**

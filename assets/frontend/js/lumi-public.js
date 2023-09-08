@@ -96,8 +96,20 @@ $(document).ready(function () {
 			type: "POST",
 			url: LumiCartUrl,
 			data: $(this).serialize(),
-			success: function (data) {
-				console.log("data", data);
+			success: function (response) {
+				if (response?.fragments?.lumi_cart_fragment) {
+					$("#lumi-cart-fragment").html(
+						response.fragments.lumi_cart_fragment
+					);
+				}
+
+				if (response?.fragments?.lumi_cart_fragment) {
+					$("#lumi-cart-mobile-fragment").html(
+						response.fragments.lumi_cart_mobile_fragment
+					);
+				}
+
+				console.log("response", response);
 				$.toast("Here you can put the text of the toast");
 
 				setTimeout(() => {

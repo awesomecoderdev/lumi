@@ -1217,6 +1217,36 @@ body{
 .top-\[50\%\]{
 	top: 50%;
 }
+.top-0{
+	top: 0px;
+}
+.left-0{
+	left: 0px;
+}
+.-top-2{
+	top: -0.5rem;
+}
+.-top-3{
+	top: -0.75rem;
+}
+.left-4{
+	left: 1rem;
+}
+.-top-2\.5{
+	top: -0.625rem;
+}
+.right-1{
+	right: 0.25rem;
+}
+.right-0\.5{
+	right: 0.125rem;
+}
+.-right-0{
+	right: -0px;
+}
+.-right-0\.5{
+	right: -0.125rem;
+}
 .z-50{
 	z-index: 50;
 }
@@ -1254,6 +1284,18 @@ body{
 .mt-2{
 	margin-top: 0.5rem;
 }
+.mr-2{
+	margin-right: 0.5rem;
+}
+.mt-1{
+	margin-top: 0.25rem;
+}
+.mt-0{
+	margin-top: 0px;
+}
+.mt-0\.5{
+	margin-top: 0.125rem;
+}
 .block{
 	display: block;
 }
@@ -1277,6 +1319,9 @@ body{
 }
 .h-14{
 	height: 3.5rem;
+}
+.h-4{
+	height: 1rem;
 }
 .h-5{
 	height: 1.25rem;
@@ -1314,6 +1359,9 @@ body{
 .w-36{
 	width: 9rem;
 }
+.w-4{
+	width: 1rem;
+}
 .w-44{
 	width: 11rem;
 }
@@ -1334,12 +1382,6 @@ body{
 }
 .w-full{
 	width: 100%;
-}
-.w-3{
-	width: 0.75rem;
-}
-.w-32{
-	width: 8rem;
 }
 .max-w-4xl{
 	max-width: 56rem;
@@ -1664,6 +1706,12 @@ body{
 .text-xs{
 	font-size: 0.8125rem;
 	line-height: 1.5rem;
+}
+.text-\[5px\]{
+	font-size: 5px;
+}
+.text-\[8px\]{
+	font-size: 8px;
 }
 .font-medium{
 	font-weight: 500;
@@ -2153,14 +2201,8 @@ figure{
 	.xl\:hidden{
 		display: none;
 	}
-	.xl\:aspect-\[10\/6\]{
-		aspect-ratio: 10/6;
-	}
 	.xl\:aspect-\[3\/4\]{
 		aspect-ratio: 3/4;
-	}
-	.xl\:aspect-\[10\/8\]{
-		aspect-ratio: 10/8;
 	}
 	.xl\:aspect-\[4\/3\]{
 		aspect-ratio: 4/3;
