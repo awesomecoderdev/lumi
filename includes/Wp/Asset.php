@@ -141,6 +141,9 @@ class Asset
         if ($disable_handler) {
             $url = substr($file, 0, 4) == "http" ? $file : LUMI_THEME_URL . "$file";
             $version = is_null($ver) ? "0.0.1" : $ver;
+            $parse = parse_url($url, PHP_URL_PATH);
+            $basename = basename($parse, ".js");
+            $handler = substr($file, 0, 4) == "http" ? "$handler-$basename" : $handler;
             wp_enqueue_script($handler, $url, $deps, $version, $in_footer);
         } else {
             if (file_exists($path)) {
@@ -177,6 +180,10 @@ class Asset
         if ($disable_handler) {
             $url = substr($file, 0, 4) == "http" ? $file : LUMI_THEME_URL . "$file";
             $version = is_null($ver) ? "0.0.1" : $ver;
+            $parse = parse_url($url, PHP_URL_PATH);
+            $basename = basename($parse, ".js");
+            $handler = substr($file, 0, 4) == "http" ? "$handler-$basename" : $handler;
+
             wp_enqueue_style($handler, $url, $deps, $version, $media);
         } else {
             if (file_exists($path)) {

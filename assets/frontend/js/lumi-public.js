@@ -91,6 +91,7 @@ $(document).ready(function () {
 			data: $(this).serialize(),
 			success: function (data) {
 				console.log("data", data);
+				$.toast("Here you can put the text of the toast");
 			},
 		}); // End ajax
 	});

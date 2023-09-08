@@ -86,7 +86,7 @@ class Frontend
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-		Asset::script($this->template_name, "frontend/js/init.js", $this->version, ['jquery'], false, true);
+		Asset::script($this->template_name, "assets/frontend/js/init.js", $this->version, ['jquery'], false, true);
 		Asset::script($this->template_name, "js/jquery.js", $this->version, ['jquery', 'wp-embed']);
 		Asset::script($this->template_name, "js/sweetalert.min.js", $this->version, ['jquery', 'wp-embed']);
 		Asset::script($this->template_name, "https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js", $this->version, ['jquery', 'wp-embed'], true, true);
