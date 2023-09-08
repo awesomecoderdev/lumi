@@ -83,8 +83,15 @@ $(document).ready(function () {
 		}
 	});
 
+	// add to cart from wishlist
 	$(document).on("submit", ".add-to-cart-from-wishlist", function (e) {
 		e.preventDefault();
+		let add_to_bag = $(this).find("#add-to-bag");
+		let add_to_cart_loading = $(this).find("#add-to-cart-loading");
+
+		add_to_bag.addClass("hidden");
+		add_to_cart_loading.removeClass("hidden");
+
 		$.ajax({
 			type: "POST",
 			url: LumiCartUrl,
@@ -92,6 +99,17 @@ $(document).ready(function () {
 			success: function (data) {
 				console.log("data", data);
 				$.toast("Here you can put the text of the toast");
+
+				setTimeout(() => {
+					add_to_bag.removeClass("hidden");
+					add_to_cart_loading.addClass("hidden");
+				}, 700);
+			},
+			error: function (error) {
+				setTimeout(() => {
+					add_to_bag.removeClass("hidden");
+					add_to_cart_loading.addClass("hidden");
+				}, 700);
 			},
 		}); // End ajax
 	});

@@ -177,7 +177,7 @@ function woocommerce_template_single_title()
 /**
  * Show cart contents / total Ajax
  */
-// add_filter('woocommerce_add_to_cart_fragments', 'ac_add_to_cart_fragment');
+add_filter('woocommerce_add_to_cart_fragments', 'ac_add_to_cart_fragment');
 
 function ac_add_to_cart_fragment($fragments)
 {
