@@ -137,14 +137,21 @@ class Asset
         $path =  LUMI_THEME_PATH . "assets/$file";
         $basename = basename($path, ".js");
         $handler = $disable_handler ? $handler : "$handler-$basename";
-        if (file_exists($path)) {
+
+        if ($disable_handler) {
+            $url = substr($file, 0, 4) == "http" ? $file : LUMI_THEME_URL . "$file";
             $version = is_null($ver) ? "0.0.1" : $ver;
-
-            if (file_exists(get_template_directory("$path"))) {
-                $version = filemtime(get_template_directory("$path")) ?? $version;
-            }
-
             wp_enqueue_script($handler, $url, $deps, $version, $in_footer);
+        } else {
+            if (file_exists($path)) {
+                $version = is_null($ver) ? "0.0.1" : $ver;
+
+                if (file_exists(get_template_directory("$path"))) {
+                    $version = filemtime(get_template_directory("$path")) ?? $version;
+                }
+
+                wp_enqueue_script($handler, $url, $deps, $version, $in_footer);
+            }
         }
     }
 

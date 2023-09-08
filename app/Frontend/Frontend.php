@@ -89,10 +89,12 @@ class Frontend
 		Asset::script($this->template_name, "frontend/js/init.js", $this->version, ['jquery'], false, true);
 		Asset::script($this->template_name, "js/jquery.js", $this->version, ['jquery', 'wp-embed']);
 		Asset::script($this->template_name, "js/sweetalert.min.js", $this->version, ['jquery', 'wp-embed']);
+		Asset::script($this->template_name, "https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js", $this->version, ['jquery', 'wp-embed'], true, true);
 		Asset::script($this->template_name, "js/jquery.validate.min.js", $this->version, ['jquery', 'wp-embed']);
 		Asset::script($this->template_name, "js/scrollreveal.js", $this->version, ['jquery', 'wp-embed']);
 		Asset::script($this->template_name, "js/main.js", $this->version, ['jquery', 'wp-embed']);
 		Asset::script($this->template_name, "frontend/js/lumi-public.js", $this->version, ['jquery']);
+
 
 		// Some local vairable to get ajax url
 		wp_localize_script($this->template_name, 'lumi', array(

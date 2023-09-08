@@ -62,6 +62,39 @@ $(document).ready(function () {
 		}
 	});
 
+	// increment wishlist quantity
+	$(document).on("click", "#wishlist-quantity-increment", function (e) {
+		e.preventDefault();
+		let quantity = parseInt(
+			$(this).siblings("#wishlist-quantity").val() ?? 1
+		);
+		$(this).siblings("#wishlist-quantity").val(++quantity);
+	});
+
+	// decrement wishlist quantity
+	$(document).on("click", "#wishlist-quantity-decrement", function (e) {
+		e.preventDefault();
+		let quantity = parseInt(
+			$(this).siblings("#wishlist-quantity").val() ?? 1
+		);
+
+		if (quantity > 1) {
+			$(this).siblings("#wishlist-quantity").val(--quantity);
+		}
+	});
+
+	$(document).on("submit", ".add-to-cart-from-wishlist", function (e) {
+		e.preventDefault();
+		$.ajax({
+			type: "POST",
+			url: LumiCartUrl,
+			data: $(this).serialize(),
+			success: function (data) {
+				console.log("data", data);
+			},
+		}); // End ajax
+	});
+
 	// Ajax Add to Cart Function
 	$(document).on("click", ".restaurant_cart_btn", function (e) {
 		e.preventDefault();

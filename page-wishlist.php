@@ -65,7 +65,9 @@ $products = lumi_get_products([
                 ?>
 
                 <!-- start for small device -->
-                <div class="relative border xl:rounded-3xl rounded-2xl overflow-hidden <?php echo !wp_is_mobile() ? "hidden" : "" ?> ">
+                <form class="relative add-to-cart-from-wishlist border xl:rounded-3xl rounded-2xl overflow-hidden md:hidden <?php echo !wp_is_mobile() ? "hidden" : "" ?> ">
+                    <input type="hidden" name="product_sku" value="<?php echo $product_sku; ?>">
+                    <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
                     <button class="absolute top-2.5 right-2.5 cursor-pointer" id="add-to-wishlist" data-product="<?php the_ID() ?>">
                         <div class="relative glass rounded-full flex justify-center items-center p-1 text-white">
                             <?php if (!in_array(get_the_ID(), lumi_get_wishlist())) : ?>
@@ -91,7 +93,7 @@ $products = lumi_get_products([
                             </span>
                         </div>
 
-                        <button onclick="alert('cart')" class="relative flex justify-end items-end text-slate-600 dark:text-white">
+                        <button type="submit" onclick="alert('cart')" class="relative flex justify-end items-end text-slate-600 dark:text-white">
                             <svg class="h-5 w-5" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M17.235 22.5H3.76499C3.41021 22.5002 3.05946 22.4248 2.73605 22.2789C2.41264 22.1331 2.12398 21.92 1.88925 21.654C1.65453 21.388 1.47911 21.075 1.37467 20.736C1.27023 20.3969 1.23915 20.0395 1.28349 19.6875L2.78349 7.6875C2.86035 7.08347 3.15471 6.52816 3.61148 6.12551C4.06824 5.72286 4.65609 5.50048 5.26499 5.5H12.1845C12.3171 5.5 12.4443 5.55268 12.538 5.64645C12.6318 5.74021 12.6845 5.86739 12.6845 6C12.6845 6.13261 12.6318 6.25979 12.538 6.35355C12.4443 6.44732 12.3171 6.5 12.1845 6.5H5.26499C4.89959 6.4998 4.54667 6.63299 4.27251 6.87456C3.99835 7.11613 3.82179 7.44947 3.77599 7.812L2.27599 19.812C2.24972 20.0232 2.26861 20.2375 2.3314 20.4408C2.39419 20.6442 2.49946 20.8318 2.64023 20.9914C2.781 21.151 2.95407 21.2789 3.14797 21.3666C3.34188 21.4542 3.55219 21.4997 3.76499 21.5H17.235C17.299 21.4879 17.3648 21.4886 17.4286 21.502C17.4923 21.5154 17.5528 21.5413 17.6066 21.5781C17.6603 21.615 17.7063 21.662 17.7418 21.7167C17.7773 21.7713 17.8017 21.8324 17.8135 21.8965C17.8373 22.0276 17.8088 22.1628 17.734 22.273C17.6592 22.3832 17.5441 22.4597 17.4135 22.486C17.3545 22.496 17.2948 22.5007 17.235 22.5ZM18.3845 13.585C18.2626 13.585 18.1449 13.5404 18.0535 13.4596C17.9622 13.3788 17.9035 13.2675 17.8885 13.1465L17.224 7.812C17.1782 7.44947 17.0016 7.11613 16.7275 6.87456C16.4533 6.63299 16.1004 6.4998 15.735 6.5H14.076C13.9434 6.5 13.8162 6.44732 13.7224 6.35355C13.6287 6.25979 13.576 6.13261 13.576 6C13.576 5.86739 13.6287 5.74021 13.7224 5.64645C13.8162 5.55268 13.9434 5.5 14.076 5.5H15.735C16.344 5.5005 16.9319 5.72295 17.3887 6.1257C17.8454 6.52845 18.1397 7.08388 18.2165 7.688L18.881 13.023C18.8974 13.1545 18.8609 13.2872 18.7795 13.3918C18.6981 13.4965 18.5785 13.5645 18.447 13.581C18.4263 13.5836 18.4054 13.5849 18.3845 13.585Z" fill="currentColor" />
                                 <path d="M14 9C13.8674 9 13.7402 8.94732 13.6464 8.85355C13.5527 8.75979 13.5 8.63261 13.5 8.5V5.5C13.5 4.70435 13.1839 3.94129 12.6213 3.37868C12.0587 2.81607 11.2956 2.5 10.5 2.5C9.70435 2.5 8.94129 2.81607 8.37868 3.37868C7.81607 3.94129 7.5 4.70435 7.5 5.5V8.5C7.5 8.63261 7.44732 8.75979 7.35355 8.85355C7.25979 8.94732 7.13261 9 7 9C6.86739 9 6.74021 8.94732 6.64645 8.85355C6.55268 8.75979 6.5 8.63261 6.5 8.5V5.5C6.5 4.43913 6.92143 3.42172 7.67157 2.67157C8.42172 1.92143 9.43913 1.5 10.5 1.5C11.5609 1.5 12.5783 1.92143 13.3284 2.67157C14.0786 3.42172 14.5 4.43913 14.5 5.5V8.5C14.5 8.63261 14.4473 8.75979 14.3536 8.85355C14.2598 8.94732 14.1326 9 14 9Z" fill="currentColor" />
@@ -101,11 +103,13 @@ $products = lumi_get_products([
                             </svg>
                         </button>
                     </div>
-                </div>
+                </form>
                 <!-- end for small device -->
 
                 <!-- start for large device -->
-                <div class="relative flex justify-between items-end rounded-lg border p-4 <?php echo wp_is_mobile() ? "hidden" : "" ?>">
+                <form class="relative add-to-cart-from-wishlist md:flex hidden justify-between items-end rounded-lg border p-4  <?php echo wp_is_mobile() ? "hidden" : "" ?>">
+                    <input type="hidden" name="product_sku" value="<?php echo $product_sku; ?>">
+                    <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
                     <div class="relative h-full flex items-center gap-4">
                         <div class="relative glass rounded-full flex justify-center items-center p-1 text-primary-500 cursor-pointer" id="add-to-wishlist" data-product="<?php the_ID() ?>">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 product-wishlist-item product-wishlist-<?php the_ID() ?> text-red-500">
@@ -119,16 +123,16 @@ $products = lumi_get_products([
                                 <?php echo wc_price($product_price); ?>
                             </span>
                             <div class="relative flex">
-                                <button class="h-5 w-5 border flex justify-center items-center">-</button>
-                                <input class="p-0 m-0 w-10 h-5 leading-none text-xs px-2 border placeholder:text-primary-300 text-primary-500 font-semibold outline-none border-none border-transparent outline-transparent focus:outline-none focus-visible:outline-none focus:ring-transparent text-center" type="number" min="1" value="1">
-                                <button class="h-5 w-5 border flex justify-center items-center">+</button>
+                                <button class="h-5 w-5 border flex justify-center items-center" id="wishlist-quantity-decrement">-</button>
+                                <input name="quantity" id="wishlist-quantity" class="p-0 m-0 w-10 h-5 leading-none text-xs px-2 border placeholder:text-primary-300 text-primary-500 font-semibold outline-none border-none border-transparent outline-transparent focus:outline-none focus-visible:outline-none focus:ring-transparent text-center" type="number" min="1" value="1">
+                                <button class="h-5 w-5 border flex justify-center items-center" id="wishlist-quantity-increment">+</button>
                             </div>
                         </div>
                     </div>
 
 
                     <div class="relative">
-                        <button class="relative bg-primary-500 px-8 py-2 flex justify-center items-center gap-2 text-white rounded-lg">
+                        <button type="submit" class="relative bg-primary-500 px-8 py-2 flex justify-center items-center gap-2 text-white rounded-lg">
                             <svg width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M14.651 5.5984C14.651 3.21232 12.7167 1.27799 10.3307 1.27799C9.18168 1.27316 8.07806 1.72619 7.26387 2.53695C6.44968 3.3477 5.992 4.44939 5.992 5.5984M14.5137 20.5H6.16592C3.09955 20.5 0.747152 19.3924 1.41534 14.9348L2.19338 8.89359C2.60528 6.66934 4.02404 5.81808 5.26889 5.81808H15.4474C16.7105 5.81808 18.0469 6.73341 18.5229 8.89359L19.3009 14.9348C19.8684 18.889 17.5801 20.5 14.5137 20.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                 <path d="M13.296 10.102H13.251" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -137,7 +141,7 @@ $products = lumi_get_products([
                             <?php _e("Add to Bag", "lumi") ?>
                         </button>
                     </div>
-                </div>
+                </form>
                 <!-- end for large device -->
 
             <?php endwhile; ?>
