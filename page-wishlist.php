@@ -45,7 +45,7 @@ $products = lumi_get_products([
     </div>
 
     <?php if ($products->have_posts()) : ?>
-        <div class="relative py-4 grid <?php echo !wp_is_mobile() ? "gap-4" : "lg:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-4" ?>">
+        <div class="relative py-4 grid <?php echo !wp_is_mobile() ? "gap-4" : "xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-4" ?>">
 
             <!-- pagination here -->
 
