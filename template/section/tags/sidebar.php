@@ -2,7 +2,7 @@
     <h2 class="font-semibold text-base"><?php _e("Designers", "lumi"); ?></h2>
     <div class="relative grid border-b">
         <?php foreach (get_lumi_categories([
-            // "taxonomy" => "product_tag",
+            "taxonomy" => "product_tag",
             "number" => 100,
         ]) as $key => $category) : ?>
             <a class="relative flex justify-between items-center <?php echo $key >= 6 ? "hidden sidebar-tags" : "" ?>" href="<?php echo get_term_link($category); ?>">
