@@ -193,6 +193,7 @@ class Lumi
 		// $this->loader->add_action("wp_ajax_ac_restaurant_ajax_request", $template_admin, 'handel_ac_restaurant_admin_ajax_requests');
 		Ajax::both($this->loader, "wishlist", $template_both, "wishlist");
 		Ajax::both($this->loader, "remove_from_cart", $template_both, "removeFromCart");
+		Ajax::both($this->loader, "update_cart", $template_both, "updateCart");
 
 		/** register frontend only ajax */
 		// $this->loader->add_action("wp_ajax_nopriv_ac_restaurant_ajax_request", $template_public, 'handel_ac_restaurant_public_ajax_requests');

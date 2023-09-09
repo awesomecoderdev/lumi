@@ -150,7 +150,11 @@ class LumiAjaxController
         }
     }
 
-
+    /**
+     * Handle the fragment
+     *
+     * @since    1.0.0
+     */
     function lumi_cart_fragment($count = 0)
     {
 
@@ -170,5 +174,67 @@ class LumiAjaxController
         $fragments["lumi_cart_mobile_fragment"] = $lumi_cart_mobile_fragment;
 
         return $fragments;
+    }
+
+    /**
+     * Handle the updated the cart.
+     *
+     * @since    1.0.0
+     */
+    public function updateCart()
+    {
+        try {
+            $product_id = isset($_REQUEST["product_id"]) ? intval($_REQUEST["product_id"]) : null;
+            $action = isset($_REQUEST["type"]) && in_array($_REQUEST["type"], ["increment", "decrement"]) ? strtolower($_REQUEST["type"]) : "increment";
+
+            // send not allowed error
+            if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+                return lumi_response([
+                    "success" => false,
+                    "message" => __('Method Not Allowed.', 'lumi'),
+                ], 405);
+            }
+
+            // send not allowed error
+            if (!$product_id) {
+                return lumi_response([
+                    "success" => false,
+                    "message" => __('Unacceptable Entries.', 'lumi'),
+                    "errors"  => [
+                        "product_id" => [
+                            "Product ID can't be empty!"
+                        ]
+                    ]
+                ], 422);
+            }
+
+            if ($action == "increment") {
+                //
+            } else { // do the decrement
+                //
+            }
+
+            // Loop through cart items and remove the one with the specified product ID
+            foreach (lumi_get_cart() as $key => $item) {
+                if ($item['product_id'] == $product_id) {
+                    WC()?->cart->remove_cart_item($key);
+                    break; // Exit the loop after removing the item
+                }
+            }
+
+            return lumi_response([
+                "message" => __("Successfully updated to wishlist.", "lumi"),
+                "data" => [
+                    "fragments" => $this->lumi_cart_fragment(WC()?->cart?->cart_contents_count ?? 0),
+                    "empty" => WC()?->cart?->cart_contents_count == 0,
+                    "sidebar" => lumi_cart_sidebar()
+                ]
+            ]);
+        } catch (\Exception $e) {
+            return lumi_response([
+                "success" => false,
+                "message" => $e->getMessage(),
+            ], 405);
+        }
     }
 }

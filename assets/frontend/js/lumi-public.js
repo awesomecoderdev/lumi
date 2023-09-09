@@ -152,8 +152,8 @@ $(document).ready(function () {
 					);
 				}
 
-				console.log("response", response);
-				$.toast("Here you can put the text of the toast");
+				// console.log("response", response);
+				// // $.toast("Here you can put the text of the toast");
 
 				setTimeout(() => {
 					add_to_bag.removeClass("hidden");
@@ -210,6 +210,23 @@ $(document).ready(function () {
 				console.log("error", error);
 			},
 		}); // End ajax
+	});
+
+	// increment cart quantity
+	$(document).on("click", "#cart-quantity-increment", function (e) {
+		e.preventDefault();
+		let quantity = parseInt($(this).siblings("#cart-quantity").val() ?? 1);
+		$(this).siblings("#cart-quantity").val(++quantity);
+	});
+
+	// decrement cart quantity
+	$(document).on("click", "#cart-quantity-decrement", function (e) {
+		e.preventDefault();
+		let quantity = parseInt($(this).siblings("#cart-quantity").val() ?? 1);
+
+		if (quantity > 1) {
+			$(this).siblings("#cart-quantity").val(--quantity);
+		}
 	});
 
 	// Ajax Add to Cart Function
