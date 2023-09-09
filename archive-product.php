@@ -23,6 +23,7 @@ if (!defined('ABSPATH')) {
 
 ?>
 
+
 <?php get_header(); ?>
 
 <!-- start:category header -->

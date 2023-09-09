@@ -25,19 +25,34 @@ if (!defined('ABSPATH')) {
 // global $woocommerce;
 // $products = $woocommerce->cart->get_cart();
 
-// get products
-$products = lumi_get_products([
-    "post__in" => lumi_get_wishlist()
+$categories = lumi_get_products([
+    'post_type' => 'page',
+    'post_status' => 'publish',
+    'post_name__in' => ['man', 'woman', 'kids'], // Replace with your slugs
+    'orderby' => 'title', // Order by post title (name)
+    'order' => 'DESC',     // Order in ascending order
 ]);
-
 
 ?>
 
 <?php get_header(); ?>
 
-<main id="main" class="<?php echo lumi_container("py-10"); ?>">
+<main id="main" class="<?php echo lumi_container("py-10 not-prose"); ?>">
+    <?php $the_categories_index = 0; ?>
+    <?php if ($categories->have_posts()) : ?>
+        <div class="relative grid grid-cols-2 gap-4">
+            <?php while ($categories->have_posts()) : $categories->the_post(); ?>
+                <div class="relative grid">
+                    <div class="h-full w-full bg-gray-200 bg-contain bg-center bg-no-repeat rounded-xl aspect-[1/1]" style="background:url(<?php echo get_the_post_thumbnail_url(); ?>)">
+                    </div>
+                </div>
 
-
+                <?php $the_categories_index++; ?>
+            <?php endwhile; ?>
+        </div>
+        <!-- end of the loop -->
+        <?php wp_reset_postdata(); ?>
+    <?php endif; ?>
 </main>
 
 
