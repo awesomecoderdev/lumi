@@ -101,7 +101,7 @@ if (!defined('ABSPATH')) {
 
 
                                 <?php if (lumi_get_cart_count()) : ?>
-                                    <span class="absolute -top-2 left-3 h-4 w-4 text-[8px] font-medium flex justify-center items-center text-xs rounded-full bg-primary-500 text-white"><?php echo lumi_get_cart_count() ?></span>
+                                    <span class="absolute -top-2 left-3 h-4 w-4 text-[8px] font-medium flex justify-center items-center rounded-full bg-primary-500 text-white"><?php echo lumi_get_cart_count() ?></span>
                                 <?php endif ?>
                             </a>
                         </li>

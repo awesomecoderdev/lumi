@@ -161,13 +161,13 @@ class LumiAjaxController
         $lumi_cart_fragment = "<svg class=\"mr-1.5\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M16.651 6.5984C16.651 4.21232 14.7167 2.27799 12.3307 2.27799C11.1817 2.27316 10.0781 2.72619 9.26387 3.53695C8.44968 4.3477 7.992 5.44939 7.992 6.5984M16.5137 21.5H8.16592C5.09955 21.5 2.74715 20.3924 3.41534 15.9348L4.19338 9.89359C4.60528 7.66934 6.02404 6.81808 7.26889 6.81808H17.4474C18.7105 6.81808 20.0469 7.73341 20.5229 9.89359L21.3009 15.9348C21.8684 19.889 19.5801 21.5 16.5137 21.5Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" /><path d=\"M15.296 11.102H15.251\" stroke=\"#2D2D2D\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" /><path d=\"M9.46604 11.102H9.42004\" stroke=\"#2D2D2D\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" /></svg>\nbag";
 
         if ($count > 0) {
-            $lumi_cart_fragment .= "<span class=\"absolute -top-2 left-3 h-4 w-4 text-[8px] font-medium flex justify-center items-center text-xs rounded-full bg-primary-500 text-white\">{$count}</span>";
+            $lumi_cart_fragment .= "<span class=\"absolute -top-2 left-3 h-4 w-4 text-[8px] font-medium flex justify-center items-center rounded-full bg-primary-500 text-white\">{$count}</span>";
         }
 
         $lumi_cart_mobile_fragment = '<svg class="mr-1.5 h-14 w-8" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16.651 6.5984C16.651 4.21232 14.7167 2.27799 12.3307 2.27799C11.1817 2.27316 10.0781 2.72619 9.26387 3.53695C8.44968 4.3477 7.992 5.44939 7.992 6.5984M16.5137 21.5H8.16592C5.09955 21.5 2.74715 20.3924 3.41534 15.9348L4.19338 9.89359C4.60528 7.66934 6.02404 6.81808 7.26889 6.81808H17.4474C18.7105 6.81808 20.0469 7.73341 20.5229 9.89359L21.3009 15.9348C21.8684 19.889 19.5801 21.5 16.5137 21.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /><path d="M15.296 11.102H15.251" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /><path d="M9.46604 11.102H9.42004" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>';
 
         if ($count > 0) {
-            $lumi_cart_mobile_fragment .= "<span class=\"absolute top-2.5 -right-0.5 h-4 w-4 mr-1 mt-0.5 text-[8px] font-medium flex justify-center items-center text-xs rounded-full bg-primary-500 text-white\">{$count}</span>";
+            $lumi_cart_mobile_fragment .= "<span class=\"absolute top-2.5 -right-0.5 h-4 w-4 mr-1 mt-0.5 text-[8px] font-medium flex justify-center items-center rounded-full bg-primary-500 text-white\">{$count}</span>";
         }
 
         $fragments["lumi_cart_fragment"] = $lumi_cart_fragment;
@@ -185,7 +185,7 @@ class LumiAjaxController
     {
         try {
             $product_id = isset($_REQUEST["product_id"]) ? intval($_REQUEST["product_id"]) : null;
-            $action = isset($_REQUEST["type"]) && in_array($_REQUEST["type"], ["increment", "decrement"]) ? strtolower($_REQUEST["type"]) : "increment";
+            $quantity = isset($_REQUEST["quantity"]) ? intval($_REQUEST["quantity"]) : 1;
 
             // send not allowed error
             if ($_SERVER['REQUEST_METHOD'] != 'POST') {
@@ -208,19 +208,25 @@ class LumiAjaxController
                 ], 422);
             }
 
-            if ($action == "increment") {
-                //
-            } else { // do the decrement
-                //
-            }
+            // get cart
+            $cart = WC()?->cart;
 
             // Loop through cart items and remove the one with the specified product ID
             foreach (lumi_get_cart() as $key => $item) {
                 if ($item['product_id'] == $product_id) {
-                    WC()?->cart->remove_cart_item($key);
+                    if ($quantity < 1) {
+                        $cart->remove_cart_item($key);
+                    } else {
+                        // Update the quantity for the specific cart item
+                        $cart->set_quantity($key, $quantity);
+                    }
                     break; // Exit the loop after removing the item
                 }
             }
+
+            // Save the cart to persist the changes
+            // $cart->calculate_totals();
+            // $cart->save();
 
             return lumi_response([
                 "message" => __("Successfully updated to wishlist.", "lumi"),

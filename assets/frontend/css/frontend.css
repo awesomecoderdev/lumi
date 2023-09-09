@@ -1326,6 +1326,18 @@ body{
 .h-screen{
 	height: 100vh;
 }
+.h-20{
+	height: 5rem;
+}
+.h-60{
+	height: 15rem;
+}
+.h-28{
+	height: 7rem;
+}
+.h-24{
+	height: 6rem;
+}
 .min-h-\[calc\(60vh-112px\)\]{
 	min-height: calc(60vh - 112px);
 }
@@ -1367,6 +1379,18 @@ body{
 }
 .w-full{
 	width: 100%;
+}
+.w-60{
+	width: 15rem;
+}
+.w-28{
+	width: 7rem;
+}
+.w-14{
+	width: 3.5rem;
+}
+.w-24{
+	width: 6rem;
 }
 .max-w-4xl{
 	max-width: 56rem;
@@ -2116,6 +2140,12 @@ figure{
 	.lg\:col-span-6{
 		grid-column: span 6 / span 6;
 	}
+	.lg\:col-span-3{
+		grid-column: span 3 / span 3;
+	}
+	.lg\:col-span-7{
+		grid-column: span 7 / span 7;
+	}
 	.lg\:aspect-\[3\/4\]{
 		aspect-ratio: 3/4;
 	}
@@ -2145,6 +2175,9 @@ figure{
 	}
 	.lg\:grid-cols-8{
 		grid-template-columns: repeat(8, minmax(0, 1fr));
+	}
+	.lg\:grid-cols-10{
+		grid-template-columns: repeat(10, minmax(0, 1fr));
 	}
 	.lg\:flex-row{
 		flex-direction: row;

@@ -30,21 +30,22 @@ $products = lumi_get_products([
 
 <?php get_header(); ?>
 
-<main id="main" class="<?php echo lumi_container("not-prose"); ?>">
-    <div class="relative w-full md:flex hidden justify-between items-center py-5 ">
-        <h2 class="text-xl font-semibold"><?php _e("Wishlist", "lumi") ?>(<?php echo $products->found_posts ?>)</h2>
+<?php if ($products->have_posts()) : ?>
 
-        <button class="relative bg-primary-500 px-4 py-2 flex justify-center items-center gap-2 text-white">
-            <svg width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M14.651 5.5984C14.651 3.21232 12.7167 1.27799 10.3307 1.27799C9.18168 1.27316 8.07806 1.72619 7.26387 2.53695C6.44968 3.3477 5.992 4.44939 5.992 5.5984M14.5137 20.5H6.16592C3.09955 20.5 0.747152 19.3924 1.41534 14.9348L2.19338 8.89359C2.60528 6.66934 4.02404 5.81808 5.26889 5.81808H15.4474C16.7105 5.81808 18.0469 6.73341 18.5229 8.89359L19.3009 14.9348C19.8684 18.889 17.5801 20.5 14.5137 20.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M13.296 10.102H13.251" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M7.46601 10.102H7.42001" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-            <?php _e("Move all to Bag", "lumi") ?>
-        </button>
-    </div>
+    <main id="main" class="<?php echo lumi_container("not-prose"); ?>">
+        <div class="relative w-full md:flex hidden justify-between items-center py-5 ">
+            <h2 class="text-xl font-semibold"><?php _e("Wishlist", "lumi") ?>(<?php echo $products->found_posts ?>)</h2>
 
-    <?php if ($products->have_posts()) : ?>
+            <button class="relative bg-primary-500 px-4 py-2 flex justify-center items-center gap-2 text-white">
+                <svg width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14.651 5.5984C14.651 3.21232 12.7167 1.27799 10.3307 1.27799C9.18168 1.27316 8.07806 1.72619 7.26387 2.53695C6.44968 3.3477 5.992 4.44939 5.992 5.5984M14.5137 20.5H6.16592C3.09955 20.5 0.747152 19.3924 1.41534 14.9348L2.19338 8.89359C2.60528 6.66934 4.02404 5.81808 5.26889 5.81808H15.4474C16.7105 5.81808 18.0469 6.73341 18.5229 8.89359L19.3009 14.9348C19.8684 18.889 17.5801 20.5 14.5137 20.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M13.296 10.102H13.251" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M7.46601 10.102H7.42001" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <?php _e("Move all to Bag", "lumi") ?>
+            </button>
+        </div>
+
         <div class="relative py-4 grid <?php echo !wp_is_mobile() ? "gap-4" : "xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-4" ?>">
 
             <!-- pagination here -->
@@ -163,10 +164,26 @@ $products = lumi_get_products([
 
             <?php wp_reset_postdata(); ?>
         </div>
-    <?php else : ?>
-        <p><?php esc_html_e('Sorry, no posts matched your criteria.'); ?></p>
-    <?php endif; ?>
+    </main>
+<?php else : ?>
+    <section id="empty-wishlist-page" class="relative py-10 md:mt-14 mt-10 prose dark:prose-invert min-h-[calc(60vh-112px)] lg:px-8 sm:px-7 xs:px-5 px-4 xl:overflow-visible overflow-hidden not-prose bg-[#F4FFFB] flex justify-center items-center">
+        <div class="relative container h-full flex justify-center items-center gap-4">
+            <div class="relative h-24 w-24 rounded-full bg-primary-500 flex justify-center items-center">
+                <svg width="50" height="45" viewBox="0 0 50 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M45.43 4.69768C42.7799 2.0407 39.267 0.419029 35.5258 0.125604C31.7847 -0.167821 28.0619 0.886344 25.03 3.09768C21.8491 0.731773 17.89 -0.341043 13.9498 0.0952725C10.0096 0.531588 6.38109 2.44462 3.79492 5.44914C1.20875 8.45366 -0.142959 12.3265 0.0119885 16.2877C0.166936 20.2489 1.81703 24.0044 4.62998 26.7977L20.155 42.3477C21.455 43.6271 23.206 44.3442 25.03 44.3442C26.854 44.3442 28.6049 43.6271 29.905 42.3477L45.43 26.7977C48.3489 23.8608 49.9873 19.8884 49.9873 15.7477C49.9873 11.607 48.3489 7.63451 45.43 4.69768ZM41.905 23.3477L26.38 38.8727C26.2033 39.0511 25.9931 39.1927 25.7613 39.2893C25.5296 39.3859 25.281 39.4357 25.03 39.4357C24.7789 39.4357 24.5304 39.3859 24.2986 39.2893C24.0669 39.1927 23.8567 39.0511 23.68 38.8727L8.15499 23.2727C6.19438 21.2685 5.09651 18.5763 5.09651 15.7727C5.09651 12.969 6.19438 10.2768 8.15499 8.27268C10.1529 6.30015 12.8474 5.1941 15.655 5.1941C18.4626 5.1941 21.1571 6.30015 23.155 8.27268C23.3874 8.507 23.6639 8.69299 23.9685 8.81991C24.2732 8.94683 24.6 9.01217 24.93 9.01217C25.26 9.01217 25.5868 8.94683 25.8914 8.81991C26.1961 8.69299 26.4726 8.507 26.705 8.27268C28.7029 6.30015 31.3974 5.1941 34.205 5.1941C37.0126 5.1941 39.7071 6.30015 41.705 8.27268C43.6925 10.2506 44.8265 12.9282 44.8638 15.7319C44.9012 18.5356 43.8391 21.2425 41.905 23.2727V23.3477Z" fill="#2D2D2D" />
+                    <path d="M25.03 22.6976C21.4798 22.6976 18.4929 24.7348 17.0453 27.6976H33.0148C31.5671 24.7348 28.5803 22.6976 25.03 22.6976Z" fill="#2D2D2D" />
+                    <path d="M30.7175 18.5726C32.099 18.5726 33.1551 17.5165 33.1551 16.1351C33.1551 14.7537 32.0989 13.6976 30.7175 13.6976C29.3361 13.6976 28.28 14.7537 28.28 16.1351C28.28 17.5165 29.3361 18.5726 30.7175 18.5726ZM19.3425 18.5726C20.7239 18.5726 21.78 17.5165 21.78 16.1351C21.78 14.7537 20.7239 13.6976 19.3425 13.6976C17.961 13.6976 16.905 14.7537 16.905 16.1351C16.905 17.5165 17.9611 18.5726 19.3425 18.5726Z" fill="#2D2D2D" />
+                </svg>
+            </div>
 
-</main>
+            <div class="relative grid">
+                <h2 class="text-sm font-semibold"><?php _e("Empty Wishlist.", "lumi") ?></h2>
+                <a class="text-primary-500 underline hover:underline" href="<?php echo site_url("/shop") ?>">
+                    <?php _e("Start Shopping.", "lumi") ?>
+                </a>
+            </div>
+        </div>
+    </section>
+<?php endif; ?>
 
 <?php get_footer(); ?>

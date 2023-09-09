@@ -28,10 +28,10 @@ if (!defined('ABSPATH')) {
 
 
 <main id="main" class="<?php echo lumi_container("py-10 not-prose"); ?> <?php echo count(lumi_get_cart()) == 0 ? "hidden" : "" ?>">
-    <div class="relative w-full grid grid-cols-10 gap-8 py-3">
+    <div class="relative w-full grid lg:grid-cols-10 gap-8 py-3">
         <!-- start:cart body -->
 
-        <div class="relative col-span-7">
+        <div class="relative lg:col-span-7">
             <div class="relative py-4 grid gap-4">
                 <div class="relative grid grid-cols-3 gap-4 border-b pb-4 mb-4">
                     <div class="relative flex justify-center items-center">
@@ -58,8 +58,8 @@ if (!defined('ABSPATH')) {
                     $product_sku = $product->get_sku();
 
                     ?>
-                    <div class="relative add-to-cart-from-wishlist md:flex hidden justify-between items-end rounded-lg" id="cart-item-<?php echo $product_id ?>">
-                        <div class="relative h-full w-full grid lg:grid-cols-3 gap-4">
+                    <div class="relative add-to-cart-from-wishlist flex justify-between items-end rounded-lg" id="cart-item-<?php echo $product_id ?>">
+                        <div class="relative h-full w-full grid grid-cols-3 gap-4">
                             <div class="relative flex items-center gap-4">
                                 <?php echo str_replace("<img", "<img class=\"rounded-xl xl:aspect-[4/3] lg:aspect-[4/3] md:aspect-[4/3] w-36 bg-slate-100 dark:bg-slate-400 cursor-pointer\" alt=\"$product_name\"", $product->get_image()); ?>
                                 <div class="relative">
@@ -68,9 +68,9 @@ if (!defined('ABSPATH')) {
                             </div>
                             <div class="relative flex justify-center items-center flex-col space-y-2 cursor-pointer">
                                 <div class="relative flex items-center">
-                                    <button class="h-5 w-5 border flex justify-center items-center" id="cart-quantity-decrement">-</button>
+                                    <button class="h-5 w-5 border flex justify-center items-center" id="cart-quantity-decrement" data-product="<?php echo $product_id; ?>">-</button>
                                     <input name="quantity" value="<?php echo $item["quantity"] ?? 1 ?>" id="cart-quantity" class="pointer-events-none p-0 m-0 w-10 h-5 leading-none text-xs px-2 border placeholder:text-primary-300 text-primary-500 font-semibold outline-none border-none border-transparent outline-transparent focus:outline-none focus-visible:outline-none focus:ring-transparent text-center" type="number" min="1">
-                                    <button class="h-5 w-5 border flex justify-center items-center" id="cart-quantity-increment">+</button>
+                                    <button class="h-5 w-5 border flex justify-center items-center" id="cart-quantity-increment" data-product="<?php echo $product_id; ?>">+</button>
                                 </div>
 
                                 <div class="relative flex justify-center items-center space-x-2" id="remove-from-wishlist" data-product="<?php echo $product_id; ?>">
@@ -96,7 +96,7 @@ if (!defined('ABSPATH')) {
             <!-- end:cart body -->
         </div>
         <!-- start:category sidebar -->
-        <div class="relative col-span-3 space-y-3 font-normal" id="lumi-cart-sidebar">
+        <div class="relative lg:col-span-3 space-y-3 font-normal" id="lumi-cart-sidebar">
             <!-- start:category sidebar -->
             <?php get_template_part("template/section/cart/sidebar", null, []); ?>
             <!-- start:category sidebar -->

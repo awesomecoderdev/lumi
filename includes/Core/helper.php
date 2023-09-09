@@ -304,7 +304,7 @@ if (!function_exists('lumi_get_wishlist')) {
             $new_wishlist = array_unique(array_values($session_wishlist));
         }
 
-        return $new_wishlist;
+        return array_merge(["lumi"], $new_wishlist);
     }
 }
 

@@ -31,6 +31,13 @@ $(document).ready(function () {
 		$(".sidebar-categories-arrow").toggleClass("rotate-180");
 	});
 
+	// start category dropdown
+	$(document).on("click", "#sidebar-tags-dropdown", function (e) {
+		e.preventDefault();
+		$(".sidebar-tags").toggleClass("hidden");
+		$(".sidebar-tags-arrow").toggleClass("rotate-180");
+	});
+
 	// add To Wishlist
 	$(document).on("click", "#add-to-wishlist", function (e) {
 		e.preventDefault();
@@ -216,17 +223,81 @@ $(document).ready(function () {
 	$(document).on("click", "#cart-quantity-increment", function (e) {
 		e.preventDefault();
 		let quantity = parseInt($(this).siblings("#cart-quantity").val() ?? 1);
+		let product_id = $(this).attr("data-product");
 		$(this).siblings("#cart-quantity").val(++quantity);
+
+		$.ajax({
+			type: "POST",
+			url: `${LumiAjaxUrl}?action=lumi_update_cart&type=increment`,
+			data: {
+				product_id,
+				quantity,
+			},
+			success: function (response) {
+				if (response?.data?.sidebar) {
+					$("#lumi-cart-sidebar").html(response.data.sidebar);
+				}
+
+				if (response?.data?.fragments?.lumi_cart_fragment) {
+					$("#lumi-cart-fragment").html(
+						response.data.fragments.lumi_cart_fragment
+					);
+				}
+
+				if (response?.data?.fragments?.lumi_cart_fragment) {
+					$("#lumi-cart-mobile-fragment").html(
+						response.data.fragments.lumi_cart_mobile_fragment
+					);
+				}
+
+				console.log("response", response);
+			},
+			error: function (error) {
+				console.log("error", error);
+			},
+		}); // End ajax
 	});
 
 	// decrement cart quantity
 	$(document).on("click", "#cart-quantity-decrement", function (e) {
 		e.preventDefault();
 		let quantity = parseInt($(this).siblings("#cart-quantity").val() ?? 1);
+		let product_id = $(this).attr("data-product");
 
 		if (quantity > 1) {
 			$(this).siblings("#cart-quantity").val(--quantity);
 		}
+
+		$.ajax({
+			type: "POST",
+			url: `${LumiAjaxUrl}?action=lumi_update_cart&type=decrement`,
+			data: {
+				product_id,
+				quantity,
+			},
+			success: function (response) {
+				if (response?.data?.sidebar) {
+					$("#lumi-cart-sidebar").html(response.data.sidebar);
+				}
+
+				if (response?.data?.fragments?.lumi_cart_fragment) {
+					$("#lumi-cart-fragment").html(
+						response.data.fragments.lumi_cart_fragment
+					);
+				}
+
+				if (response?.data?.fragments?.lumi_cart_fragment) {
+					$("#lumi-cart-mobile-fragment").html(
+						response.data.fragments.lumi_cart_mobile_fragment
+					);
+				}
+
+				console.log("response", response);
+			},
+			error: function (error) {
+				console.log("error", error);
+			},
+		}); // End ajax
 	});
 
 	// Ajax Add to Cart Function

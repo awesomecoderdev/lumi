@@ -22,19 +22,21 @@ if (!defined('ABSPATH')) {
 }
 
 
-global $woocommerce;
-$products = $woocommerce->cart->get_cart();
+// global $woocommerce;
+// $products = $woocommerce->cart->get_cart();
 
-echo "<pre>";
-print_r($products);
-echo "</pre>";
+// get products
+$products = lumi_get_products([
+    "post__in" => lumi_get_wishlist()
+]);
+
 
 ?>
 
 <?php get_header(); ?>
 
 <main id="main" class="<?php echo lumi_container("py-10"); ?>">
-    <!-- get_lumi_categories(["number" => 8]) -->
+
 
 </main>
 
