@@ -65,7 +65,7 @@ $products = lumi_get_products([
                 ?>
 
                 <!-- start for small device -->
-                <form class="relative add-to-cart-from-wishlist border xl:rounded-3xl rounded-2xl overflow-hidden md:hidden <?php echo !wp_is_mobile() ? "hidden" : "" ?> ">
+                <form class="relative add-to-cart-from-wishlist border xl:rounded-3xl rounded-2xl overflow-hidden md:hidden <?php echo !wp_is_mobile() ? "hidden" : "" ?> " method="POST">
                     <input type="hidden" name="product_sku" value="<?php echo $product_sku; ?>">
                     <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
                     <button class="absolute top-2.5 right-2.5 cursor-pointer" id="add-to-wishlist" data-product="<?php the_ID() ?>">

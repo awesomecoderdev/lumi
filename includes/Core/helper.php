@@ -309,6 +309,43 @@ if (!function_exists('lumi_get_wishlist')) {
 }
 
 /**
+ * The lumi_get_cart function.
+ *
+ * @link              https://awesomecoder.dev/
+ * @since             1.0.0
+ *
+ */
+if (!function_exists('lumi_get_cart')) {
+    function lumi_get_cart()
+    {
+        try {
+            global $woocommerce;
+
+            return $woocommerce?->cart?->get_cart() ?? [];
+        } catch (\Exception $e) {
+            //throw $e;
+        }
+
+        return [];
+    }
+}
+
+
+/**
+ * The WC function.
+ *
+ * @link              https://awesomecoder.dev/
+ * @since             1.0.0
+ *
+ */
+if (!function_exists('WC')) {
+    function WC()
+    {
+        return null;
+    }
+}
+
+/**
  * The lumi_get_cart_count function.
  *
  * @link              https://awesomecoder.dev/
@@ -328,8 +365,6 @@ if (!function_exists('lumi_get_cart_count')) {
         return 0;
     }
 }
-
-
 
 /**
  * The lumi_get_products function.

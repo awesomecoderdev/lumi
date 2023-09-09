@@ -30,7 +30,7 @@
  */
 add_filter('woocommerce_add_to_cart_fragments', 'lumi_add_to_cart_fragment');
 
-function lumi_add_to_cart_fragment($fragments)
+function lumi_add_to_cart_fragment($fragments = [])
 {
     global $woocommerce;
 

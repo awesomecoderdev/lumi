@@ -126,6 +126,81 @@ $(document).ready(function () {
 		}); // End ajax
 	});
 
+	// add to cart
+	$(document).on("submit", ".add-to-cart", function (e) {
+		e.preventDefault();
+		let add_to_bag = $(this).find("#add-to-bag");
+		let add_to_cart_loading = $(this).find("#add-to-cart-loading");
+
+		add_to_bag.addClass("hidden");
+		add_to_cart_loading.removeClass("hidden");
+
+		$.ajax({
+			type: "POST",
+			url: LumiCartUrl,
+			data: $(this).serialize(),
+			success: function (response) {
+				if (response?.fragments?.lumi_cart_fragment) {
+					$("#lumi-cart-fragment").html(
+						response.fragments.lumi_cart_fragment
+					);
+				}
+
+				if (response?.fragments?.lumi_cart_fragment) {
+					$("#lumi-cart-mobile-fragment").html(
+						response.fragments.lumi_cart_mobile_fragment
+					);
+				}
+
+				console.log("response", response);
+				$.toast("Here you can put the text of the toast");
+
+				setTimeout(() => {
+					add_to_bag.removeClass("hidden");
+					add_to_cart_loading.addClass("hidden");
+				}, 700);
+			},
+			error: function (error) {
+				setTimeout(() => {
+					add_to_bag.removeClass("hidden");
+					add_to_cart_loading.addClass("hidden");
+				}, 700);
+			},
+		}); // End ajax
+	});
+
+	// remove from cart
+	$(document).on("click", "#remove-from-wishlist", function (e) {
+		e.preventDefault();
+		let product_id = $(this).attr("data-product");
+
+		$.ajax({
+			type: "POST",
+			url: `${LumiAjaxUrl}?action=lumi_remove_from_cart`,
+			data: {
+				product_id,
+			},
+			success: function (response) {
+				if (response?.fragments?.lumi_cart_fragment) {
+					$("#lumi-cart-fragment").html(
+						response.fragments.lumi_cart_fragment
+					);
+				}
+
+				if (response?.fragments?.lumi_cart_fragment) {
+					$("#lumi-cart-mobile-fragment").html(
+						response.fragments.lumi_cart_mobile_fragment
+					);
+				}
+
+				console.log("response", response);
+			},
+			error: function (error) {
+				console.log("error", error);
+			},
+		}); // End ajax
+	});
+
 	// Ajax Add to Cart Function
 	$(document).on("click", ".restaurant_cart_btn", function (e) {
 		e.preventDefault();
