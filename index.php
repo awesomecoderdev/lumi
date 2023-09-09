@@ -33,6 +33,12 @@ $categories = lumi_get_products([
     'order' => 'DESC',     // Order in ascending order
 ]);
 
+// echo "<pre>";
+// print_r($categories->posts);
+// echo "</pre>";
+
+// die;
+
 ?>
 
 <?php get_header(); ?>
@@ -40,16 +46,30 @@ $categories = lumi_get_products([
 <main id="main" class="<?php echo lumi_container("py-10 not-prose"); ?>">
     <?php $the_categories_index = 0; ?>
     <?php if ($categories->have_posts()) : ?>
-        <div class="relative grid grid-cols-2 gap-4">
-            <?php while ($categories->have_posts()) : $categories->the_post(); ?>
-                <div class="relative grid">
-                    <div class="h-full w-full bg-gray-200 bg-contain bg-center bg-no-repeat rounded-xl aspect-[1/1]" style="background:url(<?php echo get_the_post_thumbnail_url(); ?>)">
-                    </div>
-                </div>
+        <div class="relative grid grid-cols-10 gap-5">
+            <a href="<?php echo get_the_permalink($categories->posts[0]->ID); ?>" class="relative col-span-6">
+                <img class="h-full w-full  bg-gray-200 bg-contain bg-center bg-no-repeat rounded-xl aspect-[4/4]" src="<?php echo get_the_post_thumbnail_url($categories->posts[0]->ID); ?>)">
+                </img>
+                <h2 class="text-6xl text-white absolute bottom-[10%] left-1/2 transform translate-x-[-50%] font-semibold"><?php echo get_the_title($categories->posts[0]->ID) ?></h2>
+            </a>
+            <div class="relative col-span-4 h-full w-full">
+                <div class="relative grid gap-5">
+                    <a class="relative" href="<?php echo get_the_permalink($categories->posts[1]->ID); ?>">
+                        <img class="h-full w-full bg-gray-200 bg-contain bg-center bg-no-repeat rounded-xl aspect-[4/3]" src="<?php echo get_the_post_thumbnail_url($categories->posts[1]->ID); ?>)">
+                        </img>
+                        <h2 class="text-6xl text-white absolute bottom-[10%] left-1/2 transform translate-x-[-50%] font-semibold"><?php echo get_the_title($categories->posts[1]->ID) ?></h2>
 
-                <?php $the_categories_index++; ?>
-            <?php endwhile; ?>
+                    </a>
+                    <a class="relative" href="<?php echo get_the_permalink($categories->posts[2]->ID); ?>">
+                        <img class="h-full w-full bg-gray-200 bg-contain bg-center bg-no-repeat rounded-xl aspect-[4/3]" src="<?php echo get_the_post_thumbnail_url($categories->posts[2]->ID); ?>)">
+                        </img>
+                        <h2 class="text-6xl text-white absolute bottom-[10%] left-1/2 transform translate-x-[-50%] font-semibold"><?php echo get_the_title($categories->posts[2]->ID) ?></h2>
+                    </a>
+
+                </div>
+            </div>
         </div>
+
         <!-- end of the loop -->
         <?php wp_reset_postdata(); ?>
     <?php endif; ?>

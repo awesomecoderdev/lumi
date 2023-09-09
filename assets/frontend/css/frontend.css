@@ -1229,6 +1229,15 @@ body{
 .top-\[50\%\]{
 	top: 50%;
 }
+.bottom-4{
+	bottom: 1rem;
+}
+.left-1\/2{
+	left: 50%;
+}
+.bottom-\[10\%\]{
+	bottom: 10%;
+}
 .z-50{
 	z-index: 50;
 }
@@ -1240,6 +1249,12 @@ body{
 }
 .col-span-8{
 	grid-column: span 8 / span 8;
+}
+.col-span-4{
+	grid-column: span 4 / span 4;
+}
+.col-span-6{
+	grid-column: span 6 / span 6;
 }
 .m-0{
 	margin: 0px;
@@ -1298,6 +1313,18 @@ body{
 }
 .aspect-\[3\/4\]{
 	aspect-ratio: 3/4;
+}
+.aspect-\[3\/5\]{
+	aspect-ratio: 3/5;
+}
+.aspect-\[4\/3\]{
+	aspect-ratio: 4/3;
+}
+.aspect-\[4\/4\]{
+	aspect-ratio: 4/4;
+}
+.aspect-\[6\/3\]{
+	aspect-ratio: 6/3;
 }
 .h-14{
 	height: 3.5rem;
@@ -1378,6 +1405,10 @@ body{
 	--tw-translate-y: -50%;
 	transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
+.translate-x-\[-50\%\]{
+	--tw-translate-x: -50%;
+	transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
 .rotate-180{
 	--tw-rotate: 180deg;
 	transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -1407,6 +1438,15 @@ body{
 }
 .grid-cols-3{
 	grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.grid-cols-8{
+	grid-template-columns: repeat(8, minmax(0, 1fr));
+}
+.grid-cols-4{
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.grid-cols-6{
+	grid-template-columns: repeat(6, minmax(0, 1fr));
 }
 .flex-row{
 	flex-direction: row;
@@ -1452,6 +1492,9 @@ body{
 }
 .gap-8{
 	gap: 2rem;
+}
+.gap-5{
+	gap: 1.25rem;
 }
 .space-x-2 > :not([hidden]) ~ :not([hidden]){
 	--tw-space-x-reverse: 0;
@@ -1738,6 +1781,10 @@ body{
 .text-xs{
 	font-size: 0.8125rem;
 	line-height: 1.5rem;
+}
+.text-6xl{
+	font-size: 3.75rem;
+	line-height: 1;
 }
 .font-medium{
 	font-weight: 500;
