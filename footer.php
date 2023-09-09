@@ -89,7 +89,7 @@ if (!defined('ABSPATH')) {
             <div class="relative space-y-4 xl:w-full md:w-[60%] w-full">
                 <p>Email-exclusive offers and coupon codes for subscribes!</p>
                 <div class="relative">
-                    <div class="relative border-[1.5px] border-white py-1 lg:px-5 px-2 lg:w-96 w-full h-full overflow-hidden text-slate-100 rounded-xl">
+                    <div class="relative border-[1.5px] border-white py-1 lg:px-5 px-2 lg:w-96 w-full h-auto overflow-hidden text-slate-100 rounded-xl">
                         <svg class="absolute w-8 left-3 top-[50%] translate-y-[-50%] border-r border-white pr-2" width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M20.1046 4.5H4.35461C3.31908 4.5 2.47961 5.33947 2.47961 6.375V17.625C2.47961 18.6605 3.31908 19.5 4.35461 19.5H20.1046C21.1401 19.5 21.9796 18.6605 21.9796 17.625V6.375C21.9796 5.33947 21.1401 4.5 20.1046 4.5Z" stroke="#F7F8F6" stroke-linecap="round" stroke-linejoin="round" />
                             <path d="M5.47961 7.5L12.2296 12.75L18.9796 7.5" stroke="#F7F8F6" stroke-linecap="round" stroke-linejoin="round" />

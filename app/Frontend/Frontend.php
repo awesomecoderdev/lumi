@@ -59,8 +59,8 @@ class Frontend
 		 * class.
 		 */
 
-		Asset::style($this->template_name, 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css', $this->version, [],  'all', true);
-		Asset::style($this->template_name, 'https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css', $this->version, [], 'all', true);
+		// Asset::style($this->template_name, 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css', $this->version, [],  'all', true);
+		// Asset::style($this->template_name, 'https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css', $this->version, [], 'all', true);
 		Asset::style($this->template_name, 'css/styles.css', $this->version, [], 'all');
 		Asset::style($this->template_name, 'frontend/css/lumi-public.css', $this->version, [],  'all');
 		Asset::style($this->template_name, 'frontend/css/frontend.css', $this->version, [], 'all');
@@ -89,7 +89,7 @@ class Frontend
 		Asset::script($this->template_name, "assets/frontend/js/init.js", $this->version, ['jquery'], false, true);
 		Asset::script($this->template_name, "js/jquery.js", $this->version, ['jquery', 'wp-embed']);
 		Asset::script($this->template_name, "js/sweetalert.min.js", $this->version, ['jquery', 'wp-embed']);
-		Asset::script($this->template_name, "https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js", $this->version, ['jquery', 'wp-embed'], true, true);
+		// Asset::script($this->template_name, "https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js", $this->version, ['jquery', 'wp-embed'], true, true);
 		Asset::script($this->template_name, "js/jquery.validate.min.js", $this->version, ['jquery', 'wp-embed']);
 		Asset::script($this->template_name, "js/scrollreveal.js", $this->version, ['jquery', 'wp-embed']);
 		Asset::script($this->template_name, "js/main.js", $this->version, ['jquery', 'wp-embed']);

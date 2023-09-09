@@ -330,6 +330,51 @@ if (!function_exists('lumi_get_cart')) {
     }
 }
 
+/**
+ * The lumi_cart function.
+ *
+ * @link              https://awesomecoder.dev/
+ * @since             1.0.0
+ *
+ */
+if (!function_exists('lumi_cart')) {
+    function lumi_cart()
+    {
+        try {
+
+            return $cart = WC()?->cart;
+        } catch (\Exception $e) {
+            //throw $e;
+        }
+
+        return null;
+    }
+}
+
+
+/**
+ * The lumi_get_cart_total function.
+ *
+ * @link              https://awesomecoder.dev/
+ * @since             1.0.0
+ *
+ */
+if (!function_exists('lumi_get_cart_total')) {
+    function lumi_get_cart_total($default = 0)
+    {
+        try {
+            // Get the cart instance
+            $cart = WC()?->cart;
+
+            // Get the cart total
+            return $cart?->get_cart_contents_total() ?? $default;
+        } catch (\Exception $e) {
+            //throw $e;
+        }
+
+        return $default;
+    }
+}
 
 /**
  * The WC function.
@@ -481,5 +526,25 @@ if (!function_exists('lumi_response')) {
         header('Content-Type: application/json');
         echo json_encode($response);
         wp_die();
+    }
+}
+
+
+/**
+ * The lumi_cart_sidebar function.
+ *
+ * @link              https://awesomecoder.dev/
+ * @since             1.0.0
+ *
+ */
+if (!function_exists('lumi_cart_sidebar')) {
+    function lumi_cart_sidebar()
+    {
+        ob_start();
+        include_once LUMI_THEME_PATH . "/template/section/cart/sidebar.php";
+        $output = ob_get_contents();
+        ob_end_clean();
+
+        return $output;
     }
 }

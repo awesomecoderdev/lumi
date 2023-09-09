@@ -59,7 +59,7 @@ if (!defined('ABSPATH')) {
 
 
         <div class="relative md:block hidden  py-6 ">
-            <div class="relative container md:flex hidden justify-between items-center h-full w-full mx-auto">
+            <div class="relative container md:flex hidden justify-between items-center h-auto w-full mx-auto">
                 <div class="lg:w-[60%] w-1/2 relative flex lg:justify-between justify-start items-center space-x-4">
                     <a href="<?php echo site_url("/") ?>"><img class="h-auto lg:w-[120px] w-20" src="<?php echo url("img/logo.png") ?>" alt="<?php echo bloginfo("title") ?>"></a>
                     <div class="relative border border-primary-100 text-slate-600 dark:text-white rounded-full py-0.5 px-3 xl:w-[420px] lg:w-96 w-full">

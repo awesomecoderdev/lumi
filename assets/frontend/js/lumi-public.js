@@ -110,7 +110,7 @@ $(document).ready(function () {
 				}
 
 				console.log("response", response);
-				$.toast("Here you can put the text of the toast");
+				// $.toast("Here you can put the text of the toast");
 
 				setTimeout(() => {
 					add_to_bag.removeClass("hidden");
@@ -181,15 +181,26 @@ $(document).ready(function () {
 				product_id,
 			},
 			success: function (response) {
-				if (response?.fragments?.lumi_cart_fragment) {
+				$(`#cart-item-${product_id}`).fadeOut();
+
+				if (response?.data?.empty) {
+					$("#main").addClass("hidden");
+					$("#empty-cart-page").removeClass("hidden");
+				}
+
+				if (response?.data?.sidebar) {
+					$("#lumi-cart-sidebar").html(response.data.sidebar);
+				}
+
+				if (response?.data?.fragments?.lumi_cart_fragment) {
 					$("#lumi-cart-fragment").html(
-						response.fragments.lumi_cart_fragment
+						response.data.fragments.lumi_cart_fragment
 					);
 				}
 
-				if (response?.fragments?.lumi_cart_fragment) {
+				if (response?.data?.fragments?.lumi_cart_fragment) {
 					$("#lumi-cart-mobile-fragment").html(
-						response.fragments.lumi_cart_mobile_fragment
+						response.data.fragments.lumi_cart_mobile_fragment
 					);
 				}
 

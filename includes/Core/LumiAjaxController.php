@@ -137,7 +137,9 @@ class LumiAjaxController
             return lumi_response([
                 "message" => __("Successfully updated to wishlist.", "lumi"),
                 "data" => [
-                    "fragment" => $this->lumi_cart_fragment()
+                    "fragments" => $this->lumi_cart_fragment(WC()?->cart?->cart_contents_count ?? 0),
+                    "empty" => WC()?->cart?->cart_contents_count == 0,
+                    "sidebar" => lumi_cart_sidebar()
                 ]
             ]);
         } catch (\Exception $e) {
