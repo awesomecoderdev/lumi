@@ -59,6 +59,104 @@ function lumi_add_to_cart_fragment($fragments = [])
 
 
 /**
+ * Tags thumbnail fields.
+ */
+function add_tags_fields()
+{
+?>
+    <div class="form-field term-display-type-wrap">
+        <label for="display_type"><?php esc_html_e('Display type', 'woocommerce'); ?></label>
+        <select id="display_type" name="display_type" class="postform">
+            <option value=""><?php esc_html_e('Default', 'woocommerce'); ?></option>
+            <option value="products"><?php esc_html_e('Products', 'woocommerce'); ?></option>
+            <option value="subcategories"><?php esc_html_e('Subcategories', 'woocommerce'); ?></option>
+            <option value="both"><?php esc_html_e('Both', 'woocommerce'); ?></option>
+        </select>
+    </div>
+    <div class="form-field term-thumbnail-wrap">
+        <label><?php esc_html_e('Thumbnail', 'woocommerce'); ?></label>
+        <div id="product_cat_thumbnail" style="float: left; margin-right: 10px;"><img src="<?php echo esc_url(wc_placeholder_img_src()); ?>" width="60px" height="60px" /></div>
+        <div style="line-height: 60px;">
+            <input type="hidden" id="product_cat_thumbnail_id" name="product_cat_thumbnail_id" />
+            <button type="button" class="upload_image_button button"><?php esc_html_e('Upload/Add image', 'woocommerce'); ?></button>
+            <button type="button" class="remove_image_button button"><?php esc_html_e('Remove image', 'woocommerce'); ?></button>
+        </div>
+        <script type="text/javascript">
+            // Only show the "remove image" button when needed
+            if (!jQuery('#product_cat_thumbnail_id').val()) {
+                jQuery('.remove_image_button').hide();
+            }
+
+            // Uploading files
+            var file_frame;
+
+            jQuery(document).on('click', '.upload_image_button', function(event) {
+
+                event.preventDefault();
+
+                // If the media frame already exists, reopen it.
+                if (file_frame) {
+                    file_frame.open();
+                    return;
+                }
+
+                // Create the media frame.
+                file_frame = wp.media.frames.downloadable_file = wp.media({
+                    title: '<?php esc_html_e('Choose an image', 'woocommerce'); ?>',
+                    button: {
+                        text: '<?php esc_html_e('Use image', 'woocommerce'); ?>'
+                    },
+                    multiple: false
+                });
+
+                // When an image is selected, run a callback.
+                file_frame.on('select', function() {
+                    var attachment = file_frame.state().get('selection').first().toJSON();
+                    var attachment_thumbnail = attachment.sizes.thumbnail || attachment.sizes.full;
+
+                    jQuery('#product_cat_thumbnail_id').val(attachment.id);
+                    jQuery('#product_cat_thumbnail').find('img').attr('src', attachment_thumbnail.url);
+                    jQuery('.remove_image_button').show();
+                });
+
+                // Finally, open the modal.
+                file_frame.open();
+            });
+
+            jQuery(document).on('click', '.remove_image_button', function() {
+                jQuery('#product_cat_thumbnail').find('img').attr('src', '<?php echo esc_js(wc_placeholder_img_src()); ?>');
+                jQuery('#product_cat_thumbnail_id').val('');
+                jQuery('.remove_image_button').hide();
+                return false;
+            });
+
+            jQuery(document).ajaxComplete(function(event, request, options) {
+                if (request && 4 === request.readyState && 200 === request.status &&
+                    options.data && 0 <= options.data.indexOf('action=add-tag')) {
+
+                    var res = wpAjax.parseAjaxResponse(request.responseXML, 'ajax-response');
+                    if (!res || res.errors) {
+                        return;
+                    }
+                    // Clear Thumbnail fields on submit
+                    jQuery('#product_cat_thumbnail').find('img').attr('src', '<?php echo esc_js(wc_placeholder_img_src()); ?>');
+                    jQuery('#product_cat_thumbnail_id').val('');
+                    jQuery('.remove_image_button').hide();
+                    // Clear Display type field on submit
+                    jQuery('#display_type').val('');
+                    return;
+                }
+            });
+        </script>
+        <div class="clear"></div>
+    </div>
+<?php
+}
+
+
+
+
+/**
  * ======================================================================================
  * 		product after before contents
  * ======================================================================================

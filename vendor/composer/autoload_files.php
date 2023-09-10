@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     '51a6aad358796e315de4433f4f1a3473' => $baseDir . '/includes/Hooks/Woocommerce.php',
+    'f610370aab818a2b41a90a74d2fd515f' => $baseDir . '/includes/Hooks/Taxonomies.php',
     '4e3db99fa437f67b6d79b2255891675c' => $baseDir . '/includes/Hooks/Filter.php',
     'aaf624e387334a1589dd207f64bb418e' => $baseDir . '/includes/Hooks/Action.php',
     '53c21136a9e87be1a4dd0e98151adc99' => $baseDir . '/includes/Core/helper.php',
