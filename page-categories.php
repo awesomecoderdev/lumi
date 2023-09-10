@@ -30,7 +30,7 @@ if (!defined('ABSPATH')) {
         <?php foreach (get_lumi_categories(["number" => 100]) as $key => $category) : ?>
             <a class="relative flex justify-center items-center flex-col" href="<?php echo get_term_link($category); ?>">
                 <img class="rounded-full h-14 w-14 bg-gray-100 shadow" src="<?php echo get_lumi_categories_image($category->term_id) ?>" alt="">
-                <span class="truncate w-16 text-center"><?php echo $category->name; ?></span>
+                <span class="truncate w-16 text-center"><?php echo ucfirst($category->name); ?></span>
             </a>
         <?php endforeach; ?>
     </div>

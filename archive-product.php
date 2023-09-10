@@ -45,6 +45,12 @@ if (!defined('ABSPATH')) {
                 "class" => "relative"
             ]); ?>
             <!-- start:tags sidebar -->
+
+            <!-- start:colors sidebar -->
+            <?php get_template_part("template/section/colors/sidebar", null, [
+                "class" => "relative"
+            ]); ?>
+            <!-- start:colors sidebar -->
         </div>
 
 
