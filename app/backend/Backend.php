@@ -3,6 +3,7 @@
 namespace AwesomeCoder\Lumi;
 
 use AwesomeCoder\Lumi\Wp\AdminPage;
+use AwesomeCoder\Lumi\Wp\Asset;
 use AwesomeCoder\Lumi\Wp\Menu;
 use AwesomeCoder\Lumi\Wp\SubMenu;
 
@@ -46,7 +47,7 @@ class Backend
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_styles()
+	public function enqueue_styles($hook)
 	{
 
 		/**
@@ -61,7 +62,13 @@ class Backend
 		 * class.
 		 */
 
-		wp_enqueue_style($this->template_name, LUMI_THEME_URL . 'admin/css/ac-restaurant-admin.css', array(), $this->version, 'all');
+
+		// echo "<pre>";
+		// print_r($hook);
+		// echo "</pre>";
+		// die;
+
+		Asset::style($this->template_name, "backend/css/lumi-admin.css", $this->version, [], 'all');
 	}
 
 	/**
