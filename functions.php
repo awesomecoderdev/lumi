@@ -70,7 +70,6 @@ function deactivate_lumi($newName, $newTheme)
 add_action("after_switch_theme", "activate_lumi", 10, 2);
 add_action("switch_theme", "deactivate_lumi", 10, 2);
 
-
 /**
  * Begins execution of the Template
  * @since    1.0.0

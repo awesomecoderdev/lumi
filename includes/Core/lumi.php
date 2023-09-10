@@ -4,9 +4,10 @@ namespace AwesomeCoder\Lumi\Core;
 
 use AwesomeCoder\Lumi\Loader;
 use AwesomeCoder\Lumi\Backend;
-use AwesomeCoder\Lumi\Frontend;
-use AwesomeCoder\Lumi\Localization\L18n;
 use AwesomeCoder\Lumi\Wp\Ajax;
+use AwesomeCoder\Lumi\Frontend;
+use AwesomeCoder\Lumi\Core\Taxonomies;
+use AwesomeCoder\Lumi\Localization\L18n;
 
 class Lumi
 {
@@ -207,6 +208,7 @@ class Lumi
 	public function run()
 	{
 		$this->loader->run();
+		Taxonomies::run();
 	}
 
 	/**

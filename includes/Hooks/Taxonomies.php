@@ -26,7 +26,7 @@ class Taxonomies
 	/**
 	 * Get class instance
 	 */
-	public static function get_instance()
+	public static function run()
 	{
 		if (!self::$instance) {
 			self::$instance = new self();
@@ -494,5 +494,3 @@ class Taxonomies
 		);
 	}
 }
-
-Taxonomies::get_instance();
