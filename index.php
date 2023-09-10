@@ -48,7 +48,7 @@ $categories = lumi_get_products([
 
 <?php get_header(); ?>
 
-<main id="main" class="<?php echo lumi_container("py-10 not-prose hidden"); ?>">
+<main id="main" class="<?php echo lumi_container("py-10 not-prose md:block hidden"); ?>">
     <?php $the_categories_index = 0; ?>
     <?php if ($categories->have_posts()) : ?>
         <div class="relative grid grid-cols-10 gap-5 ">
@@ -82,7 +82,7 @@ $categories = lumi_get_products([
 
 
 
-<section class="relative pt-4">
+<section class="relative pt-4 md:hidden">
     <div class="relative">
         <img class="h-full w-full  bg-gray-200 bg-contain bg-center bg-no-repeat aspect-[6/2]" src="<?php echo url("img/category/banner.png"); ?>)">
         </img>
