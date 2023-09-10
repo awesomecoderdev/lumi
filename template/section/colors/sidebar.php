@@ -1,13 +1,13 @@
 <div class="relative <?php echo isset($args["class"]) ? $args["class"] : "" ?>">
     <h2 class="font-semibold text-base"><?php _e("Colors", "lumi"); ?></h2>
-    <div class="relative grid grid-cols-5 gap-3 py-2">
+    <div class="relative mx-auto grid grid-cols-4 gap-3 py-2">
         <?php foreach (get_lumi_categories([
             "taxonomy" => "product_color",
             "number" => 100,
         ]) as $key => $category) : ?>
-            <a class="relative grid h-20 w-20" href="<?php echo get_term_link($category); ?>">
-                <div class="w-10 h-10 rounded-sm" style="background: <?php echo $category->slug ?>;"></div>
-                <span class="truncate"><?php echo ucfirst($category->name); ?></span>
+            <a class="relative grid mx-auto" href="<?php echo get_term_link($category); ?>">
+                <div class="w-10 h-10 mx-auto rounded-md drop-shadow-lg border border-slate-300" style="background: <?php echo get_lumi_product_color($category->term_id) ?>;"></div>
+                <span class="truncate text-center text-[10px]"><?php echo ucfirst($category->name); ?></span>
                 <!-- <?php echo json_encode($category) ?>  -->
             </a>
         <?php endforeach; ?>

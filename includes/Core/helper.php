@@ -267,6 +267,36 @@ if (!function_exists('get_lumi_categories')) {
     }
 }
 
+/**
+ * The get_lumi_product_color function.
+ *
+ * @link              https://awesomecoder.dev/
+ * @since             1.0.0
+ *
+ */
+if (!function_exists('get_lumi_product_color')) {
+    function get_lumi_product_color($id = false)
+    {
+        $default = "green";
+
+        if ($id) {
+            $color = get_term_meta($id, 'color', true);
+
+            if (!$color) {
+                $term = get_term($id);
+                if ($term?->slug) {
+                    $color =  $term?->slug;
+                }
+            } else {
+                $color = $default;
+            }
+
+            return $color;
+        }
+
+        return $default;
+    }
+}
 
 /**
  * The lumi_get_wishlist function.

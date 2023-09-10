@@ -33,7 +33,7 @@ if (!defined('ABSPATH')) {
 <main id="main" class="<?php echo lumi_container("not-prose"); ?>">
     <div class="relative w-full grid xl:grid-cols-10 lg:grid-cols-8 gap-8">
 
-        <div class="relative xl:col-span-2 lg:col-span-2 space-y-3 p-3 pb-0 pl-0 font-normal lg:border-r">
+        <div class="relative xl:col-span-2 lg:col-span-2 space-y-3 lg:p-4 lg:pb-0 lg:pl-0 font-normal lg:border-r">
             <!-- start:category sidebar -->
             <?php get_template_part("template/section/category/sidebar", null, [
                 "class" => "relative"

@@ -1347,6 +1347,9 @@ body{
 .h-20{
 	height: 5rem;
 }
+.h-8{
+	height: 2rem;
+}
 .min-h-\[calc\(60vh-112px\)\]{
 	min-height: calc(60vh - 112px);
 }
@@ -1555,6 +1558,9 @@ body{
 .rounded-sm{
 	border-radius: calc(var(--radius) - 4px);
 }
+.rounded-md{
+	border-radius: calc(var(--radius) - 2px);
+}
 .border{
 	border-width: 1px;
 }
@@ -1601,6 +1607,10 @@ body{
 .border-white{
 	--tw-border-opacity: 1;
 	border-color: rgb(255 255 255 / var(--tw-border-opacity));
+}
+.border-slate-300{
+	--tw-border-opacity: 1;
+	border-color: rgb(203 213 225 / var(--tw-border-opacity));
 }
 .bg-\[\#F4FFFB\]{
 	--tw-bg-opacity: 1;
@@ -1793,6 +1803,9 @@ body{
 	font-size: 0.8125rem;
 	line-height: 1.5rem;
 }
+.text-\[10px\]{
+	font-size: 10px;
+}
 .font-medium{
 	font-weight: 500;
 }
@@ -1904,6 +1917,18 @@ body{
 }
 .outline-transparent{
 	outline-color: transparent;
+}
+.drop-shadow-xl{
+	--tw-drop-shadow: drop-shadow(0 20px 13px rgb(0 0 0 / 0.03)) drop-shadow(0 8px 5px rgb(0 0 0 / 0.08));
+	filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+.drop-shadow-sm{
+	--tw-drop-shadow: drop-shadow(0 1px 1px rgb(0 0 0 / 0.05));
+	filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+.drop-shadow-lg{
+	--tw-drop-shadow: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
+	filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 .filter{
 	filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
@@ -2257,6 +2282,12 @@ figure{
 	.lg\:border-r{
 		border-right-width: 1px;
 	}
+	.lg\:p-3{
+		padding: 0.75rem;
+	}
+	.lg\:p-4{
+		padding: 1rem;
+	}
 	.lg\:px-4{
 		padding-left: 1rem;
 		padding-right: 1rem;
@@ -2274,6 +2305,12 @@ figure{
 	}
 	.lg\:pr-24{
 		padding-right: 6rem;
+	}
+	.lg\:pb-0{
+		padding-bottom: 0px;
+	}
+	.lg\:pl-0{
+		padding-left: 0px;
 	}
 	.lg\:text-4xl{
 		font-size: 2.25rem;

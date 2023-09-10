@@ -117,13 +117,13 @@ function lumi_taxonomy_save_custom_fields($term_id)
 
 // Hook into term edit and save actions
 // add_action('product_color_edit_form_fields', 'lumi_taxonomy_edit_form_fields', 10, 2);
-// add_action('edited_product_color', 'lumi_taxonomy_save_custom_fields', 10, 2);
-// add_action('create_product_color', 'lumi_taxonomy_save_custom_fields', 10, 2);
+add_action('edited_product_color', 'lumi_taxonomy_save_custom_fields', 10, 2);
+add_action('create_product_color', 'lumi_taxonomy_save_custom_fields', 10, 2);
 
 function lumi_taxonomy_custom_column_data($deprecated, $column_name, $term_id)
 {
     if ($column_name === 'color') {
-        $color = esc_html(get_term_meta($term_id, 'slug', true));
+        $color = get_term_meta($term_id, 'slug', true);
 
         if (!$color) {
             $term = get_term($term_id);
