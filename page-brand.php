@@ -26,7 +26,10 @@ if (!defined('ABSPATH')) {
 
 <main id="main" class="<?php echo lumi_container("not-prose"); ?>">
     <div class="relative grid grid-cols-4 gap-4 py-4">
-        <?php foreach (get_lumi_categories(["number" => 100]) as $key => $category) : ?>
+        <?php foreach (get_lumi_categories([
+            "taxonomy" => "product_tag",
+            "number" => 100,
+        ]) as $key => $category) : ?>
             <a class="relative flex justify-center items-center flex-col" href="<?php echo get_term_link($category); ?>">
                 <img class="rounded-full h-14 w-14 bg-gray-100 shadow" src="<?php echo get_lumi_categories_image($category->term_id) ?>" alt="">
                 <span class="truncate w-16 text-center"><?php echo $category->name; ?></span>
