@@ -40,9 +40,9 @@ if (!defined('ABSPATH')) {
         <div class="relative bg-primary-500 h-[72px] md:block hidden">
             <div class="relative container md:flex hidden justify-between items-center h-full w-full mx-auto">
                 <div class="flex items-center space-x-3 text-slate-100 dark:text-white font-normal leading-normal">
-                    <a href="<?php echo site_url("/woman") ?>">Woman</a>
-                    <a href="<?php echo site_url("/man") ?>">Men</a>
-                    <a href="<?php echo site_url("/kids") ?>">Kids</a>
+                    <a href="<?php echo site_url("/categories/woman") ?>">Woman</a>
+                    <a href="<?php echo site_url("/categories/man") ?>">Men</a>
+                    <a href="<?php echo site_url("/categories/kids") ?>">Kids</a>
                 </div>
                 <div class="flex items-center space-x-3 text-slate-100 dark:text-white font-normal leading-normal">
                     <select name="lang" id="lang" class="bg-transparent outline-none border-none border-transparent outline-transparent focus:outline-none focus-visible:outline-none focus:ring-transparent">
@@ -153,9 +153,9 @@ if (!defined('ABSPATH')) {
 
                 <div class="relative w-full flex justify-between items-center space-x-3 text-slate-600 dark:text-white font-normal leading-normal">
                     <a href="<?php echo site_url("/") ?>" class="relative py-2 px-3 border-b-2 <?php echo is_front_page() || is_shop() ? "text-primary-500 dark:text-primary-500 border-primary-50 dark:border-primary-500" : "border-slate-100 dark:border-primary-50/5" ?>">All</a>
-                    <a href="<?php echo site_url("/woman") ?>" class="relative py-2 px-3 border-b-2 <?php echo lumi_path("woman") ? "text-primary-500 dark:text-primary-500 border-primary-50 dark:border-primary-500" : "border-slate-100 dark:border-primary-50/5" ?>">Woman</a>
-                    <a href="<?php echo site_url("/man") ?>" class="relative py-2 px-3 border-b-2 <?php echo lumi_path("man")  ? "text-primary-500 dark:text-primary-500 border-primary-50 dark:border-primary-500" : "border-slate-100 dark:border-primary-50/5" ?>">Men</a>
-                    <a href="<?php echo site_url("/kids") ?>" class="relative py-2 px-3 border-b-2 <?php echo lumi_path("kids")  ? "text-primary-500 dark:text-primary-500 border-primary-50 dark:border-primary-500" : "border-slate-100 dark:border-primary-50/5" ?>">Kids</a>
+                    <a href="<?php echo site_url("/categories/woman") ?>" class="relative py-2 px-3 border-b-2 <?php echo lumi_path("woman") ? "text-primary-500 dark:text-primary-500 border-primary-50 dark:border-primary-500" : "border-slate-100 dark:border-primary-50/5" ?>">Woman</a>
+                    <a href="<?php echo site_url("/categories/man") ?>" class="relative py-2 px-3 border-b-2 <?php echo lumi_path("man")  ? "text-primary-500 dark:text-primary-500 border-primary-50 dark:border-primary-500" : "border-slate-100 dark:border-primary-50/5" ?>">Men</a>
+                    <a href="<?php echo site_url("/categories/kids") ?>" class="relative py-2 px-3 border-b-2 <?php echo lumi_path("kids")  ? "text-primary-500 dark:text-primary-500 border-primary-50 dark:border-primary-500" : "border-slate-100 dark:border-primary-50/5" ?>">Kids</a>
                 </div>
             </div>
 
