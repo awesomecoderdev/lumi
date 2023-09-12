@@ -69,7 +69,7 @@ if (!defined('ABSPATH')) {
                             <div class="relative flex justify-center items-center flex-col space-y-2 cursor-pointer">
                                 <div class="relative flex items-center">
                                     <button class="h-5 w-5 border flex justify-center items-center" id="cart-quantity-decrement" data-product="<?php echo $product_id; ?>">-</button>
-                                    <input name="quantity" value="<?php echo $item["quantity"] ?? 1 ?>" id="cart-quantity" class="pointer-events-none p-0 m-0 w-10 h-5 leading-none text-xs px-2 border placeholder:text-primary-300 text-primary-500 font-semibold outline-none border-none border-transparent outline-transparent focus:outline-none focus-visible:outline-none focus:ring-transparent text-center" type="number" min="1">
+                                    <input name="quantity" value="<?php echo $item["quantity"] ?? 1 ?>" id="cart-quantity" class="pointer-events-none p-0 m-0 w-10 h-5 leading-none text-xs px-2 border bg-transparent placeholder:text-primary-300 text-primary-500 font-semibold outline-none border-none border-transparent outline-transparent focus:outline-none focus-visible:outline-none focus:ring-transparent text-center" type="number" min="1">
                                     <button class="h-5 w-5 border flex justify-center items-center" id="cart-quantity-increment" data-product="<?php echo $product_id; ?>">+</button>
                                 </div>
 

@@ -130,7 +130,7 @@ $products = lumi_get_products([
                             </span>
                             <div class="relative flex">
                                 <button class="h-5 w-5 border flex justify-center items-center" id="wishlist-quantity-decrement">-</button>
-                                <input name="quantity" id="wishlist-quantity" class="p-0 m-0 w-10 h-5 leading-none text-xs px-2 border placeholder:text-primary-300 text-primary-500 font-semibold outline-none border-none border-transparent outline-transparent focus:outline-none focus-visible:outline-none focus:ring-transparent text-center" type="number" min="1" value="1">
+                                <input name="quantity" id="wishlist-quantity" class="p-0 m-0 w-10 h-5 bg-transparent leading-none text-xs px-2 border placeholder:text-primary-300 text-primary-500 font-semibold outline-none border-none border-transparent outline-transparent focus:outline-none focus-visible:outline-none focus:ring-transparent text-center" type="number" min="1" value="1">
                                 <button class="h-5 w-5 border flex justify-center items-center" id="wishlist-quantity-increment">+</button>
                             </div>
                         </div>
