@@ -57,8 +57,31 @@ if (!defined('ABSPATH')) {
 
         <div class="relative xl:col-span-8 lg:col-span-6 py-4">
             <div class="relative w-full grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-8">
-                <?php if (have_posts()) : ?>
-                    <?php while (have_posts()) : the_post(); ?>
+                <?php
+                $props = [
+                    // "post__in" => lumi_get_wishlist()
+                ];
+                $colors = isset($_GET["colors"]) && !empty($_GET["colors"]) ? sanitize_text_field(strtolower($_GET["colors"])) : null;
+
+                if ($colors) {
+                    $colors = explode(",", $colors);
+
+                    $props['tax_query'] = [
+                        'relation' => 'OR', // Use 'AND' if you want posts that have all specified terms.
+                        [
+                            'taxonomy' => 'product_color',
+                            'field'    => 'slug',
+                            'terms'    => $colors ?? ["lumi"],
+                        ],
+                    ];
+                }
+
+                // get products
+                $products = lumi_get_products($props);
+
+                ?>
+                <?php if ($products->have_posts()) : ?>
+                    <?php while ($products->have_posts()) : $products->the_post(); ?>
                         <?php
                         // Get product details
                         $product = wc_get_product(get_the_ID());
