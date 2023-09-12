@@ -104,6 +104,10 @@ $(document).ready(function () {
 			url: LumiCartUrl,
 			data: $(this).serialize(),
 			success: function (response) {
+				if (response?.error) {
+					window.location = response?.product_url ?? lumi?.url ?? "/";
+				}
+
 				if (response?.fragments?.lumi_cart_fragment) {
 					$("#lumi-cart-fragment").html(
 						response.fragments.lumi_cart_fragment
@@ -147,6 +151,10 @@ $(document).ready(function () {
 			url: LumiCartUrl,
 			data: $(this).serialize(),
 			success: function (response) {
+				if (response?.error) {
+					window.location = response?.product_url ?? lumi?.url ?? "/";
+				}
+
 				if (response?.fragments?.lumi_cart_fragment) {
 					$("#lumi-cart-fragment").html(
 						response.fragments.lumi_cart_fragment
@@ -298,74 +306,6 @@ $(document).ready(function () {
 				console.log("error", error);
 			},
 		}); // End ajax
-	});
-
-	// Ajax Add to Cart Function
-	$(document).on("click", ".restaurant_cart_btn", function (e) {
-		e.preventDefault();
-		var product_sku = $(this).data("product_sku");
-		var product_id = $(this).data("product_id");
-		var quantity = $(this).data("quantity");
-
-		$("#product_id_" + product_id).prop("disabled", true);
-
-		var postdata = `product_sku=${product_sku}&quantity=${quantity}&product_id=${product_id}`;
-		$.ajax({
-			type: "POST",
-			url: LumiCartUrl,
-			data: postdata,
-			success: function (data) {
-				$("#product_id_" + product_id + " .bx").removeClass(
-					"bx-cart-alt"
-				);
-				if (data.error) {
-					$("#product_id_" + product_id).css("background", "#9c0606");
-					$("#product_id_" + product_id + " .bx").addClass(
-						"bx-error-alt"
-					);
-					window.location = data.product_url;
-					return;
-				} else {
-					var response = data.fragments;
-					response = Object.values(response)[0];
-					// console.log( response );
-					// $( "div.widget_shopping_cart_content" ).html( response );
-					$("#product_id_" + product_id + " .bx").addClass(
-						"bx-check-circle"
-					);
-
-					var postdata =
-						"action=ac_restaurant_ajax_request&ac_action=cart_count";
-					$.ajax({
-						type: "POST",
-						url: ajaxurl,
-						data: postdata,
-						success: function (data) {
-							// console.log( data );
-							$(".nav_cart .nav__link").html(
-								"Cart<span id='cartCount'>" +
-									data +
-									"</span></i>"
-							);
-						},
-					}); // End ajax
-				}
-			},
-		}); // End ajax
-
-		setTimeout(() => {
-			if (
-				$("#product_id_" + product_id + " .bx").hasClass(
-					"bx-check-circle"
-				)
-			) {
-				$("#product_id_" + product_id + " .bx").removeClass(
-					"bx-check-circle"
-				);
-				$("#product_id_" + product_id + " .bx").addClass("bx-cart-alt");
-			}
-			$("#product_id_" + product_id).prop("disabled", false);
-		}, 5000);
 	});
 
 	// User login Function

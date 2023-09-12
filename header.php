@@ -22,7 +22,7 @@ if (!defined('ABSPATH')) {
 
 ?>
 <!doctype html>
-<html <?php language_attributes(); ?> class="dark">
+<html <?php language_attributes(); ?> class="darks">
 
 <head>
     <meta charset="<?php bloginfo('charset'); ?>" />
