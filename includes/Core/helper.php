@@ -341,6 +341,29 @@ if (!function_exists('get_lumi_filter_url')) {
     }
 }
 
+
+/**
+ * The get_lumi_request_colors function.
+ *
+ * @link              https://awesomecoder.dev/
+ * @since             1.0.0
+ *
+ */
+if (!function_exists('get_lumi_request_colors')) {
+    function get_lumi_request_colors()
+    {
+        $color = isset($_GET["colors"]) && !empty($_GET["colors"]) ? sanitize_text_field(strtolower($_GET["colors"])) : null;
+        if ($color) {
+            $colors = explode(",", $color);
+            $colors = array_values(array_unique($colors));
+
+            return $colors;
+        }
+
+        return [];
+    }
+}
+
 /**
  * The clog function.
  *
@@ -351,8 +374,14 @@ if (!function_exists('get_lumi_filter_url')) {
 if (!function_exists('clog')) {
     function clog($log = false)
     {
-        $log = is_array($log) || is_object($log) ? json_encode($log, JSON_PRETTY_PRINT) : $log;
-        echo "<script>console.log('$log');</script>";
+        echo "<script>console.log('======================================================================');</script>";
+        if (is_array($log) || is_object($log)) {
+            $log = json_encode($log, JSON_PRETTY_PRINT);
+            echo "<script>console.log([$log]);</script>";
+        } else {
+            echo "<script>console.log('$log');</script>";
+        }
+        echo "<script>console.log('======================================================================');</script>";
     }
 }
 /**

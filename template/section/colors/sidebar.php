@@ -6,18 +6,16 @@
             "number" => 100,
         ]) as $key => $category) : ?>
             <a class="relative grid mx-auto" href="<?php echo get_lumi_filter_url($category); ?>">
-                <div class="w-10 h-10 mx-auto rounded-md drop-shadow-lg border border-slate-300" style="background: <?php echo get_lumi_product_color($category->term_id) ?>;"></div>
+                <div class="w-10 h-10 flex justify-center items-center mx-auto rounded-xl drop-shadow-lg border border-slate-300" style="background: <?php echo get_lumi_product_color($category->term_id) ?>;">
+                    <?php if (in_array($category->slug, get_lumi_request_colors() ?? [])) : ?>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 <?php echo in_array($category->slug, ["white", "orange"]) ? "text-slate-700" : "text-white" ?>">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    <?php endif; ?>
+                </div>
                 <span class="truncate text-center text-[10px]"><?php echo ucfirst($category->name); ?></span>
-                <!-- <?php echo json_encode($category) ?>  -->
-
+                <?php clog($category) ?>
             </a>
         <?php endforeach; ?>
-        <!-- <div class="relative w-full flex items-center justify-center mx-auto py-3 cursor-pointer" id="sidebar-tags-dropdown">
-            <div class="relative bg-primary-500 rounded-full">
-                <svg class="transform sidebar-tags-arrow" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12.5927 6.79261C12.4539 6.65465 12.2661 6.57721 12.0704 6.57721C11.8747 6.57721 11.687 6.65465 11.5482 6.79261L8.88895 9.41483L6.26673 6.79261C6.12794 6.65465 5.9402 6.57721 5.74451 6.57721C5.54881 6.57721 5.36107 6.65465 5.22228 6.79261C5.15286 6.86147 5.09775 6.9434 5.06014 7.03367C5.02254 7.12393 5.00317 7.22075 5.00317 7.31854C5.00317 7.41632 5.02254 7.51314 5.06014 7.60341C5.09775 7.69368 5.15286 7.7756 5.22228 7.84446L8.36302 10.9852C8.43189 11.0546 8.51381 11.1097 8.60408 11.1473C8.69434 11.185 8.79116 11.2043 8.88895 11.2043C8.98674 11.2043 9.08356 11.185 9.17382 11.1473C9.26409 11.1097 9.34601 11.0546 9.41488 10.9852L12.5927 7.84446C12.6621 7.7756 12.7172 7.69368 12.7548 7.60341C12.7924 7.51314 12.8118 7.41632 12.8118 7.31854C12.8118 7.22075 12.7924 7.12393 12.7548 7.03367C12.7172 6.9434 12.6621 6.86147 12.5927 6.79261Z" fill="#F7F8F6" />
-                </svg>
-            </div>
-        </div> -->
     </div>
 </div>
