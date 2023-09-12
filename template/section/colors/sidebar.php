@@ -5,7 +5,7 @@
             "taxonomy" => "product_color",
             "number" => 100,
         ]) as $key => $category) : ?>
-            <a class="relative grid mx-auto" href="<?php echo get_term_link($category); ?>">
+            <a class="relative grid mx-auto" href="<?php echo get_lumi_filter_url($category); ?>">
                 <div class="w-10 h-10 mx-auto rounded-md drop-shadow-lg border border-slate-300" style="background: <?php echo get_lumi_product_color($category->term_id) ?>;"></div>
                 <span class="truncate text-center text-[10px]"><?php echo ucfirst($category->name); ?></span>
                 <!-- <?php echo json_encode($category) ?>  -->

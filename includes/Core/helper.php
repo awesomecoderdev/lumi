@@ -296,6 +296,65 @@ if (!function_exists('get_lumi_product_color')) {
     }
 }
 
+
+/**
+ * The get_lumi_filter_url function.
+ *
+ * @link              https://awesomecoder.dev/
+ * @since             1.0.0
+ *
+ */
+if (!function_exists('get_lumi_filter_url')) {
+    function get_lumi_filter_url($term)
+    {
+        $query = [];
+        $object = get_queried_object();
+        $url = $object && is_a($object, 'WP_Term') ? get_term_link($object) : get_term_link($term);
+        $color = isset($_GET["colors"]) && !empty($_GET["colors"]) ? sanitize_text_field(strtolower($_GET["colors"])) : null;
+        if ($color) {
+            $colors = explode(",", $color);
+
+            $colors = array_values(array_unique($colors));
+
+            if (!in_array("$term->slug", $colors)) {
+                $colors = array_merge($colors, [$term->slug]);
+            } else {
+                unset($colors[array_search("$term->slug", $colors)]);
+            }
+            $query["colors"] = is_array($colors) ? implode(",", $colors) : "$term->slug";
+        } else {
+            $query["colors"] = "$term->slug";
+        }
+
+        $params = http_build_query($query);
+
+
+        if (strpos($url, "?") !== false) {
+            $url = "$url&";
+        } else {
+            $url = $params ? "$url?" : $url;
+        }
+
+        $params = str_replace("%2C", ",", $params);
+
+        return $url . $params;
+    }
+}
+
+/**
+ * The clog function.
+ *
+ * @link              https://awesomecoder.dev/
+ * @since             1.0.0
+ *
+ */
+if (!function_exists('clog')) {
+    function clog($log = false)
+    {
+        $log = is_array($log) || is_object($log) ? json_encode($log, JSON_PRETTY_PRINT) : $log;
+        echo "<script>console.log('$log');</script>";
+    }
+}
 /**
  * The lumi_get_wishlist function.
  *

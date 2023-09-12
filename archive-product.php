@@ -21,6 +21,8 @@ if (!defined('ABSPATH')) {
 
 }
 
+
+
 ?>
 
 
@@ -29,6 +31,7 @@ if (!defined('ABSPATH')) {
 <!-- start:category header -->
 <?php get_template_part("template/section/category/header"); ?>
 <!-- start:category header -->
+
 
 <main id="main" class="<?php echo lumi_container("not-prose"); ?>">
     <div class="relative w-full grid xl:grid-cols-10 lg:grid-cols-8 gap-8">
