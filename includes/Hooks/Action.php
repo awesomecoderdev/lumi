@@ -50,12 +50,7 @@ add_filter('manage_product_color_custom_column', 'lumi_taxonomy_custom_column_da
 function lumi_taxonomy_custom_column_data($deprecated, $column_name, $term_id)
 {
     if ($column_name === 'color') {
-        $color = get_term_meta($term_id, 'slug', true);
-
-        if (!$color) {
-            $term = get_term($term_id);
-            $color =  $term->slug;
-        }
+        $color = get_lumi_product_color($term_id);
 
         return $color ? "<div style=\"height:30px;width:30px;border:1px solid;border-radius:100%;background: $color;\"></div>" : '-';
     }
@@ -110,19 +105,12 @@ add_action('init', 'lumi_create_color_taxonomies', 0);
 add_action("product_color_add_form_fields", 'lumi_taxonomy_add_form_fields', 10);
 function lumi_taxonomy_add_form_fields($color)
 {
-    // $color = get_term_meta($term->term_id, 'color', true);
-    $color = "";
-    echo "<pre>";
-    print_r($color);
-    echo "</pre>";
-
 ?>
     <div class="form-field form-required term-color-wrap">
         <label for="color"><?php _e("Color", "lumi"); ?></label>
         <div class="lumi-color-wrap">
-            <input name="color" id="color" class="primary" type="color" value="" size="40" aria-required="true">
+            <input name="color" id="color" class="primary" type="color">
         </div>
-        <p id="color"><?php esc_html_e('Choose Colors.', 'lumi'); ?></p>
     </div>
 
 <?php
@@ -137,9 +125,8 @@ function lumi_taxonomy_edit_form_fields($color, $taxonomy)
         <th scope="row"> <label for="color"><?php _e("Color", "lumi"); ?></label></th>
         <td>
             <div class="lumi-color-wrap">
-                <input name="color" id="color" class="primary" type="color" value="<?php echo $color; ?>" size="40" aria-required="true">
+                <input name="color" id="color" class="primary" type="color" value="<?php echo $color; ?>" data-default-color="<?php echo $color; ?>">
             </div>
-            <p class="color" id="name-color">The name is how it appears on your site.</p>
         </td>
     </tr>
 <?php

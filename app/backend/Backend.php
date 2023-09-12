@@ -63,12 +63,10 @@ class Backend
 		 */
 
 
-		// echo "<pre>";
-		// print_r($hook);
-		// echo "</pre>";
-		// die;
-
 		Asset::style($this->template_name, "backend/css/lumi-admin.css", $this->version, [], 'all');
+
+		// color picker
+		wp_enqueue_style('wp-color-picker');
 	}
 
 	/**
@@ -91,7 +89,14 @@ class Backend
 		 * class.
 		 */
 
-		wp_enqueue_script($this->template_name, LUMI_THEME_URL . 'assets/backend/js/lumi-admin.js', array('jquery'), $this->version, false);
+		// wp enqueue media
+		wp_enqueue_media();
+
+		// enqueue colo-picker
+		wp_enqueue_script('wp-color-picker');
+
+
+		Asset::script($this->template_name, "assets/backend/js/lumi-admin.js", $this->version, ['jquery'], false, true);
 
 		// Some local vairable to get ajax url
 		wp_localize_script($this->template_name, 'lumi', array(
@@ -104,9 +109,6 @@ class Backend
 			"carturl" 	=> trailingslashit(get_bloginfo('url')) . "?wc-ajax=add_to_cart",
 			"ajaxurl"	=> admin_url("admin-ajax.php")
 		));
-
-		// wp enqueue mediea
-		wp_enqueue_media();
 	}
 
 	/**

@@ -1,32 +1,24 @@
-(function( $ ) {
-	'use strict';
+(function ($) {
+	"use strict";
 
 	/**
-	 * All of the code for your admin-facing JavaScript source
-	 * should reside in this file.
+	 * The init of the Theme.
 	 *
-	 * Note: It has been assumed you will write jQuery code here, so the
-	 * $ function reference has been prepared for usage within the scope
-	 * of this function.
+	 * @link              https://awesomecoder.dev/
+	 * @since             1.0.0
+	 * @package           lumi
 	 *
-	 * This enables you to define handlers, for when the DOM is ready:
+	 *                                                              _
+	 *                                                             | |
+	 *    __ ___      _____  ___  ___  _ __ ___   ___  ___ ___   __| | ___ _ __
+	 *   / _` \ \ /\ / / _ \/ __|/ _ \| '_ ` _ \ / _ \/ __/ _ \ / _` |/ _ \ '__|
+	 *  | (_| |\ V  V /  __/\__ \ (_) | | | | | |  __/ (_| (_) | (_| |  __/ |
+	 *   \__,_| \_/\_/ \___||___/\___/|_| |_| |_|\___|\___\___/ \__,_|\___|_|
 	 *
-	 * $(function() {
-	 *
-	 * });
-	 *
-	 * When the window is loaded:
-	 *
-	 * $( window ).load(function() {
-	 *
-	 * });
-	 *
-	 * ...and/or other possibilities.
-	 *
-	 * Ideally, it is not considered best practise to attach more than a
-	 * single DOM-ready or window-load handler for a particular page.
-	 * Although scripts in the WordPress core, Plugins and Themes may be
-	 * practising this, we should strive to set a better example in our own work.
 	 */
 
-})( jQuery );
+	$(document).ready(function () {
+		console.log("hello");
+		$("#color").wpColorPicker();
+	});
+})(jQuery);

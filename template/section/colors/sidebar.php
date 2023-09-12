@@ -9,6 +9,7 @@
                 <div class="w-10 h-10 mx-auto rounded-md drop-shadow-lg border border-slate-300" style="background: <?php echo get_lumi_product_color($category->term_id) ?>;"></div>
                 <span class="truncate text-center text-[10px]"><?php echo ucfirst($category->name); ?></span>
                 <!-- <?php echo json_encode($category) ?>  -->
+
             </a>
         <?php endforeach; ?>
         <!-- <div class="relative w-full flex items-center justify-center mx-auto py-3 cursor-pointer" id="sidebar-tags-dropdown">

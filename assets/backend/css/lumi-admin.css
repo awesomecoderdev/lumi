@@ -1,4 +1,4 @@
-.term-color-wrap input[type="color"] {
+/* .term-color-wrap input[type="color"] {
 	border: none;
 	outline: none;
 	padding: 0;
@@ -19,4 +19,9 @@
 	height: 30px;
 	width: 30px;
 	overflow: hidden;
+} */
+
+input#color {
+	opacity: 0;
+	width: 0;
 }

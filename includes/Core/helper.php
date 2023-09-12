@@ -280,21 +280,19 @@ if (!function_exists('get_lumi_product_color')) {
         $default = "green";
 
         if ($id) {
-            $color = get_term_meta($id, 'color', true);
+            $color = get_term_meta($id, "color", true);
 
-            if (!$color) {
+            if ($color) {
+                return $color;
+            } else {
                 $term = get_term($id);
                 if ($term?->slug) {
                     $color =  $term?->slug;
                 }
-            } else {
-                $color = $default;
             }
-
-            return $color;
         }
 
-        return $default;
+        return $color ?? $default;
     }
 }
 
