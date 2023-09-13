@@ -21,5 +21,7 @@
 			"name": "Mohammad Ibrahim Kholil"
 		}
 	],
-	"require": {}
+	"require": {
+		"google/apiclient": "*"
+	}
 }
