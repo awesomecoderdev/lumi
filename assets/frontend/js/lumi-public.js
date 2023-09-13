@@ -105,23 +105,47 @@ $(document).ready(function () {
 			data: $(this).serialize(),
 			success: function (response) {
 				if (response?.error) {
-					window.location = response?.product_url ?? lumi?.url ?? "/";
-				}
+					// window.location = response?.product_url ?? lumi?.url ?? "/";
+					try {
+						$.toast({
+							heading: lumi.toast.error.heading,
+							text: lumi.toast.error.message,
+							bgColor: "#e11d48",
+							textColor: "white",
+							position: "bottom-right",
+							afterHidden: function () {
+								window.location =
+									response?.product_url ?? lumi?.url ?? "/";
+							},
+						});
+					} catch (err) {
+						// skip
+					}
+				} else {
+					try {
+						$.toast({
+							heading: lumi.toast.success.heading,
+							text: lumi.toast.success.message,
+							bgColor: "#92B193",
+							textColor: "white",
+							position: "bottom-right",
+						});
+					} catch (err) {
+						// skip
+					}
 
-				if (response?.fragments?.lumi_cart_fragment) {
-					$("#lumi-cart-fragment").html(
-						response.fragments.lumi_cart_fragment
-					);
-				}
+					if (response?.fragments?.lumi_cart_fragment) {
+						$("#lumi-cart-fragment").html(
+							response.fragments.lumi_cart_fragment
+						);
+					}
 
-				if (response?.fragments?.lumi_cart_fragment) {
-					$("#lumi-cart-mobile-fragment").html(
-						response.fragments.lumi_cart_mobile_fragment
-					);
+					if (response?.fragments?.lumi_cart_fragment) {
+						$("#lumi-cart-mobile-fragment").html(
+							response.fragments.lumi_cart_mobile_fragment
+						);
+					}
 				}
-
-				console.log("response", response);
-				// $.toast("Here you can put the text of the toast");
 
 				setTimeout(() => {
 					add_to_bag.removeClass("hidden");
@@ -129,6 +153,17 @@ $(document).ready(function () {
 				}, 700);
 			},
 			error: function (error) {
+				try {
+					$.toast({
+						heading: lumi.toast.error.heading,
+						text: lumi.toast.error.message,
+						bgColor: "#e11d48",
+						textColor: "white",
+						position: "bottom-right",
+					});
+				} catch (err) {
+					// skip
+				}
 				setTimeout(() => {
 					add_to_bag.removeClass("hidden");
 					add_to_cart_loading.addClass("hidden");
@@ -152,19 +187,45 @@ $(document).ready(function () {
 			data: $(this).serialize(),
 			success: function (response) {
 				if (response?.error) {
-					window.location = response?.product_url ?? lumi?.url ?? "/";
-				}
+					try {
+						$.toast({
+							heading: lumi.toast.error.heading,
+							text: lumi.toast.error.message,
+							bgColor: "#e11d48",
+							textColor: "white",
+							position: "bottom-right",
+							afterHidden: function () {
+								window.location =
+									response?.product_url ?? lumi?.url ?? "/";
+							},
+						});
+					} catch (err) {
+						// skip
+					}
+				} else {
+					try {
+						$.toast({
+							heading: lumi.toast.success.heading,
+							text: lumi.toast.success.message,
+							bgColor: "#92B193",
+							textColor: "white",
+							position: "bottom-right",
+						});
+					} catch (err) {
+						// skip
+					}
 
-				if (response?.fragments?.lumi_cart_fragment) {
-					$("#lumi-cart-fragment").html(
-						response.fragments.lumi_cart_fragment
-					);
-				}
+					if (response?.fragments?.lumi_cart_fragment) {
+						$("#lumi-cart-fragment").html(
+							response.fragments.lumi_cart_fragment
+						);
+					}
 
-				if (response?.fragments?.lumi_cart_fragment) {
-					$("#lumi-cart-mobile-fragment").html(
-						response.fragments.lumi_cart_mobile_fragment
-					);
+					if (response?.fragments?.lumi_cart_fragment) {
+						$("#lumi-cart-mobile-fragment").html(
+							response.fragments.lumi_cart_mobile_fragment
+						);
+					}
 				}
 
 				// console.log("response", response);
@@ -176,6 +237,17 @@ $(document).ready(function () {
 				}, 700);
 			},
 			error: function (error) {
+				try {
+					$.toast({
+						heading: lumi.toast.error.heading,
+						text: lumi.toast.error.message,
+						bgColor: "#e11d48",
+						textColor: "white",
+						position: "bottom-right",
+					});
+				} catch (err) {
+					// skip
+				}
 				setTimeout(() => {
 					add_to_bag.removeClass("hidden");
 					add_to_cart_loading.addClass("hidden");
@@ -223,6 +295,17 @@ $(document).ready(function () {
 			},
 			error: function (error) {
 				console.log("error", error);
+				try {
+					$.toast({
+						heading: lumi.toast.error.heading,
+						text: lumi.toast.error.message,
+						bgColor: "#e11d48",
+						textColor: "white",
+						position: "bottom-right",
+					});
+				} catch (err) {
+					// skip
+				}
 			},
 		}); // End ajax
 	});
@@ -261,6 +344,17 @@ $(document).ready(function () {
 				console.log("response", response);
 			},
 			error: function (error) {
+				try {
+					$.toast({
+						heading: lumi.toast.error.heading,
+						text: lumi.toast.error.message,
+						bgColor: "#f43f5e",
+						textColor: "white",
+						position: "bottom-right",
+					});
+				} catch (err) {
+					// skip
+				}
 				console.log("error", error);
 			},
 		}); // End ajax
@@ -303,6 +397,17 @@ $(document).ready(function () {
 				console.log("response", response);
 			},
 			error: function (error) {
+				try {
+					$.toast({
+						heading: lumi.toast.error.heading,
+						text: lumi.toast.error.message,
+						bgColor: "#e11d48",
+						textColor: "white",
+						position: "bottom-right",
+					});
+				} catch (err) {
+					// skip
+				}
 				console.log("error", error);
 			},
 		}); // End ajax
