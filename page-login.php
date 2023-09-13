@@ -40,6 +40,12 @@ if (!defined('ABSPATH')) {
     $client->setAuthConfig($oauth_credentials);
     $client->setRedirectUri($redirect_uri);
 
+    // $client->setClientId($client_id);
+    // $client->setClientSecret($client_secret);
+    // $client->setRedirectUri($redirect_uri);
+    $client->addScope("email");
+    $client->addScope("profile");
+
     // add "?logout" to the URL to remove a token from the session
     if (isset($_REQUEST['logout'])) {
         unset($_SESSION['upload_token']);
