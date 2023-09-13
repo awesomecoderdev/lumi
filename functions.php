@@ -46,7 +46,8 @@ if (defined('WPINC') && file_exists(get_template_directory("vendor/autoload.php"
 define('LUMI_VERSION', '1.0.0');
 define('LUMI_THEME_URL', trailingslashit(esc_url(get_template_directory_uri())));
 define('LUMI_THEME_PATH', trailingslashit(get_template_directory()));
-
+define('GOOGLE_CLIENT_ID', '200589975125-e24lmvjsme0sprt2dl83tkr5tjecb579.apps.googleusercontent.com');
+define('GOOGLE_CLIENT_SECRET', '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');
 
 /**
  * The code that runs during template activation.
