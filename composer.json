@@ -22,6 +22,6 @@
 		}
 	],
 	"require": {
-		"google/apiclient": "*"
+		"google/apiclient": "^2.15"
 	}
 }
