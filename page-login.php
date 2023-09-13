@@ -1,6 +1,5 @@
 <?php
 
-use Laravel\Socialite\Facades\Socialite;
 
 /**
  * The main template file.
@@ -22,7 +21,6 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 
 }
-$oauth = Socialite::driver("google")->redirect()->getTargetUrl();
 
 ?>
 
