@@ -50,7 +50,6 @@ define('GOOGLE_CLIENT_ID', '200589975125-e24lmvjsme0sprt2dl83tkr5tjecb579.apps.g
 define('GOOGLE_CLIENT_SECRET', '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');
 
 
-
 /**
  * The code that runs during template activation.
  * This action is documented in includes/class-ac-restaurant-activator.php

@@ -280,6 +280,8 @@ class Authorization
                             $error = current(current($customer->errors));
                         } else {
                             update_user_meta($customer, 'provider_id', "google");
+                            update_user_meta($customer, 'avatar', $user->getPicture());
+                            update_user_meta($customer, 'metadata', is_object($user) || is_array($user) ? json_encode($user) : $user);
 
                             $creds = array(
                                 'user_login'    => $email,
