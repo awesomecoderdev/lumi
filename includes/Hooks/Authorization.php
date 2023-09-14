@@ -229,15 +229,11 @@ class Authorization
     public function auth()
     {
         global $lumi_oauth;
+        $account = site_url("/my-account");
 
-
-
-        // if (is_user_logged_in()) {
-        //     die("User");
-        // } else {
-        //     die("User Not");
-        // }
-
+        if (is_user_logged_in() && (lumi_path("login") || lumi_path("register"))) {
+            exit(wp_redirect($account));
+        }
 
         try {
             if (isset($_REQUEST['code']) && !empty($_REQUEST['code'])) {
@@ -277,7 +273,7 @@ class Authorization
                     update_user_meta($customer->ID, 'metadata', $metadata);
 
                     if (!is_wp_error($user)) {
-                        exit(wp_redirect(site_url("/my-account")));
+                        exit(wp_redirect($account));
                     }
                 } else {
                     // process register
@@ -306,7 +302,7 @@ class Authorization
 
                             $user = wp_signon($creds, false);
                             if (!is_wp_error($user)) {
-                                exit(wp_redirect(site_url("/my-account")));
+                                exit(wp_redirect($account));
                             }
                         }
                     }
