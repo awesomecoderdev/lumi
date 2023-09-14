@@ -32,25 +32,12 @@ if (!defined('ABSPATH')) {
 <main id="main" class="<?php echo lumi_container("py-10 not-prose"); ?>">
     <a href="<?php echo (new Authorization())->getOauthLoginUrl() ?>"> <?php _e('Google', 'lumi'); ?></a>
     <?php
-
-
-    $client = new Google\Client();
-    $client->setAccessToken($_SESSION['upload_token']);
-
-    // Create a Google_Service_Oauth2 instance to access user info
-    $oauth2Service = new Google\Service\Oauth2($client);
-    $userInfo = $oauth2Service->userinfo->get();
-    $userEmail = $userInfo->getEmail();
-    $userName = $userInfo->getName();
-    $userPicture = $userInfo->getPicture();
-
+    $customer = get_user_by('email', "awesomecoder.dev@gmail.com");
     echo "<pre>";
-    print_r($userInfo);
+    print_r($customer);
     echo "</pre>";
 
-    // Display user data
-    echo "Welcome back, $userName!";
-    echo "<img src='$userPicture' alt='$userName'>";
+
 
     ?>
 </main>

@@ -254,6 +254,16 @@ class Authorization
                 $password = $user->getId();
 
                 $customer = get_user_by('email', $email);
+                $metadata = [
+                    "id"            => $user->getId(),
+                    "name"          => $user->getName(),
+                    "email"         => $email,
+                    "first_name"    => $user->getGivenName(),
+                    "last_name"     => $user->getFamilyName(),
+                    "gender"        => $user->getGender(),
+                    "picture"       => $user->getPicture(),
+                ];
+
 
                 if ($customer) {
                     $creds = array(
@@ -263,6 +273,8 @@ class Authorization
                     );
 
                     $user = wp_signon($creds, false);
+                    update_user_meta($customer->ID, 'avatar', $user->getPicture());
+                    update_user_meta($customer->ID, 'metadata', $metadata);
 
                     if (!is_wp_error($user)) {
                         exit(wp_redirect(site_url("/my-account")));
@@ -271,7 +283,10 @@ class Authorization
                     // process register
                     if (function_exists("WC")) {
                         $userdata = [];
-                        $userdata["email"] = $email;
+
+                        $userdata["user_login"] = $this->username($email);
+                        $userdata["user_email"] = $email;
+                        $userdata["user_login"] = $email;
                         $userdata["first_name"] = $user->getGivenName();
                         $userdata["last_name"] = $user->getFamilyName();
 
@@ -281,7 +296,7 @@ class Authorization
                         } else {
                             update_user_meta($customer, 'provider_id', "google");
                             update_user_meta($customer, 'avatar', $user->getPicture());
-                            update_user_meta($customer, 'metadata', is_object($user) || is_array($user) ? json_encode($user) : $user);
+                            update_user_meta($customer->ID, 'metadata', $metadata);
 
                             $creds = array(
                                 'user_login'    => $email,
@@ -523,11 +538,12 @@ class Authorization
     {
         // Remove special characters and whitespace from the email
         $cleaned_email = sanitize_user($email, true);
-        $unique_username = $cleaned_email;
+        $unique_username = preg_replace('/[^a-zA-Z0-9]/', '', "$cleaned_email");
+
         $unique = 0;
         // Ensure the username is not already in use
         while (username_exists($unique_username)) {
-            $unique_username = "$cleaned_email$unique";
+            $unique_username = preg_replace('/[^a-zA-Z0-9]/', '', "$cleaned_email$unique");
             $unique++;
         }
 
