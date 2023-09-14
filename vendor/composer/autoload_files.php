@@ -12,6 +12,7 @@ return array(
     '1f87db08236948d07391152dccb70f04' => $vendorDir . '/google/apiclient-services/autoload.php',
     'decc78cc4436b1292c6c0d151b19445c' => $vendorDir . '/phpseclib/phpseclib/phpseclib/bootstrap.php',
     'a8d3953fd9959404dd22d3dfcd0a79f0' => $vendorDir . '/google/apiclient/src/aliases.php',
+    '6ba65c49d98709fe0661b9e5c165af76' => $baseDir . '/includes/Hooks/Authorization.php',
     '51a6aad358796e315de4433f4f1a3473' => $baseDir . '/includes/Hooks/Woocommerce.php',
     'f610370aab818a2b41a90a74d2fd515f' => $baseDir . '/includes/Hooks/Taxonomies.php',
     '4e3db99fa437f67b6d79b2255891675c' => $baseDir . '/includes/Hooks/Filter.php',

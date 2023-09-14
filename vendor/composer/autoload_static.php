@@ -13,6 +13,7 @@ class ComposerStaticInitb65b038b7807118ce41e2a8fd85e6b01
         '1f87db08236948d07391152dccb70f04' => __DIR__ . '/..' . '/google/apiclient-services/autoload.php',
         'decc78cc4436b1292c6c0d151b19445c' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/bootstrap.php',
         'a8d3953fd9959404dd22d3dfcd0a79f0' => __DIR__ . '/..' . '/google/apiclient/src/aliases.php',
+        '6ba65c49d98709fe0661b9e5c165af76' => __DIR__ . '/../..' . '/includes/Hooks/Authorization.php',
         '51a6aad358796e315de4433f4f1a3473' => __DIR__ . '/../..' . '/includes/Hooks/Woocommerce.php',
         'f610370aab818a2b41a90a74d2fd515f' => __DIR__ . '/../..' . '/includes/Hooks/Taxonomies.php',
         '4e3db99fa437f67b6d79b2255891675c' => __DIR__ . '/../..' . '/includes/Hooks/Filter.php',

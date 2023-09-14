@@ -9,6 +9,7 @@
 			"AwesomeCoder\\Lumi\\": "includes/"
 		},
 		"files": [
+			"includes/Hooks/Authorization.php",
 			"includes/Hooks/Woocommerce.php",
 			"includes/Hooks/Taxonomies.php",
 			"includes/Hooks/Filter.php",
@@ -22,6 +23,6 @@
 		}
 	],
 	"require": {
-		"google/apiclient": "^2.15"
+		"google/apiclient": "^2.15.0"
 	}
 }

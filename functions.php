@@ -49,6 +49,8 @@ define('LUMI_THEME_PATH', trailingslashit(get_template_directory()));
 define('GOOGLE_CLIENT_ID', '200589975125-e24lmvjsme0sprt2dl83tkr5tjecb579.apps.googleusercontent.com');
 define('GOOGLE_CLIENT_SECRET', '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');
 
+
+
 /**
  * The code that runs during template activation.
  * This action is documented in includes/class-ac-restaurant-activator.php

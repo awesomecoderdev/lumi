@@ -17,9 +17,11 @@
  *
  */
 
+use Google\Service\Oauth2;
+use AwesomeCoder\Lumi\Hooks\Authorization;
+
 if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
-
 }
 
 ?>
@@ -28,81 +30,29 @@ if (!defined('ABSPATH')) {
 
 
 <main id="main" class="<?php echo lumi_container("py-10 not-prose"); ?>">
-
+    <a href="<?php echo (new Authorization())->getOauthLoginUrl() ?>"> <?php _e('Google', 'lumi'); ?></a>
     <?php
-    /************************************************
-     * The redirect URI is to the current page, e.g:
-     * http://localhost:8080/simple-file-upload.php
-     ************************************************/
-    $redirect_uri = site_url("/login");
-    $oauth_credentials = LUMI_THEME_PATH . "/assets/client_secret_200589975125-e24lmvjsme0sprt2dl83tkr5tjecb579.apps.googleusercontent.com.json";
+
+
     $client = new Google\Client();
-    $client->setAuthConfig($oauth_credentials);
-    $client->setRedirectUri($redirect_uri);
+    $client->setAccessToken($_SESSION['upload_token']);
 
-    // $client->setClientId($client_id);
-    // $client->setClientSecret($client_secret);
-    // $client->setRedirectUri($redirect_uri);
-    $client->addScope("email");
-    $client->addScope("profile");
+    // Create a Google_Service_Oauth2 instance to access user info
+    $oauth2Service = new Google\Service\Oauth2($client);
+    $userInfo = $oauth2Service->userinfo->get();
+    $userEmail = $userInfo->getEmail();
+    $userName = $userInfo->getName();
+    $userPicture = $userInfo->getPicture();
 
-    // add "?logout" to the URL to remove a token from the session
-    if (isset($_REQUEST['logout'])) {
-        unset($_SESSION['upload_token']);
-    }
+    echo "<pre>";
+    print_r($userInfo);
+    echo "</pre>";
 
-    /************************************************
-     * If we have a code back from the OAuth 2.0 flow,
-     * we need to exchange that with the
-     * Google\Client::fetchAccessTokenWithAuthCode()
-     * function. We store the resultant access token
-     * bundle in the session, and redirect to ourself.
-     ************************************************/
-    if (isset($_GET['code'])) {
-        $token = $client->fetchAccessTokenWithAuthCode($_GET['code'], $_SESSION['code_verifier']);
-        $client->setAccessToken($token);
-
-        // store in the session also
-        $_SESSION['upload_token'] = $token;
-
-        // redirect back to the example
-        header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
-    }
-
-    // set the access token as part of the client
-    if (!empty($_SESSION['upload_token'])) {
-        $client->setAccessToken($_SESSION['upload_token']);
-        if ($client->isAccessTokenExpired()) {
-            unset($_SESSION['upload_token']);
-        }
-    } else {
-        $_SESSION['code_verifier'] = $client->getOAuth2Service()->generateCodeVerifier();
-        $authUrl = $client->createAuthUrl();
-    }
+    // Display user data
+    echo "Welcome back, $userName!";
+    echo "<img src='$userPicture' alt='$userName'>";
 
     ?>
-
-    <div class="box">
-        <?php if (isset($authUrl)) : ?>
-            <div class="request">
-                <a class='login' href='<?= $authUrl ?>'>Connect Me!</a>
-            </div>
-        <?php elseif ($_SERVER['REQUEST_METHOD'] == 'POST') : ?>
-            <div class="shortened">
-                <p>Your call was successful! Check your drive for the following files:</p>
-                <ul>
-                    <li><a href="https://drive.google.com/open?id=<?= $result->id ?>" target="_blank"><?= $result->name ?></a></li>
-                    <li><a href="https://drive.google.com/open?id=<?= $result2->id ?>" target="_blank"><?= $result2->name ?></a></li>
-                </ul>
-            </div>
-        <?php else : ?>
-            <form method="POST">
-                <input type="submit" value="Click here to upload two small (1MB) test files" />
-            </form>
-        <?php endif ?>
-    </div>
-
-    <a href="#"> <?php _e('Google', 'lumi'); ?></a>
 </main>
 
 

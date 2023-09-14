@@ -22,7 +22,7 @@ if (!defined('ABSPATH')) {
 
 ?>
 <!doctype html>
-<html <?php language_attributes(); ?> class="dark">
+<html <?php language_attributes(); ?> class="darks">
 
 <head>
     <meta charset="<?php bloginfo('charset'); ?>" />
@@ -36,7 +36,6 @@ if (!defined('ABSPATH')) {
 
     <!-- start:header -->
     <header class="relative" id="header">
-
         <div class="relative bg-primary-500 h-[72px] md:block hidden">
             <div class="relative container md:flex hidden justify-between items-center h-full w-full mx-auto">
                 <div class="flex items-center space-x-3 text-slate-100 dark:text-white font-normal leading-normal">

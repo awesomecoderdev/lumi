@@ -7,6 +7,7 @@ use AwesomeCoder\Lumi\Backend;
 use AwesomeCoder\Lumi\Wp\Ajax;
 use AwesomeCoder\Lumi\Frontend;
 use AwesomeCoder\Lumi\Core\Taxonomies;
+use AwesomeCoder\Lumi\Hooks\Authorization;
 use AwesomeCoder\Lumi\Localization\L18n;
 
 class Lumi
