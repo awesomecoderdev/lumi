@@ -3,7 +3,8 @@ module.exports = {
 	// darkMode: ["class", "media"],
 	// darkMode: "media",
 	darkMode: "class",
-	content: ["./**/*.php"],
+	// content: ["./**/*.php"],
+	content: ["./includes/Core/*.php", "./includes/Hooks/*.php", "./*.php"],
 	theme: {
 		fontSize: {
 			"2xs": ["0.75rem", { lineHeight: "1.25rem" }],
