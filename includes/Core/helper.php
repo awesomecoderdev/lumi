@@ -237,6 +237,33 @@ if (!function_exists('lumi_path')) {
 
 
 /**
+ * The lumi_scheme function.
+ *
+ * @link              https://awesomecoder.dev/
+ * @since             1.0.0
+ *
+ */
+if (!function_exists('lumi_scheme')) {
+    function lumi_scheme()
+    {
+        try {
+            $url = isset($_SERVER["REQUEST_URI"]) ? $_SERVER["REQUEST_URI"] : (isset($_SERVER["PHP_SELF"]) ? $_SERVER["PHP_SELF"] : "/");
+            $slug = explode("/", $url);
+            $slug = array_unique($slug);
+            $slug =  array_filter($slug, function ($value) {
+                return !empty($value);
+            });
+            $slug[] = "";
+            return $slug;
+        } catch (\Throwable $th) {
+            //throw $th;
+            return [];
+        }
+    }
+}
+
+
+/**
  * The get_lumi_categories function.
  *
  * @link              https://awesomecoder.dev/

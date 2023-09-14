@@ -21,7 +21,6 @@ if (!defined('ABSPATH')) {
 
 }
 
-
 // global $woocommerce;
 // $products = $woocommerce->cart->get_cart();
 

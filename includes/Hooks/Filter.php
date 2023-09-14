@@ -98,6 +98,10 @@ if (!function_exists("lumi_body_class")) {
             if ($do_include) $classes[$class] = $class;
         }
 
+        // custom css
+        $classes[] = implode("-page ", lumi_scheme());
+
+
         return $classes;
     }
 }

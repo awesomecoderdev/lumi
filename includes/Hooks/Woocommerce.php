@@ -29,7 +29,6 @@
  * Show cart fragment
  */
 add_filter('woocommerce_add_to_cart_fragments', 'lumi_add_to_cart_fragment');
-
 function lumi_add_to_cart_fragment($fragments = [])
 {
     global $woocommerce;
@@ -163,6 +162,19 @@ function add_tags_fields()
  */
 
 
+function remove_woocommerce_styles()
+{
+    if (class_exists('woocommerce')) {
+        // Remove the WooCommerce stylesheets
+        wp_dequeue_style('woocommerce-general');
+        wp_dequeue_style('woocommerce-layout');
+        wp_dequeue_style('woocommerce-smallscreen');
+    }
+}
+
+add_action('wp_enqueue_scripts', 'remove_woocommerce_styles', 100);
+
+
 /**
  * Add custom code before the woocommerce contents
  *
@@ -234,7 +246,7 @@ function woocommerce_template_loop_product_title()
  * @since    1.0.0
  *
  */
-add_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10);
+// add_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10);
 function woocommerce_template_loop_product_thumbnail()
 {
     $img = woocommerce_get_product_thumbnail();
@@ -248,7 +260,7 @@ function woocommerce_template_loop_product_thumbnail()
  * @since    1.0.0
  *
  */
-add_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10, 1);
+// add_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10, 1);
 function woocommerce_template_loop_add_to_cart($args)
 {
     global $product;
@@ -273,7 +285,7 @@ function woocommerce_template_loop_add_to_cart($args)
  * @since    1.0.0
  *
  */
-add_action("woocommerce_simple_add_to_cart", "woocommerce_simple_add_to_cart", 30);
+// add_action("woocommerce_simple_add_to_cart", "woocommerce_simple_add_to_cart", 30);
 function woocommerce_simple_add_to_cart()
 {
     global $product;
@@ -297,7 +309,7 @@ function woocommerce_simple_add_to_cart()
  * @since    1.0.0
  *
  */
-add_action("woocommerce_single_product_summary", "woocommerce_template_single_title", 5);
+// add_action("woocommerce_single_product_summary", "woocommerce_template_single_title", 5);
 function woocommerce_template_single_title()
 {
     echo '<h3 class="menu__name">' . get_the_title() . '</h3>';
@@ -310,7 +322,7 @@ function woocommerce_template_single_title()
  * @since    1.0.0
  *
  */
-add_filter('woocommerce_show_page_title', 'custom_shop_page_title');
+// add_filter('woocommerce_show_page_title', 'custom_shop_page_title');
 function custom_shop_page_title()
 {
     echo '<h3 class="services__title">Shop</h3>';
@@ -337,7 +349,7 @@ function custom_shop_page_title()
  * @since    1.0.0
  *
  */
-remove_action("woocommerce_before_main_content", "woocommerce_breadcrumb", 20);
+// remove_action("woocommerce_before_main_content", "woocommerce_breadcrumb", 20);
 
 
 /**
@@ -380,8 +392,8 @@ remove_action("woocommerce_before_main_content", "woocommerce_breadcrumb", 20);
  * @since    1.0.0
  *
  */
-remove_action("woocommerce_single_product_summary", "woocommerce_template_single_rating", 10);
-add_action("woocommerce_single_product_summary", "woocommerce_template_single_rating", 25);
+// remove_action("woocommerce_single_product_summary", "woocommerce_template_single_rating", 10);
+// add_action("woocommerce_single_product_summary", "woocommerce_template_single_rating", 25);
 
 
 /**
@@ -390,8 +402,8 @@ add_action("woocommerce_single_product_summary", "woocommerce_template_single_ra
  * @since    1.0.0
  *
  */
-remove_action("woocommerce_single_product_summary", "woocommerce_template_single_price", 10);
-add_action("woocommerce_single_product_summary", "woocommerce_template_single_price", 26);
+// remove_action("woocommerce_single_product_summary", "woocommerce_template_single_price", 10);
+// add_action("woocommerce_single_product_summary", "woocommerce_template_single_price", 26);
 
 
 /**
@@ -406,7 +418,7 @@ add_action("woocommerce_single_product_summary", "woocommerce_template_single_pr
  * @since    1.0.0
  *
  */
-add_action("customize_register", 'ac_restaurant_customize_register');
+// add_action("customize_register", 'ac_restaurant_customize_register');
 function ac_restaurant_customize_register($wp_customize)
 {
 
@@ -514,6 +526,7 @@ function ac_restaurant_customize_register($wp_customize)
         "default" => "",
         "sanitize_callback" => "sanitize_text_field",
     ));
+
     $wp_customize->add_control("hover_color", array(
         "label" => "Hover Color",
         "section" => "colors",

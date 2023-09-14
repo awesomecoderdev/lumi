@@ -20,6 +20,7 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
 
+
 ?>
 <!doctype html>
 <html <?php language_attributes(); ?> class="darks">
@@ -74,7 +75,7 @@ if (!defined('ABSPATH')) {
                 <nav class="lg:w-[40%] w-1/2 relative flex justify-end">
                     <ul class="relative flex space-x-4 text-slate-600 dark:text-white">
                         <li>
-                            <a href="<?php echo site_url("/account") ?>" class="flex justify-center items-center <?php echo lumi_path("account") ? "text-primary-500 dark:text-white" : "" ?>">
+                            <a href="<?php echo site_url("/my-account") ?>" class="flex justify-center items-center <?php echo lumi_path("my-account") ? "text-primary-500 dark:text-white" : "" ?>">
                                 <svg class="mr-1.5" width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
                                 </svg>
@@ -206,7 +207,7 @@ if (!defined('ABSPATH')) {
                             <?php _e("Brand", "lumi") ?>
                         </span>
                     </a>
-                    <a class="relative flex flex-col py-2 px-3  <?php echo lumi_path("account") ? "text-primary-500 dark:text-primary-600 " : "text-gray-600 dark:text-white" ?> " href="<?php echo site_url("/account") ?>">
+                    <a class="relative flex flex-col py-2 px-3  <?php echo lumi_path("my-account") ? "text-primary-500 dark:text-primary-600 " : "text-gray-600 dark:text-white" ?> " href="<?php echo site_url("/my-account") ?>">
                         <svg class="mx-auto" class="mr-1.5" width="25" height="24" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 25 24" stroke-width="1.5" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
                         </svg>
