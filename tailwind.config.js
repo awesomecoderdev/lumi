@@ -4,7 +4,13 @@ module.exports = {
 	// darkMode: "media",
 	darkMode: "class",
 	// content: ["./**/*.php"],
-	content: ["./includes/Core/*.php", "./includes/Hooks/*.php", "./*.php"],
+	content: [
+		"./includes/Core/*.php",
+		"./includes/Hooks/*.php",
+		"./includes/Hooks/*.php",
+		"./template/**/*.php",
+		"./*.php",
+	],
 	theme: {
 		fontSize: {
 			"2xs": ["0.75rem", { lineHeight: "1.25rem" }],

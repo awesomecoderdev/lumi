@@ -175,6 +175,7 @@ function remove_woocommerce_styles()
 add_action('wp_enqueue_scripts', 'remove_woocommerce_styles', 100);
 
 
+
 /**
  * Add custom code before the woocommerce contents
  *

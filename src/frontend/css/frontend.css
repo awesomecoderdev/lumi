@@ -313,7 +313,7 @@ figure {
 }
 
 .my-account-page .woocommerce .woocommerce-MyAccount-content {
-	@apply col-span-8;
+	@apply col-span-8 p-4 rounded-xl bg-primary-50/15;
 }
 
 .my-account-page .woocommerce-form-row.form-row {
@@ -336,7 +336,7 @@ figure {
 }
 
 .my-account-page fieldset {
-	@apply w-full;
+	@apply w-full space-y-4;
 }
 
 .my-account-page legend {
@@ -361,4 +361,29 @@ figure {
 
 .my-account-page fieldset .woocommerce-form-row.form-row span input {
 	@apply w-full;
+}
+
+.my-account-page .edit-account .woocommerce-Button {
+	@apply bg-primary-400 rounded-xl px-3 py-1.5 text-sm text-white font-semibold;
+}
+.my-account-page p {
+	@apply my-0;
+}
+
+.my-account-page .edit-account {
+	@apply space-y-4;
+}
+
+.my-account-page .woocommerce-notices-wrapper .woocommerce-error {
+	@apply list-none;
+}
+
+.my-account-page em {
+	@apply py-4;
+}
+
+.bg-img {
+	background-position: center center !important;
+	background-repeat: no-repeat !important;
+	background-size: cover !important;
 }

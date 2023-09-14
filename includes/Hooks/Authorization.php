@@ -81,7 +81,7 @@ class Authorization
 
 
         add_action('init', [$this, 'auth']);
-        add_action('template_redirect', [$this, 'redirect_to']);
+        // add_action('template_redirect', [$this, 'redirect_to']);
         // add_shortcode('ac_worker_manager_auth', [$this, 'ac_worker_manager_auth_shortcode']);
         // add_shortcode('ac_worker_manager_filter', [$this, 'ac_worker_manager_filter_shortcode']);
         // add_shortcode('ac_worker_manager_users', [$this, 'ac_worker_manager_users_shortcode']);
@@ -317,7 +317,7 @@ class Authorization
             // redirect back to the example
             $url = filter_var($this->redirect_uri, FILTER_SANITIZE_URL);
             exit(wp_redirect($url));
-            throw $th;
+            // throw $th;
         }
 
 
