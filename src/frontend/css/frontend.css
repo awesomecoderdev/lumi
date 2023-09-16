@@ -390,10 +390,44 @@ figure {
 }
 
 .woocommerce-address-fields {
+	@apply w-full relative;
 }
 
 .woocommerce-address-fields .form-row {
-	@apply py-2;
+	@apply py-2 grid xl:grid-cols-8 md:grid-cols-4 gap-2;
+}
+
+.screen-reader-text {
+	@apply w-full h-full;
+	position: relative !important;
+}
+
+.woocommerce-address-fields .form-row label {
+	@apply xl:col-span-3 md:col-span-2 text-sm font-medium flex items-center;
+}
+
+.woocommerce-address-fields .form-row span {
+	@apply xl:col-span-5 md:col-span-2 rounded-lg;
+}
+
+.woocommerce-address-fields .form-row span span {
+	/* @apply hidden; */
+}
+
+.woocommerce-MyAccount-content form h3 {
+	@apply my-2;
+}
+
+.woocommerce-orders-table__header-order-date,
+.woocommerce-orders-table__header-order-status,
+.woocommerce-orders-table__cell-order-date,
+.woocommerce-orders-table__cell-order-status {
+	@apply max-sm:hidden;
+}
+
+.woocommerce-address-fields .form-row span select,
+.woocommerce-address-fields .form-row span input {
+	@apply w-full;
 }
 
 .my-account-page table {
