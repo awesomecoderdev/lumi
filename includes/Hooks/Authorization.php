@@ -230,9 +230,16 @@ class Authorization
     {
         global $lumi_oauth;
         $account = site_url("/my-account");
+        $login_page = site_url("/login");
 
         if (is_user_logged_in() && (lumi_path("login") || lumi_path("register"))) {
             exit(wp_redirect($account));
+        }
+
+        if (!is_user_logged_in()) {
+            if ((lumi_path("my-account"))) {
+                exit(wp_redirect($login_page));
+            }
         }
 
         try {
