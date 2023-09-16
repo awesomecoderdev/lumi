@@ -237,7 +237,8 @@ class Authorization
         }
 
         if (!is_user_logged_in()) {
-            if ((lumi_path("my-account"))) {
+
+            if (is_account_page()) {
                 exit(wp_redirect($login_page));
             }
         }

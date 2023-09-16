@@ -170,6 +170,22 @@ if (!function_exists('is_shop')) {
     }
 }
 
+
+/**
+ * The is_account_page function.
+ *
+ * @link              https://awesomecoder.dev/
+ * @since             1.0.0
+ *
+ */
+if (!function_exists('is_account_page')) {
+    function is_account_page()
+    {
+        return lumi_path("my-account");
+    }
+}
+
+
 /**
  * The is_cart function.
  *
