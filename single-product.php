@@ -20,45 +20,45 @@ if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly
 }
 
-get_header('shop'); ?>
 
-	<?php
-	/**
-	 * woocommerce_before_main_content hook.
-	 *
-	 * @hooked woocommerce_output_content_wrapper - 10 (outputs opening divs for the content)
-	 * @hooked woocommerce_breadcrumb - 20
-	 */
-	do_action('woocommerce_before_main_content');
-	?>
 
-		<?php while (have_posts()) : ?>
-			<?php the_post(); ?>
+//get_header('shop');
+?>
 
-			<?php wc_get_template_part('content', 'single-product'); ?>
-
-		<?php endwhile; // end of the loop. 
-		?>
-
-	<?php
-	/**
-	 * woocommerce_after_main_content hook.
-	 *
-	 * @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
-	 */
-	do_action('woocommerce_after_main_content');
-	?>
-
-	<?php
-	/**
-	 * woocommerce_sidebar hook.
-	 *
-	 * @hooked woocommerce_get_sidebar - 10
-	 */
-	do_action('woocommerce_sidebar');
-	?>
+<?php get_header(); ?>
 
 <?php
-get_footer('shop');
+/**
+ * woocommerce_before_main_content hook.
+ *
+ * @hooked woocommerce_output_content_wrapper - 10 (outputs opening divs for the content)
+ * @hooked woocommerce_breadcrumb - 20
+ */
+do_action('woocommerce_before_main_content');
+?>
+
+<main id="main" class="<?php echo lumi_container("py-10 not-prose"); ?>">
+	<?php if (have_posts()) : ?>
+		<?php while (have_posts()) : the_post(); ?>
+			<?php wc_get_template_part('content', 'single-product'); ?>
+
+		<?php endwhile; ?>
+	<?php endif; ?>
+</main>
+
+<?php
+/**
+ * woocommerce_after_main_content hook.
+ *
+ * @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
+ */
+// do_action('woocommerce_after_main_content');
+?>
+
+
+<?php get_footer(); ?>
+
+<?php
+// get_footer('shop');
 
 /* Omit closing PHP tag at the end of PHP files to avoid "headers already sent" issues. */

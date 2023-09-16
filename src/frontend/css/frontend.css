@@ -288,40 +288,35 @@ figure {
 }
 
 .my-account-page .woocommerce .woocommerce-MyAccount-navigation {
-	@apply col-span-2;
+	@apply xl:col-span-2;
 }
 
 .my-account-page .woocommerce .woocommerce-MyAccount-navigation ul {
-	@apply list-none p-0 m-0;
+	@apply list-none p-0 m-0 xl:block md:flex;
 }
 
 .my-account-page .woocommerce .woocommerce-MyAccount-navigation ul li {
-	/* @apply p-0 mx-0; */
+	@apply max-lg:p-0 max-lg:mx-0;
 }
 
 .my-account-page .woocommerce .woocommerce-MyAccount-navigation ul li a {
 	@apply text-primary-600 dark:text-white font-semibold text-sm w-full block cursor-pointer bg-primary-50/5 hover:bg-primary-50/40 px-3 py-2 hover:pl-3 duration-300 transition-all;
 }
 
-.my-account-page
-	.woocommerce
-	.woocommerce-MyAccount-navigation
-	ul
-	li.is-active
-	a {
+.my-account-page .woocommerce-MyAccount-navigation ul li.is-active a {
 	@apply bg-primary-50/70 hover:bg-primary-50;
 }
 
 .my-account-page .woocommerce .woocommerce-MyAccount-content {
-	@apply col-span-8 p-4 rounded-xl bg-primary-50/15;
+	@apply xl:col-span-8 p-4 rounded-xl bg-primary-50/15;
 }
 
 .my-account-page .form-row {
-	@apply grid grid-cols-8 gap-2;
+	@apply grid xl:grid-cols-8 md:grid-cols-4 gap-2;
 }
 
 .my-account-page .form-row label {
-	@apply col-span-2 text-sm font-medium flex items-center;
+	@apply xl:col-span-2 md:col-span-2 text-sm font-medium flex items-center;
 }
 
 .my-account-page .form-row label .required {
@@ -329,11 +324,11 @@ figure {
 }
 .my-account-page .form-row input,
 .my-account-page .form-row select {
-	@apply col-span-4 border border-primary-500 hover:border-primary-100 rounded-lg;
+	@apply xl:col-span-4 md:col-span-2 border border-primary-500 hover:border-primary-100 rounded-lg;
 }
 
 .my-account-page .form-row span {
-	@apply col-span-4 text-xs italic leading-none;
+	@apply xl:col-span-4 text-xs italic leading-none;
 }
 
 .my-account-page fieldset {
@@ -393,6 +388,10 @@ figure {
 .my-account-page .woocommerce-notices-wrapper .woocommerce-error li::before {
 	font-family: boxicons !important;
 }
+
+.woocommerce-address-fields {
+}
+
 .woocommerce-address-fields .form-row {
 	@apply py-2;
 }

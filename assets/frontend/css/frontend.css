@@ -2174,17 +2174,31 @@ figure{
 	.my-account-page .woocommerce{
 		grid-template-columns: repeat(10, minmax(0, 1fr));
 	}
-}
-.my-account-page .woocommerce .woocommerce-MyAccount-navigation{
-	grid-column: span 2 / span 2;
+	.my-account-page .woocommerce .woocommerce-MyAccount-navigation{
+		grid-column: span 2 / span 2;
+	}
 }
 .my-account-page .woocommerce .woocommerce-MyAccount-navigation ul{
 	margin: 0px;
 	list-style-type: none;
 	padding: 0px;
 }
-.my-account-page .woocommerce .woocommerce-MyAccount-navigation ul li {
-	/* @apply p-0 mx-0; */
+@media (min-width: 768px){
+	.my-account-page .woocommerce .woocommerce-MyAccount-navigation ul{
+		display: flex;
+	}
+}
+@media (min-width: 1280px){
+	.my-account-page .woocommerce .woocommerce-MyAccount-navigation ul{
+		display: block;
+	}
+}
+@media not all and (min-width: 1024px){
+	.my-account-page .woocommerce .woocommerce-MyAccount-navigation ul li{
+		margin-left: 0px;
+		margin-right: 0px;
+		padding: 0px;
+	}
 }
 .my-account-page .woocommerce .woocommerce-MyAccount-navigation ul li a{
 	display: block;
@@ -2213,41 +2227,53 @@ figure{
 	--tw-text-opacity: 1;
 	color: rgb(255 255 255 / var(--tw-text-opacity));
 }
-.my-account-page
-	.woocommerce
-	.woocommerce-MyAccount-navigation
-	ul
-	li.is-active
-	a{
+.my-account-page .woocommerce-MyAccount-navigation ul li.is-active a{
 	background-color: rgb(210 224 211 / 0.7);
 }
-.my-account-page
-	.woocommerce
-	.woocommerce-MyAccount-navigation
-	ul
-	li.is-active
-	a:hover{
+.my-account-page .woocommerce-MyAccount-navigation ul li.is-active a:hover{
 	--tw-bg-opacity: 1;
 	background-color: rgb(210 224 211 / var(--tw-bg-opacity));
 }
 .my-account-page .woocommerce .woocommerce-MyAccount-content{
-	grid-column: span 8 / span 8;
 	border-radius: 0.75rem;
 	background-color: rgb(210 224 211 / 0.15);
 	padding: 1rem;
 }
+@media (min-width: 1280px){
+	.my-account-page .woocommerce .woocommerce-MyAccount-content{
+		grid-column: span 8 / span 8;
+	}
+}
 .my-account-page .form-row{
 	display: grid;
-	grid-template-columns: repeat(8, minmax(0, 1fr));
 	gap: 0.5rem;
 }
+@media (min-width: 768px){
+	.my-account-page .form-row{
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+}
+@media (min-width: 1280px){
+	.my-account-page .form-row{
+		grid-template-columns: repeat(8, minmax(0, 1fr));
+	}
+}
 .my-account-page .form-row label{
-	grid-column: span 2 / span 2;
 	display: flex;
 	align-items: center;
 	font-size: 0.875rem;
 	line-height: 1.5rem;
 	font-weight: 500;
+}
+@media (min-width: 768px){
+	.my-account-page .form-row label{
+		grid-column: span 2 / span 2;
+	}
+}
+@media (min-width: 1280px){
+	.my-account-page .form-row label{
+		grid-column: span 2 / span 2;
+	}
 }
 .my-account-page .form-row label .required{
 	display: flex;
@@ -2260,7 +2286,6 @@ figure{
 }
 .my-account-page .form-row input,
 .my-account-page .form-row select{
-	grid-column: span 4 / span 4;
 	border-radius: var(--radius);
 	border-width: 1px;
 	--tw-border-opacity: 1;
@@ -2271,12 +2296,28 @@ figure{
 	--tw-border-opacity: 1;
 	border-color: rgb(194 214 196 / var(--tw-border-opacity));
 }
+@media (min-width: 768px){
+	.my-account-page .form-row input,
+.my-account-page .form-row select{
+		grid-column: span 2 / span 2;
+	}
+}
+@media (min-width: 1280px){
+	.my-account-page .form-row input,
+.my-account-page .form-row select{
+		grid-column: span 4 / span 4;
+	}
+}
 .my-account-page .form-row span{
-	grid-column: span 4 / span 4;
 	font-size: 0.8125rem;
 	line-height: 1.5rem;
 	font-style: italic;
 	line-height: 1;
+}
+@media (min-width: 1280px){
+	.my-account-page .form-row span{
+		grid-column: span 4 / span 4;
+	}
 }
 .my-account-page fieldset{
 	width: 100%;
@@ -2368,6 +2409,8 @@ figure{
 	--tw-content: "\eda4";
 	content: var(--tw-content);
 	font-family: boxicons !important;
+}
+.woocommerce-address-fields {
 }
 .woocommerce-address-fields .form-row{
 	padding-top: 0.5rem;
