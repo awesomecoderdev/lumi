@@ -2165,13 +2165,13 @@ figure{
 	background-color: rgb(210 224 211 / 0.25);
 }
 /* woocommerce pages */
-.my-account-page .woocommerce{
+.my-account-page:not(.lost-password-page) .woocommerce{
 	position: relative;
 	display: grid;
 	gap: 1.5rem;
 }
 @media (min-width: 1280px){
-	.my-account-page .woocommerce{
+	.my-account-page:not(.lost-password-page) .woocommerce{
 		grid-template-columns: repeat(10, minmax(0, 1fr));
 	}
 	.my-account-page .woocommerce .woocommerce-MyAccount-navigation{
@@ -2244,17 +2244,17 @@ figure{
 		grid-column: span 8 / span 8;
 	}
 }
-.my-account-page .form-row{
+.my-account-page:not(.lost-password-page) .form-row{
 	display: grid;
 	gap: 0.5rem;
 }
 @media (min-width: 768px){
-	.my-account-page .form-row{
+	.my-account-page:not(.lost-password-page) .form-row{
 		grid-template-columns: repeat(4, minmax(0, 1fr));
 	}
 }
 @media (min-width: 1280px){
-	.my-account-page .form-row{
+	.my-account-page:not(.lost-password-page) .form-row{
 		grid-template-columns: repeat(8, minmax(0, 1fr));
 	}
 }
@@ -2333,7 +2333,7 @@ figure{
 	font-weight: 600;
 	font-style: italic;
 }
-.my-account-page fieldset .form-row{
+.my-account-page:not(.lost-password-page) fieldset .form-row{
 	display: grid;
 	grid-template-columns: repeat(2, minmax(0, 1fr));
 	gap: 0.5rem;
@@ -2414,19 +2414,19 @@ figure{
 	position: relative;
 	width: 100%;
 }
-.woocommerce-address-fields .form-row{
+.woocommerce-address-fields:not(.lost-password-page) .form-row{
 	display: grid;
 	gap: 0.5rem;
 	padding-top: 0.5rem;
 	padding-bottom: 0.5rem;
 }
 @media (min-width: 768px){
-	.woocommerce-address-fields .form-row{
+	.woocommerce-address-fields:not(.lost-password-page) .form-row{
 		grid-template-columns: repeat(4, minmax(0, 1fr));
 	}
 }
 @media (min-width: 1280px){
-	.woocommerce-address-fields .form-row{
+	.woocommerce-address-fields:not(.lost-password-page) .form-row{
 		grid-template-columns: repeat(8, minmax(0, 1fr));
 	}
 }
@@ -2514,6 +2514,44 @@ figure{
 #login-form label.error::after{
 	--tw-content: '.';
 	content: var(--tw-content);
+}
+.lost-password-page .woocommerce{
+	display: block;
+}
+form.lost_reset_password{
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 28rem;
+}
+form.lost_reset_password > :not([hidden]) ~ :not([hidden]){
+	--tw-space-y-reverse: 0;
+	margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
+	margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
+}
+.lost-password-page .form-row{
+	display: grid;
+	width: 100%;
+}
+.lost-password-page .form-row > :not([hidden]) ~ :not([hidden]){
+	--tw-space-y-reverse: 0;
+	margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
+	margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
+}
+.lost-password-page button[type="button"],
+.lost-password-page button[type="reset"],
+.lost-password-page button[type="submit"]{
+	border-radius: 0.75rem;
+	--tw-bg-opacity: 1;
+	background-color: rgb(161 187 162 / var(--tw-bg-opacity));
+	padding-left: 0.75rem;
+	padding-right: 0.75rem;
+	padding-top: 0.375rem;
+	padding-bottom: 0.375rem;
+	font-size: 0.875rem;
+	line-height: 1.5rem;
+	font-weight: 600;
+	--tw-text-opacity: 1;
+	color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 :is(.dark .dark\:prose-invert){
 	--tw-prose-body: var(--tw-prose-invert-body);

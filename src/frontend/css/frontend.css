@@ -283,7 +283,7 @@ figure {
 
 /* woocommerce pages */
 
-.my-account-page .woocommerce {
+.my-account-page:not(.lost-password-page) .woocommerce {
 	@apply relative grid xl:grid-cols-10 gap-6;
 }
 
@@ -311,7 +311,7 @@ figure {
 	@apply xl:col-span-8 p-4 rounded-xl bg-primary-50/15;
 }
 
-.my-account-page .form-row {
+.my-account-page:not(.lost-password-page) .form-row {
 	@apply grid xl:grid-cols-8 md:grid-cols-4 gap-2;
 }
 
@@ -339,7 +339,7 @@ figure {
 	@apply text-lg font-semibold italic;
 }
 
-.my-account-page fieldset .form-row {
+.my-account-page:not(.lost-password-page) fieldset .form-row {
 	@apply grid grid-cols-2 gap-2;
 }
 
@@ -393,7 +393,7 @@ figure {
 	@apply w-full relative;
 }
 
-.woocommerce-address-fields .form-row {
+.woocommerce-address-fields:not(.lost-password-page) .form-row {
 	@apply py-2 grid xl:grid-cols-8 md:grid-cols-4 gap-2;
 }
 
@@ -452,4 +452,22 @@ figure {
 
 #login-form label.error {
 	@apply absolute left-0 w-full bottom-[-23px] text-[12px] text-red-500 after:content-['.'];
+}
+
+.lost-password-page .woocommerce {
+	@apply block;
+}
+
+form.lost_reset_password {
+	@apply mx-auto max-w-md space-y-2;
+}
+
+.lost-password-page .form-row {
+	@apply space-y-2 grid w-full;
+}
+
+.lost-password-page button[type="button"],
+.lost-password-page button[type="reset"],
+.lost-password-page button[type="submit"] {
+	@apply bg-primary-400 rounded-xl px-3 py-1.5 text-sm text-white font-semibold;
 }
