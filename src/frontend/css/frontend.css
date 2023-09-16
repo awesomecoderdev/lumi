@@ -382,8 +382,18 @@ figure {
 	@apply py-4;
 }
 
-.bg-img {
+.bg-img-cover {
 	background-position: center center !important;
 	background-repeat: no-repeat !important;
 	background-size: cover !important;
+}
+
+.bg-img-contain {
+	background-position: center center !important;
+	background-repeat: no-repeat !important;
+	background-size: contain !important;
+}
+
+#login-form label.error {
+	@apply absolute left-0 w-full bottom-[-23px] text-[12px] text-red-500 after:content-['.'];
 }

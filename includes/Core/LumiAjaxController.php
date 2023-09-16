@@ -243,4 +243,61 @@ class LumiAjaxController
             ], 405);
         }
     }
+
+    /**
+     * Handle the login.
+     *
+     * @since    1.0.0
+     */
+    public function login()
+    {
+        try {
+            $email = isset($_REQUEST["email"]) ? sanitize_email($_REQUEST["email"]) : null;
+            $password = isset($_REQUEST["password"]) ? $_REQUEST["password"] : null;
+
+            // send not allowed error
+            if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+                return lumi_response([
+                    "success" => false,
+                    "message" => __('Method Not Allowed.', 'lumi'),
+                ], 405);
+            }
+
+            // send not allowed error
+            if (!$email || !$password) {
+                return lumi_response([
+                    "success" => false,
+                    "message" => __('Unacceptable Entries.', 'lumi'),
+                    "errors"  => [
+                        __("Please fill all required fields.")
+                    ]
+                ], 422);
+            }
+
+            $creds = array(
+                'user_login'    => $email,
+                'user_password' => $password,
+                'remember'      => isset($_REQUEST["rememberme"]) ? 'true' : 'false'
+            );
+
+            $user = wp_signon($creds, false);
+
+            if (!is_wp_error($user)) {
+                return lumi_response([
+                    "message" => __("You have successfully logged in.", "lumi"),
+                ]);
+            } else {
+                return lumi_response([
+                    "success" => false,
+                    "message" => __('Unacceptable Entries.', 'lumi'),
+                    "errors"  => [$user->get_error_message()]
+                ], 422);
+            }
+        } catch (\Exception $e) {
+            return lumi_response([
+                "success" => false,
+                "message" => $e->getMessage(),
+            ], 405);
+        }
+    }
 }

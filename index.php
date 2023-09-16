@@ -54,11 +54,11 @@ $categories = lumi_get_products([
             <a href="<?php
                         echo site_url("/categories/woman")
 
-                        //echo get_the_permalink($categories->posts[0]->ID); 
+                        //echo get_the_permalink($categories->posts[0]->ID);
                         ?>" class="relative col-span-6">
                 <img class="h-full w-full hidden  bg-gray-200 bg-contain bg-center bg-no-repeat rounded-xl aspect-[4/4]" sr="<?php echo get_the_post_thumbnail_url($categories->posts[0]->ID); ?>)" src="https://images.unsplash.com/photo-1504903953708-1a3669833567?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1662&q=80">
                 </img>
-                <div class="relative bg-gray-200 overflow-hidden bg-img bg-center bg-no-repeat rounded-xl h-full w-full aspect-[4/4]" style="background: url(https://images.unsplash.com/photo-1504903953708-1a3669833567?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1662&q=80);">
+                <div class="relative bg-gray-200 overflow-hidden bg-img-cover bg-center bg-no-repeat rounded-xl h-full w-full aspect-[4/4]" style="background: url(https://images.unsplash.com/photo-1504903953708-1a3669833567?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1662&q=80);">
                 </div>
                 <h2 class="text-6xl text-white absolute bottom-[10%] left-1/2 transform translate-x-[-50%] font-semibold"><?php echo get_the_title($categories->posts[0]->ID) ?></h2>
             </a>
@@ -71,7 +71,7 @@ $categories = lumi_get_products([
                                                 ?>">
                         <img class="h-full hidden w-full bg-gray-200 bg-contain bg-center bg-no-repeat rounded-xl aspect-[4/3]" sr="<?php echo get_the_post_thumbnail_url($categories->posts[1]->ID); ?>)" src="https://plus.unsplash.com/premium_photo-1672857822411-ad82b8180078?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2787&q=80">
                         </img>
-                        <div class="relative bg-gray-200 overflow-hidden bg-img bg-center bg-no-repeat rounded-xl h-full w-full aspect-[4/3]" style="background: url(https://plus.unsplash.com/premium_photo-1672857822411-ad82b8180078?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2787&q=80);">
+                        <div class="relative bg-gray-200 overflow-hidden bg-img-cover bg-center bg-no-repeat rounded-xl h-full w-full aspect-[4/3]" style="background: url(https://plus.unsplash.com/premium_photo-1672857822411-ad82b8180078?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2787&q=80);">
                         </div>
                         <h2 class="text-6xl text-white absolute bottom-[10%] left-1/2 transform translate-x-[-50%] font-semibold"><?php echo get_the_title($categories->posts[1]->ID) ?></h2>
 
@@ -83,7 +83,7 @@ $categories = lumi_get_products([
                                                 ?>">
                         <img class="h-full hidden w-full bg-gray-200 bg-contain bg-center bg-no-repeat rounded-xl aspect-[4/3]" src="<?php echo get_the_post_thumbnail_url($categories->posts[2]->ID); ?>)">
                         </img>
-                        <div class="relative bg-gray-200 overflow-hidden bg-img bg-center bg-no-repeat rounded-xl h-full w-full aspect-[4/3]" style="background: url(https://images.unsplash.com/photo-1607453998774-d533f65dac99?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2787&q=80);">
+                        <div class="relative bg-gray-200 overflow-hidden bg-img-cover bg-center bg-no-repeat rounded-xl h-full w-full aspect-[4/3]" style="background: url(https://images.unsplash.com/photo-1607453998774-d533f65dac99?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2787&q=80);">
                         </div>
                         <h2 class="text-6xl text-white absolute bottom-[10%] left-1/2 transform translate-x-[-50%] font-semibold"><?php echo get_the_title($categories->posts[2]->ID) ?></h2>
                     </a>

@@ -175,12 +175,6 @@ $(document).ready(function () {
 	// add to cart
 	$(document).on("submit", ".add-to-cart", function (e) {
 		e.preventDefault();
-		let add_to_bag = $(this).find("#add-to-bag");
-		let add_to_cart_loading = $(this).find("#add-to-cart-loading");
-
-		add_to_bag.addClass("hidden");
-		add_to_cart_loading.removeClass("hidden");
-
 		$.ajax({
 			type: "POST",
 			url: LumiCartUrl,
@@ -413,39 +407,106 @@ $(document).ready(function () {
 		}); // End ajax
 	});
 
-	// User login Function
-	$("#music_login").validate({
-		// rules: {
-		//     email: {
-		//         required: true,
-		//         email: true
-		//     },
-		//     password: {
-		//         required: true,
-		//         minlength: 8
-		//     }
+	// password show hidden
+	$(document).on("click", ".password-integrator", function (e) {
+		e.preventDefault();
+		let type = $("#password").attr("type");
+
+		if (type == "password") {
+			$("#password").attr("type", "text");
+			$("#password-hidden").addClass("hidden");
+			$("#password-show").removeClass("hidden");
+		} else {
+			$("#password").attr("type", "password");
+			$("#password-hidden").removeClass("hidden");
+			$("#password-show").addClass("hidden");
+		}
+	});
+
+	// customer login
+	$("#login-form").validate({
+		rules: {
+			email: {
+				required: true,
+				email: true,
+			},
+			password: {
+				required: true,
+				minlength: 5,
+			},
+		},
+		messages: {
+			password: {
+				required: "Please provide a password",
+				minlength: "Password must be at least 8 characters",
+			},
+			email: "Please enter a valid email address",
+		},
+		// errorPlacement: function (error, element) {
+		// 	console.log("error", error[0]);
+		// 	let message = error[0] ? error[0]?.innerText : false;
+		// 	console.log("message", message);
+		// 	if (message) {
+		// 		$.toast({
+		// 			heading: lumi.toast.error.heading,
+		// 			text: `${message}`,
+		// 			bgColor: "#e11d48",
+		// 			textColor: "white",
+		// 			position: "bottom-right",
+		// 		});
+		// 	}
 		// },
-		// messages: {
-		//     password: {
-		//         required: "Please provide a password",
-		//         minlength: "Password must be at least 8 characters"
-		//     },
-		//     email: "Please enter a valid email address"
-		// },
-		// submitHandler: function ( form ) {
-		//     var from_data = $( "#music_login" ).serialize();
-		//     $( "#loginBtn" ).val( "Loading..." );
-		//     $( "#loginBtn" ).attr( "disabled", true );
-		//     var postdata = "action=music_ajax_request&ac_action=user_login&" + from_data;
-		//     $.ajax( {
-		//         type: "POST",
-		//         url: ajaxurl,
-		//         data: postdata,
-		//         success: function ( data ) {
-		//             // var response = $.parseJSON( data );
-		//             console.log( data );
-		//         } // Success
-		//     } ); // End ajax
-		// }
+		submitHandler: function (form) {
+			form = $(form).serialize();
+			$.ajax({
+				type: "POST",
+				url: `${LumiAjaxUrl}?action=lumi_login`,
+				data: form,
+				success: function (response) {
+					if (response.success) {
+						$.toast({
+							heading: lumi.toast.success.heading,
+							text: response.message,
+							bgColor: "#92B193",
+							textColor: "white",
+							position: "bottom-right",
+							afterHidden: function () {
+								location.reload();
+							},
+						});
+					} else {
+						if (response?.errors) {
+							response?.errors?.map((error) => {
+								$.toast({
+									heading: lumi.toast.error.heading,
+									text: error,
+									bgColor: "#e11d48",
+									textColor: "white",
+									position: "bottom-right",
+								});
+							});
+						}
+					}
+				}, // Success
+				error: function (error) {
+					console.log("error", error);
+					try {
+						$.toast({
+							heading: lumi.toast.error.heading,
+							text: lumi.toast.error.message,
+							bgColor: "#e11d48",
+							textColor: "white",
+							position: "bottom-right",
+						});
+					} catch (err) {
+						// skip
+					}
+				}, // Error
+			}); // End ajax
+		},
 	});
 });
+
+const clearHTMLTags = (strToSanitize) => {
+	return strToSanitize.replace(/(<([^>]+)>)/gi, "");
+};

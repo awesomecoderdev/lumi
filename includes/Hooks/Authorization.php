@@ -269,10 +269,9 @@ class Authorization
                     );
 
                     $user = wp_signon($creds, false);
-                    update_user_meta($customer->ID, 'avatar', $user->getPicture());
-                    update_user_meta($customer->ID, 'metadata', $metadata);
-
                     if (!is_wp_error($user)) {
+                        update_user_meta($customer->ID, 'avatar', $user->getPicture());
+                        update_user_meta($customer->ID, 'metadata', $metadata);
                         exit(wp_redirect($account));
                     }
                 } else {
