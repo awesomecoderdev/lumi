@@ -2236,12 +2236,12 @@ figure{
 	background-color: rgb(210 224 211 / 0.15);
 	padding: 1rem;
 }
-.my-account-page .woocommerce-form-row.form-row{
+.my-account-page .form-row{
 	display: grid;
 	grid-template-columns: repeat(8, minmax(0, 1fr));
 	gap: 0.5rem;
 }
-.my-account-page .woocommerce-form-row.form-row label{
+.my-account-page .form-row label{
 	grid-column: span 2 / span 2;
 	display: flex;
 	align-items: center;
@@ -2249,7 +2249,7 @@ figure{
 	line-height: 1.5rem;
 	font-weight: 500;
 }
-.my-account-page .woocommerce-form-row.form-row label .required{
+.my-account-page .form-row label .required{
 	display: flex;
 	align-items: center;
 	font-size: 0.8125rem;
@@ -2258,18 +2258,20 @@ figure{
 	--tw-text-opacity: 1;
 	color: rgb(225 29 72 / var(--tw-text-opacity));
 }
-.my-account-page .woocommerce-form-row.form-row input{
+.my-account-page .form-row input,
+.my-account-page .form-row select{
 	grid-column: span 4 / span 4;
 	border-radius: var(--radius);
 	border-width: 1px;
 	--tw-border-opacity: 1;
 	border-color: rgb(146 177 147 / var(--tw-border-opacity));
 }
-.my-account-page .woocommerce-form-row.form-row input:hover{
+.my-account-page .form-row input:hover,
+.my-account-page .form-row select:hover{
 	--tw-border-opacity: 1;
 	border-color: rgb(194 214 196 / var(--tw-border-opacity));
 }
-.my-account-page .woocommerce-form-row.form-row span{
+.my-account-page .form-row span{
 	grid-column: span 4 / span 4;
 	font-size: 0.8125rem;
 	line-height: 1.5rem;
@@ -2290,12 +2292,12 @@ figure{
 	font-weight: 600;
 	font-style: italic;
 }
-.my-account-page fieldset .woocommerce-form-row.form-row{
+.my-account-page fieldset .form-row{
 	display: grid;
 	grid-template-columns: repeat(2, minmax(0, 1fr));
 	gap: 0.5rem;
 }
-.my-account-page fieldset .woocommerce-form-row.form-row label{
+.my-account-page fieldset .form-row label{
 	grid-column: span 1 / span 1;
 	display: flex;
 	align-items: center;
@@ -2303,28 +2305,20 @@ figure{
 	line-height: 1.5rem;
 	font-weight: 500;
 }
-.my-account-page fieldset .woocommerce-form-row.form-row span{
+.my-account-page fieldset .form-row span{
 	grid-column: span 1 / span 1;
 	border-radius: var(--radius);
-	border-width: 1px;
-	--tw-border-opacity: 1;
-	border-color: rgb(146 177 147 / var(--tw-border-opacity));
 }
-.my-account-page fieldset .woocommerce-form-row.form-row span:hover{
-	--tw-border-opacity: 1;
-	border-color: rgb(194 214 196 / var(--tw-border-opacity));
-}
-.my-account-page fieldset .woocommerce-form-row.form-row span:focus{
-	--tw-border-opacity: 1;
-	border-color: rgb(182 206 183 / var(--tw-border-opacity));
-}
-.my-account-page fieldset .woocommerce-form-row.form-row span span{
+.my-account-page fieldset .form-row span span{
 	display: none;
 }
-.my-account-page fieldset .woocommerce-form-row.form-row span input{
+.my-account-page fieldset .form-row span select,
+.my-account-page fieldset .form-row span input{
 	width: 100%;
 }
-.my-account-page .edit-account .woocommerce-Button{
+.my-account-page button[type="button"],
+.my-account-page button[type="reset"],
+.my-account-page button[type="submit"]{
 	border-radius: 0.75rem;
 	--tw-bg-opacity: 1;
 	background-color: rgb(161 187 162 / var(--tw-bg-opacity));
@@ -2347,8 +2341,41 @@ figure{
 	margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
 	margin-bottom: calc(1rem * var(--tw-space-y-reverse));
 }
+.my-account-page div.woocommerce-message{
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	font-size: 1rem;
+	line-height: 1.75rem;
+	--tw-text-opacity: 1;
+	color: rgb(146 177 147 / var(--tw-text-opacity));
+}
 .my-account-page .woocommerce-notices-wrapper .woocommerce-error{
 	list-style-type: none;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+.my-account-page .woocommerce-notices-wrapper .woocommerce-error li{
+	position: relative;
+	padding-left: 1.25rem;
+	--tw-text-opacity: 1;
+	color: rgb(239 68 68 / var(--tw-text-opacity));
+}
+.my-account-page .woocommerce-notices-wrapper .woocommerce-error li::before{
+	position: absolute;
+	left: 0px;
+	font-size: 1rem;
+	line-height: 1.75rem;
+	--tw-content: "\eda4";
+	content: var(--tw-content);
+	font-family: boxicons !important;
+}
+.woocommerce-address-fields .form-row{
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+}
+.my-account-page table{
+	margin-top: 0px;
+	margin-bottom: 0px;
 }
 .my-account-page em{
 	padding-top: 1rem;

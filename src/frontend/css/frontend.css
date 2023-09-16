@@ -316,22 +316,23 @@ figure {
 	@apply col-span-8 p-4 rounded-xl bg-primary-50/15;
 }
 
-.my-account-page .woocommerce-form-row.form-row {
+.my-account-page .form-row {
 	@apply grid grid-cols-8 gap-2;
 }
 
-.my-account-page .woocommerce-form-row.form-row label {
+.my-account-page .form-row label {
 	@apply col-span-2 text-sm font-medium flex items-center;
 }
 
-.my-account-page .woocommerce-form-row.form-row label .required {
+.my-account-page .form-row label .required {
 	@apply text-xs font-medium flex items-center text-rose-600;
 }
-.my-account-page .woocommerce-form-row.form-row input {
+.my-account-page .form-row input,
+.my-account-page .form-row select {
 	@apply col-span-4 border border-primary-500 hover:border-primary-100 rounded-lg;
 }
 
-.my-account-page .woocommerce-form-row.form-row span {
+.my-account-page .form-row span {
 	@apply col-span-4 text-xs italic leading-none;
 }
 
@@ -343,27 +344,30 @@ figure {
 	@apply text-lg font-semibold italic;
 }
 
-.my-account-page fieldset .woocommerce-form-row.form-row {
+.my-account-page fieldset .form-row {
 	@apply grid grid-cols-2 gap-2;
 }
 
-.my-account-page fieldset .woocommerce-form-row.form-row label {
+.my-account-page fieldset .form-row label {
 	@apply col-span-1 text-sm font-medium flex items-center;
 }
 
-.my-account-page fieldset .woocommerce-form-row.form-row span {
-	@apply col-span-1 border border-primary-500 focus:border-primary-200 hover:border-primary-100 rounded-lg;
+.my-account-page fieldset .form-row span {
+	@apply col-span-1 rounded-lg;
 }
 
-.my-account-page fieldset .woocommerce-form-row.form-row span span {
+.my-account-page fieldset .form-row span span {
 	@apply hidden;
 }
 
-.my-account-page fieldset .woocommerce-form-row.form-row span input {
+.my-account-page fieldset .form-row span select,
+.my-account-page fieldset .form-row span input {
 	@apply w-full;
 }
 
-.my-account-page .edit-account .woocommerce-Button {
+.my-account-page button[type="button"],
+.my-account-page button[type="reset"],
+.my-account-page button[type="submit"] {
 	@apply bg-primary-400 rounded-xl px-3 py-1.5 text-sm text-white font-semibold;
 }
 .my-account-page p {
@@ -374,8 +378,27 @@ figure {
 	@apply space-y-4;
 }
 
+.my-account-page div.woocommerce-message {
+	@apply py-2 text-primary-500 text-base;
+}
+
 .my-account-page .woocommerce-notices-wrapper .woocommerce-error {
-	@apply list-none;
+	@apply list-none px-0;
+}
+
+.my-account-page .woocommerce-notices-wrapper .woocommerce-error li {
+	@apply relative pl-5 text-red-500 before:content-["\eda4"] before:text-base before:absolute before:left-0;
+}
+
+.my-account-page .woocommerce-notices-wrapper .woocommerce-error li::before {
+	font-family: boxicons !important;
+}
+.woocommerce-address-fields .form-row {
+	@apply py-2;
+}
+
+.my-account-page table {
+	@apply my-0;
 }
 
 .my-account-page em {

@@ -60,7 +60,7 @@ class Frontend
 		 */
 
 		// Asset::style($this->template_name, 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css', $this->version, [],  'all', true);
-		// Asset::style($this->template_name, 'https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css', $this->version, [], 'all', true);
+		Asset::style($this->template_name, 'https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css', $this->version, [], 'all', true);
 		Asset::style($this->template_name, 'https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css', $this->version, [], 'all', true);
 		Asset::style($this->template_name, 'css/styles.css', $this->version, [], 'all');
 		Asset::style($this->template_name, 'frontend/css/lumi-public.css', $this->version, [],  'all');
