@@ -36,7 +36,9 @@ if (!defined('WPINC')) {
 @session_start();
 
 // AutoLoader
-if (defined('WPINC') && file_exists(get_template_directory("vendor/autoload.php"))) require "vendor/autoload.php";
+if (defined('WPINC') && file_exists(get_template_directory("vendor/autoload.php"))) {
+    require  __DIR__ . "/vendor/autoload.php";
+}
 
 /**
  * Currently template version.
@@ -77,4 +79,8 @@ add_action("switch_theme", "deactivate_lumi", 10, 2);
  * @since    1.0.0
  */
 
-lami()->run();
+try {
+    lami()->run();
+} catch (\Throwable $th) {
+    throw $th;
+}

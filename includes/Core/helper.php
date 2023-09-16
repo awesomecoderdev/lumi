@@ -18,9 +18,12 @@
  *
  */
 
+if (!class_exists("Lumi")) {
+    require __DIR__ . "/lumi.php";
+}
+
+
 use AwesomeCoder\Lumi\Core\Lumi;
-
-
 
 /**
  * The loader of the Theme.
