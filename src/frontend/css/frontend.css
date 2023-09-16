@@ -411,7 +411,7 @@ figure {
 }
 
 .woocommerce-address-fields .form-row span span {
-	/* @apply hidden; */
+	@apply hidden;
 }
 
 .woocommerce-MyAccount-content form h3 {
@@ -470,4 +470,25 @@ form.lost_reset_password {
 .lost-password-page button[type="reset"],
 .lost-password-page button[type="submit"] {
 	@apply bg-primary-400 rounded-xl px-3 py-1.5 text-sm text-white font-semibold;
+}
+
+.checkout-page .woocommerce-billing-fields {
+	@apply relative;
+}
+
+.checkout-page .woocommerce-billing-fields .form-row {
+	@apply grid xl:grid-cols-8 md:grid-cols-4 gap-2;
+}
+
+.checkout-page .form-row span select,
+.checkout-page .form-row span input {
+	@apply w-full;
+}
+
+.checkout-page .form-row label {
+	@apply xl:col-span-3 md:col-span-2 text-sm font-medium flex items-center;
+}
+
+.checkout-page .form-row span {
+	@apply xl:col-span-4 md:col-span-2 rounded-lg;
 }
