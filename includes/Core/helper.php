@@ -311,7 +311,7 @@ if (!function_exists('get_lumi_categories')) {
         $terms = $categories->terms;
         // $terms = $categories;
 
-        return $terms;
+        return $terms ?? [];
     }
 }
 
