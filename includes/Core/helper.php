@@ -432,6 +432,7 @@ if (!function_exists('clog')) {
         echo "<script>console.log('======================================================================');</script>";
     }
 }
+
 /**
  * The lumi_get_wishlist function.
  *

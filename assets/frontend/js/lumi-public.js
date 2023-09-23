@@ -126,7 +126,7 @@ $(document).ready(function () {
 						$.toast({
 							heading: lumi.toast.success.heading,
 							text: lumi.toast.success.message,
-							bgColor: "#92B193",
+							bgColor: "#059669",
 							textColor: "white",
 							position: "bottom-right",
 						});
@@ -172,6 +172,111 @@ $(document).ready(function () {
 		}); // End ajax
 	});
 
+	// add all to cart from wishlist
+	$(document).on("click", "#add-all-bag", function (e) {
+		e.preventDefault();
+		let error = false;
+		let add_to_bag = $(this).find("#add-to-bag-svg");
+		let add_to_cart_loading = $(this).find("#add-all-cart-loading");
+		let loading = true;
+
+		add_to_bag.addClass("hidden");
+		add_to_cart_loading.removeClass("hidden");
+
+		let forms = $(".add-to-cart-from-wishlist");
+		let formsLength = forms?.length - 1 ?? null;
+		$.each(forms, function (index, form) {
+			$.ajax({
+				type: "POST",
+				url: LumiCartUrl,
+				data: $(form).serialize(),
+				success: function (response) {
+					if (response?.error) {
+						error = response.error;
+					} else {
+						if (response?.fragments?.lumi_cart_fragment) {
+							$("#lumi-cart-fragment").html(
+								response.fragments.lumi_cart_fragment
+							);
+						}
+
+						if (response?.fragments?.lumi_cart_fragment) {
+							$("#lumi-cart-mobile-fragment").html(
+								response.fragments.lumi_cart_mobile_fragment
+							);
+						}
+
+						try {
+							$.toast({
+								heading: lumi.toast.success.heading,
+								text: lumi.toast.success.message,
+								bgColor: "#059669",
+								textColor: "white",
+								position: "bottom-right",
+							});
+						} catch (err) {
+							// skip
+						}
+					}
+
+					if (index == formsLength) {
+						add_to_bag.removeClass("hidden");
+						add_to_cart_loading.addClass("hidden");
+
+						// window.location = response?.product_url ?? lumi?.url ?? "/";
+						try {
+							if (error) {
+								$.toast({
+									heading: lumi.toast.error.heading,
+									text: lumi.toast.error.message,
+									bgColor: "#e11d48",
+									textColor: "white",
+									position: "bottom-right",
+									afterHidden: function () {
+										window.location =
+											response?.product_url ??
+											lumi?.url ??
+											"/";
+									},
+								});
+							}
+						} catch (err) {
+							// skip
+						}
+					}
+				},
+				error: function (err) {
+					console.log("error", err);
+					error = err;
+
+					try {
+						$.toast({
+							heading: lumi.toast.error.heading,
+							text: lumi.toast.error.message,
+							bgColor: "#e11d48",
+							textColor: "white",
+							position: "bottom-right",
+						});
+					} catch (err) {
+						// skip
+					}
+
+					if (index == formsLength) {
+						add_to_bag.removeClass("hidden");
+						add_to_cart_loading.addClass("hidden");
+					}
+				},
+			}); // End ajax
+		});
+
+		// console.log("error", error);
+
+		// setTimeout(() => {
+		// 	add_to_bag.removeClass("hidden");
+		// 	add_to_cart_loading.addClass("hidden");
+		// }, 700);
+	});
+
 	// add to cart
 	$(document).on("submit", ".add-to-cart", function (e) {
 		e.preventDefault();
@@ -201,7 +306,7 @@ $(document).ready(function () {
 						$.toast({
 							heading: lumi.toast.success.heading,
 							text: lumi.toast.success.message,
-							bgColor: "#92B193",
+							bgColor: "#059669",
 							textColor: "white",
 							position: "bottom-right",
 						});
@@ -467,7 +572,7 @@ $(document).ready(function () {
 						$.toast({
 							heading: lumi.toast.success.heading,
 							text: response.message,
-							bgColor: "#92B193",
+							bgColor: "#059669",
 							textColor: "white",
 							position: "bottom-right",
 							afterHidden: function () {

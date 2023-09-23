@@ -36,12 +36,17 @@ $products = lumi_get_products([
         <div class="relative w-full md:flex hidden justify-between items-center py-5 ">
             <h2 class="text-xl font-semibold"><?php _e("Wishlist", "lumi") ?>(<?php echo $products->found_posts ?>)</h2>
 
-            <button class="relative bg-primary-500 px-4 py-2 flex justify-center items-center gap-2 text-white">
-                <svg width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <button id="add-all-bag" class="relative bg-primary-500 px-4 py-2 flex justify-center items-center gap-2 text-white">
+                <svg id="add-to-bag-svg" class="h-6 w-6 p-1" width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M14.651 5.5984C14.651 3.21232 12.7167 1.27799 10.3307 1.27799C9.18168 1.27316 8.07806 1.72619 7.26387 2.53695C6.44968 3.3477 5.992 4.44939 5.992 5.5984M14.5137 20.5H6.16592C3.09955 20.5 0.747152 19.3924 1.41534 14.9348L2.19338 8.89359C2.60528 6.66934 4.02404 5.81808 5.26889 5.81808H15.4474C16.7105 5.81808 18.0469 6.73341 18.5229 8.89359L19.3009 14.9348C19.8684 18.889 17.5801 20.5 14.5137 20.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                     <path d="M13.296 10.102H13.251" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                     <path d="M7.46601 10.102H7.42001" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
+                <!-- start:category sidebar -->
+                <?php get_template_part("template/components/loading", null, [
+                    "class" => "text-slate-300 hidden",
+                    "id" => "add-all-cart-loading"
+                ]); ?>
                 <?php _e("Move all to Bag", "lumi") ?>
             </button>
         </div>
