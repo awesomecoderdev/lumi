@@ -397,10 +397,10 @@ figure {
 	@apply py-2 grid xl:grid-cols-8 md:grid-cols-4 gap-2;
 }
 
-.screen-reader-text {
+/* .screen-reader-text {
 	@apply w-full h-full;
 	position: relative !important;
-}
+} */
 
 .woocommerce-address-fields .form-row label {
 	@apply xl:col-span-3 md:col-span-2 text-sm font-medium flex items-center;
