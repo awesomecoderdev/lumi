@@ -26,7 +26,6 @@ if (!defined('ABSPATH')) {
 
 <?php get_header(); ?>
 
-
 <main id="main" class="<?php echo lumi_container("py-10 not-prose"); ?> <?php echo count(lumi_get_cart()) == 0 ? "hidden" : "" ?>">
     <div class="relative w-full grid lg:grid-cols-10 gap-8 py-3">
         <!-- start:cart body -->

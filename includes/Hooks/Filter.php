@@ -85,7 +85,9 @@ if (!function_exists("lumi_body_class")) {
             'is-desktop'            => !wp_is_mobile(),
             // Common
             'has-blocks'           => function_exists('has_blocks') && has_blocks(),
-            'has-adminbar'          => function_exists('is_admin_bar_showing') && is_admin_bar_showing(),
+            'has-adminbar'         => function_exists('is_admin_bar_showing') && is_admin_bar_showing(),
+            'is-logged-in'         => is_user_logged_in(),
+            'is-not-logged-in'     => !is_user_logged_in(),
         );
 
         // Sidebars

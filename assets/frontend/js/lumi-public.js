@@ -95,10 +95,8 @@ $(document).ready(function () {
 		e.preventDefault();
 		let add_to_bag = $(this).find("#add-to-bag");
 		let add_to_cart_loading = $(this).find("#add-to-cart-loading");
-
 		add_to_bag.addClass("hidden");
 		add_to_cart_loading.removeClass("hidden");
-
 		$.ajax({
 			type: "POST",
 			url: LumiCartUrl,
@@ -183,7 +181,7 @@ $(document).ready(function () {
 		add_to_bag.addClass("hidden");
 		add_to_cart_loading.removeClass("hidden");
 
-		let forms = $(".add-to-cart-from-wishlist");
+		let forms = $(".add-all-to-wishlist");
 		let formsLength = forms?.length - 1 ?? null;
 		$.each(forms, function (index, form) {
 			$.ajax({
@@ -192,7 +190,6 @@ $(document).ready(function () {
 				data: $(form).serialize(),
 				success: function (response) {
 					console.log("response", response);
-
 					if (response?.error) {
 						error = response.error;
 					} else {
@@ -201,47 +198,43 @@ $(document).ready(function () {
 								response.fragments.lumi_cart_fragment
 							);
 						}
-
 						if (response?.fragments?.lumi_cart_fragment) {
 							$("#lumi-cart-mobile-fragment").html(
 								response.fragments.lumi_cart_mobile_fragment
 							);
 						}
-
-						// try {
-						// 	$.toast({
-						// 		heading: lumi.toast.success.heading,
-						// 		text: lumi.toast.success.message,
-						// 		bgColor: "#059669",
-						// 		textColor: "white",
-						// 		position: "bottom-right",
-						// 	});
-						// } catch (err) {
-						// 	// skip
-						// }
+						try {
+							$.toast({
+								heading: lumi.toast.success.heading,
+								text: lumi.toast.success.message,
+								bgColor: "#059669",
+								textColor: "white",
+								position: "bottom-right",
+							});
+						} catch (err) {
+							// skip
+						}
 					}
-
 					if (index == formsLength) {
 						add_to_bag.removeClass("hidden");
 						add_to_cart_loading.addClass("hidden");
-
 						// window.location = response?.product_url ?? lumi?.url ?? "/";
 						try {
 							if (error) {
 								console.log("error", error);
-								// $.toast({
-								// 	heading: lumi.toast.error.heading,
-								// 	text: lumi.toast.error.message,
-								// 	bgColor: "#e11d48",
-								// 	textColor: "white",
-								// 	position: "bottom-right",
-								// 	afterHidden: function () {
-								// 		window.location =
-								// 			response?.product_url ??
-								// 			lumi?.url ??
-								// 			"/";
-								// 	},
-								// });
+								$.toast({
+									heading: lumi.toast.error.heading,
+									text: lumi.toast.error.message,
+									bgColor: "#e11d48",
+									textColor: "white",
+									position: "bottom-right",
+									afterHidden: function () {
+										window.location =
+											response?.product_url ??
+											lumi?.url ??
+											"/";
+									},
+								});
 							}
 						} catch (err) {
 							// skip
@@ -251,7 +244,6 @@ $(document).ready(function () {
 				error: function (err) {
 					console.log("error", err);
 					error = err;
-
 					try {
 						$.toast({
 							heading: lumi.toast.error.heading,
@@ -263,26 +255,44 @@ $(document).ready(function () {
 					} catch (err) {
 						// skip
 					}
-
 					if (index == formsLength) {
 						add_to_bag.removeClass("hidden");
 						add_to_cart_loading.addClass("hidden");
+
+						try {
+							if (error) {
+								console.log("error", error);
+								$.toast({
+									heading: lumi.toast.error.heading,
+									text: lumi.toast.error.message,
+									bgColor: "#e11d48",
+									textColor: "white",
+									position: "bottom-right",
+									afterHidden: function () {
+										window.location =
+											response?.product_url ??
+											lumi?.url ??
+											"/";
+									},
+								});
+							}
+						} catch (err) {
+							// skip
+						}
 					}
 				},
 			}); // End ajax
 		});
-
-		// console.log("error", error);
-
-		// setTimeout(() => {
-		// 	add_to_bag.removeClass("hidden");
-		// 	add_to_cart_loading.addClass("hidden");
-		// }, 700);
 	});
 
 	// add to cart
 	$(document).on("submit", ".add-to-cart", function (e) {
 		e.preventDefault();
+		let add_to_bag = $(this).find("#add-to-bag");
+		let add_to_cart_loading = $(this).find("#add-to-cart-loading");
+		add_to_bag.addClass("hidden");
+		add_to_cart_loading.removeClass("hidden");
+
 		$.ajax({
 			type: "POST",
 			url: LumiCartUrl,

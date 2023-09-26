@@ -282,7 +282,6 @@ figure {
 }
 
 /* woocommerce pages */
-
 .my-account-page:not(.lost-password-page) .woocommerce {
 	@apply relative grid xl:grid-cols-10 gap-6;
 }
@@ -491,4 +490,8 @@ form.lost_reset_password {
 
 .checkout-page .form-row span {
 	@apply xl:col-span-4 md:col-span-2 rounded-lg;
+}
+
+.woocommerce-breadcrumb {
+	@apply flex;
 }

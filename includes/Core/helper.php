@@ -181,12 +181,12 @@ if (!function_exists('is_shop')) {
  * @since             1.0.0
  *
  */
-if (!function_exists('is_account_page')) {
-    function is_account_page()
-    {
-        return lumi_path("my-account");
-    }
-}
+// if (!function_exists('is_account_page')) {
+//     function is_account_page()
+//     {
+//         return lumi_path("my-account");
+//     }
+// }
 
 
 /**
@@ -713,3 +713,4 @@ if (!function_exists('lumi_cart_sidebar')) {
         return $output;
     }
 }
+

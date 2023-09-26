@@ -20,11 +20,11 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 
 }
+
 ?>
 
 
 <?php get_header(); ?>
-
 <!-- start:category header -->
 <?php get_template_part("template/section/category/header"); ?>
 <!-- start:category header -->
