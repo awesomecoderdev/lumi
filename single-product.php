@@ -209,9 +209,9 @@ if (!defined('ABSPATH')) {
 
 	<div class="relative py-4">
 		<div class="relative px-4 py-2 border border-primary-500 flex items-center justify-between rounded-2xl">
-			<a class="block bg-primary-500 text-white py-2 px-5 min-w-[10rem] text-center rounded-full single-product-section-link" href="<?php echo get_the_permalink() . "#general" ?>" data-id="#general"><?php _e("General Information", "lumi"); ?></a>
-			<a class="block bg-primary-500 text-white py-2 px-5 min-w-[10rem] text-center rounded-full single-product-section-link" href="<?php echo get_the_permalink() . "#reviews" ?>" data-id="#reviews"><?php _e("Additional Information", "lumi"); ?></a>
-			<a class="block bg-primary-500 text-white py-2 px-5 min-w-[10rem] text-center rounded-full single-product-section-link" href="<?php echo get_the_permalink() . "#reviews" ?>" data-id="#reviews"><?php _e("Reviews", "lumi"); ?></a>
+			<a class="block bg-primary-500 text-white py-2 px-5 min-w-[10rem] text-center rounded-full single-product-section-link" href="#general"><?php _e("General Information", "lumi"); ?></a>
+			<a class="block bg-primary-500 text-white py-2 px-5 min-w-[10rem] text-center rounded-full single-product-section-link" href="#reviews"><?php _e("Additional Information", "lumi"); ?></a>
+			<a class="block bg-primary-500 text-white py-2 px-5 min-w-[10rem] text-center rounded-full single-product-section-link" href="#reviews"><?php _e("Reviews", "lumi"); ?></a>
 		</div>
 	</div>
 
@@ -263,16 +263,25 @@ if (!defined('ABSPATH')) {
 		jQuery(document).ready(function($) {
 			// single product page
 			if (window.location.hash) {
-				console.log("Hello ", window.location.hash);
-
-				$(".single-product-section").hide();
-				$(`${window.location.hash}`).show();
+				try {
+					$(".single-product-section").hide();
+					$(`${window.location.hash}`).show();
+				} catch (error) {
+					// skip
+				}
 			}
 
-			$(document).on("click", ".single-product-section-link", function(e) {
-				const target = $(this).attr("data-id");
-				$(".single-product-section").hide();
-				$(`${target}`).show();
+			$(document).on("click", ".single-product-section-link , .woocommerce-review-link", function(e) {
+				try {
+					let target = $(this).attr("href") ?? null;
+					if (target && target.startsWith("#")) {
+						$(".single-product-section").hide();
+						$(`${target}`).show();
+					}
+				} catch (error) {
+					// skip
+				}
+
 			});
 		});
 	</script>
