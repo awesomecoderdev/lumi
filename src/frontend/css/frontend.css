@@ -495,3 +495,50 @@ form.lost_reset_password {
 .woocommerce-breadcrumb {
 	@apply flex;
 }
+
+.gallery .gallery-item .gallery-shadow {
+	@apply hidden;
+}
+.gallery .gallery-item.active .gallery-shadow {
+	@apply flex;
+}
+
+.is-single .price del {
+	@apply text-sm font-semibold italic;
+}
+
+.is-single .price ins {
+	@apply no-underline font-bold;
+}
+
+.single-product-item h3 {
+	@apply lg:text-4xl md:text-3xl text-2xl font-bold line-clamp-2 mt-2 max-w-xs;
+}
+
+.single-product-item form.cart {
+	@apply hidden;
+}
+
+.single-product-item p {
+	@apply font-semibold text-lg;
+}
+
+.single-product-item p.price {
+	@apply font-semibold text-3xl;
+}
+
+.single-product-item .product_meta {
+	@apply relative grid;
+}
+
+.single-product-item .product_meta span {
+	@apply font-bold text-base;
+}
+
+.single-product-item .product_meta span span {
+	@apply font-semibold text-base;
+}
+
+.single-product-item a {
+	@apply text-primary-500;
+}

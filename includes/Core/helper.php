@@ -714,3 +714,37 @@ if (!function_exists('lumi_cart_sidebar')) {
     }
 }
 
+
+/**
+ * The get_product_gallery_images function.
+ *
+ * @link              https://awesomecoder.dev/
+ * @since             1.0.0
+ *
+ */
+if (!function_exists('get_product_gallery_images')) {
+    function get_product_gallery_images($id = false)
+    {
+        $output = [];
+        try {
+            $id = $id ? $id : get_the_ID();
+            $product = wc_get_product($id);
+            $images = $product->get_gallery_image_ids();
+
+            $output[] = get_the_post_thumbnail_url($id);
+
+            foreach ($images as $key => $attachment) {
+                // Display the image URL
+                $output[] = wp_get_attachment_url($attachment);
+                // $output[$key]["original"] = wp_get_attachment_url($attachment);
+
+                // Display Image instead of URL
+                // $output[$key]["full"] = wp_get_attachment_image($attachment, 'full');
+            }
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
+        return $output;
+    }
+}
