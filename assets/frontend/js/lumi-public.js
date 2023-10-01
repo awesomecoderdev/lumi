@@ -624,7 +624,3 @@ $(document).ready(function () {
 		},
 	});
 });
-
-const clearHTMLTags = (strToSanitize) => {
-	return strToSanitize.replace(/(<([^>]+)>)/gi, "");
-};
