@@ -216,44 +216,47 @@ if (!defined('ABSPATH')) {
 	</div>
 
 	<div class="relative">
-		<div id="general" class="single-product-item  overflow-hidden relative rounded-xl border px-5 py-4 border-slate-200/50 ">
-			<?php echo apply_filters('the_content', $product->get_description()); ?>
-		</div>
+		<div class="single-product-item overflow-hidden relative rounded-xl border px-5 py-4 border-slate-200/50 ">
+			<div id="general" class="relative hiddens">
+				<?php echo apply_filters('the_content', $product->get_description()); ?>
+			</div>
 
-		<div id="reviews" class="hidden">
-			<?php if ($product->get_rating_count() > 0) : ?>
-				<div class="woocommerce-product-reviews">
-					<div class="woocommerce-product-rating">
-						<?php echo wc_get_rating_html($product->get_average_rating()); ?>
-						<span class="review-count">
-							(<?php echo $product->get_rating_count(); ?> <?php _e('reviews', 'woocommerce'); ?>)
-						</span>
+			<div id="reviews" class="hiddens">
+				<?php if ($product->get_rating_count() > 0) : ?>
+					<div class="woocommerce-product-reviews">
+						<div class="woocommerce-product-rating">
+							<?php echo wc_get_rating_html($product->get_average_rating()); ?>
+							<span class="review-count">
+								(<?php echo $product->get_rating_count(); ?> <?php _e('reviews', 'woocommerce'); ?>)
+							</span>
+						</div>
+						<?php
+						$args = array(
+							'post_type'   => 'product',
+							'post_id'     => $product->get_id(),
+							'status'      => 'approve',
+							'number'      => 5, // Number of reviews to display
+						);
+
+						$reviews = get_comments($args);
+
+						if ($reviews) :
+							foreach ($reviews as $review) :
+								echo '<div class="review">';
+								echo '<p class="review-author">' . esc_html($review->comment_author) . '</p>';
+								echo '<div class="review-rating">' . wc_get_rating_html(intval(get_comment_meta($review->comment_ID, 'rating', true))) . '</div>';
+								echo '<p class="review-text">' . esc_html($review->comment_content) . '</p>';
+								echo '</div>';
+							endforeach;
+						else :
+							echo '<p>' . __('There are no reviews yet.', 'woocommerce') . '</p>';
+						endif;
+						?>
 					</div>
-					<?php
-					$args = array(
-						'post_type'   => 'product',
-						'post_id'     => $product->get_id(),
-						'status'      => 'approve',
-						'number'      => 5, // Number of reviews to display
-					);
-
-					$reviews = get_comments($args);
-
-					if ($reviews) :
-						foreach ($reviews as $review) :
-							echo '<div class="review">';
-							echo '<p class="review-author">' . esc_html($review->comment_author) . '</p>';
-							echo '<div class="review-rating">' . wc_get_rating_html(intval(get_comment_meta($review->comment_ID, 'rating', true))) . '</div>';
-							echo '<p class="review-text">' . esc_html($review->comment_content) . '</p>';
-							echo '</div>';
-						endforeach;
-					else :
-						echo '<p>' . __('There are no reviews yet.', 'woocommerce') . '</p>';
-					endif;
-					?>
-				</div>
-			<?php endif; ?>
+				<?php endif; ?>
+			</div>
 		</div>
+
 	</div>
 
 
