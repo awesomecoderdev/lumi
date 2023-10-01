@@ -156,7 +156,7 @@ function add_tags_fields()
 /**
  * Modify Product Summary add colors
  */
-add_action('woocommerce_single_product_summary', 'lumi_single_product_color_attributes', 61);
+add_action('woocommerce_single_product_summary', 'lumi_single_product_color_attributes', 62);
 if (!function_exists("lumi_single_product_color_attributes")) {
     function lumi_single_product_color_attributes()
     {
@@ -189,7 +189,7 @@ if (!function_exists("lumi_single_product_size_attributes")) {
 remove_action("woocommerce_simple_add_to_cart", "woocommerce_simple_add_to_cart", 30);
 
 // add to cart from the single page summary
-add_action("woocommerce_single_product_summary", "woocommerce_simple_add_to_cart", 62);
+add_action("woocommerce_single_product_cart", "woocommerce_simple_add_to_cart", 62);
 
 
 /**

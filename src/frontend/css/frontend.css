@@ -164,10 +164,6 @@ body {
 		z-index: 8;
 	}
 
-	.active {
-		@apply bg-primary-200/40;
-	}
-
 	.awesomecoder-paginate .page-numbers {
 		@apply relative h-10 w-10 px-3 py-1 text-slate-500 font-poppins text-sm font-light bg-white shadow rounded;
 	}
@@ -515,10 +511,6 @@ form.lost_reset_password {
 	@apply lg:text-4xl md:text-3xl text-2xl font-bold line-clamp-2 mt-2 max-w-xs;
 }
 
-.single-product-item form.cart {
-	@apply hidden;
-}
-
 .single-product-item p {
 	@apply font-medium text-sm;
 }
@@ -545,7 +537,7 @@ form.lost_reset_password {
 
 .single-product-item img,
 .single-product-item figure {
-	@apply rounded-xl;
+	@apply rounded-xl my-3 max-w-full;
 }
 .single-product-item h1 {
 	@apply text-2xl font-semibold;
@@ -573,4 +565,12 @@ form.lost_reset_password {
 
 .product-colors .product-colors-item.active {
 	@apply ring-2 ring-offset-1 ring-primary-500;
+}
+
+.product-sizes .product-sizes-item {
+	@apply border-primary-500/15;
+}
+
+.product-sizes .product-sizes-item.active {
+	@apply border-primary-500 text-primary-500;
 }
