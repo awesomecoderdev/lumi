@@ -190,6 +190,8 @@ remove_action("woocommerce_simple_add_to_cart", "woocommerce_simple_add_to_cart"
 
 // add to cart from the single page summary
 add_action("woocommerce_single_product_cart", "woocommerce_simple_add_to_cart", 62);
+
+// show all notices action
 add_action("lumi_show_all_notices", "woocommerce_output_all_notices");
 
 
