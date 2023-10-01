@@ -35,6 +35,10 @@ if (!defined('ABSPATH')) {
 
 	?>
 
+	<div class="relative py-5 z-10">
+		<?php do_action("lumi_show_all_notices"); ?>
+	</div>
+
 	<?php while (have_posts()) : the_post(); ?>
 		<div class="relative grid grid-cols-12 gap-4">
 			<div class="relative col-span-4 grid grid-cols-6 gap-4 h-full max-h-96">
