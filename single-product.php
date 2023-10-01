@@ -36,7 +36,7 @@ if (!defined('ABSPATH')) {
 
 	<?php while (have_posts()) : the_post(); ?>
 		<div class="relative grid grid-cols-12 gap-4">
-			<div class="relative col-span-4 grid grid-cols-6 gap-4">
+			<div class="relative col-span-4 grid grid-cols-6 gap-4 h-full max-h-96">
 				<div class="relative col-span-2 ">
 					<div class="absolute top-0 flex w-full justify-center items-end h-14 bg-gradient-to-b from-white z-10">
 					</div>

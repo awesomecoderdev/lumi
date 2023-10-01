@@ -152,33 +152,44 @@ function add_tags_fields()
 <?php
 }
 
-function display_color_attributes()
-{
-    global $product;
 
-    // Check if the product has the "Color" attribute
-    if ($product->get_attribute('pa_color')) {
-        echo '<div class="color-attributes">';
-        echo '<p><strong>' . __("Select Color", "lumi") . '</strong></p>';
-        echo '<ul>';
-
-        // Get the color attribute terms
-        $color_terms = wc_get_product_terms($product->get_id(), 'pa_color');
-
-        foreach ($color_terms as $color_term) {
-            echo '<li>';
-            echo '<a href="' . get_term_link($color_term) . '">' . $color_term->name . '</a>';
-            echo '</li>';
-        }
-
-        echo '</ul>';
-        echo '</div>';
+/**
+ * Modify Product Summary add colors
+ */
+add_action('woocommerce_single_product_summary', 'lumi_single_product_color_attributes', 61);
+if (!function_exists("lumi_single_product_color_attributes")) {
+    function lumi_single_product_color_attributes()
+    {
+        ob_start();
+        include_once LUMI_THEME_PATH . "/template/section/product/attributes/color.php";
+        $output = ob_get_contents();
+        ob_end_clean();
+        echo $output;
     }
 }
 
-add_action('woocommerce_single_product_summary', 'display_color_attributes', 61);
+/**
+ * Modify Product Summary add sizes
+ */
+add_action('woocommerce_single_product_summary', 'lumi_single_product_size_attributes', 61);
+if (!function_exists("lumi_single_product_size_attributes")) {
+    function lumi_single_product_size_attributes()
+    {
+        ob_start();
+        include_once LUMI_THEME_PATH . "/template/section/product/attributes/size.php";
+        $output = ob_get_contents();
+        ob_end_clean();
+        echo $output;
+    }
+}
 
 
+
+// remove add to cart from the single page summary
+remove_action("woocommerce_simple_add_to_cart", "woocommerce_simple_add_to_cart", 30);
+
+// add to cart from the single page summary
+add_action("woocommerce_single_product_summary", "woocommerce_simple_add_to_cart", 62);
 
 
 /**
