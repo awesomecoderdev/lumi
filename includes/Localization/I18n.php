@@ -13,7 +13,6 @@ class L18n
 	{
 		load_theme_textdomain(
 			'lumi',
-			false,
 			LUMI_THEME_PATH . 'languages/'
 		);
 	}
