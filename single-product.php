@@ -247,8 +247,38 @@ if (!defined('ABSPATH')) {
 							</svg>
 							<div class="absolute bg-yellow-900 top-0 left-0 bottom-0 right-0 mix-blend-color-burn" style="width:<?php echo ($product->get_average_rating() / 5 * 100); ?>% ;"></div>
 						</div>
-						<span class="text-sm font-semibold m-0 px-2"><span class="font-extrabold mx-1"><?php echo $product->get_average_rating(); ?></span> <?php echo $product->get_rating_count() ? "(Total {$product->get_rating_count()} reviews)" : ""; ?></span>
+						<span class="text-sm font-semibold m-0 px-2"><span class="font-extrabold mx-1"><?php echo $product->get_average_rating() ? $product->get_average_rating() : "0.00"; ?></span> <?php echo  "(" . __("Total ", "lumi") . " " . $product->get_rating_count() . " " . __("reviews ", "lumi") . ")"; ?></span>
 					</div>
+
+					<div class="relative">
+						<?php foreach ([5, 4, 3, 2, 1] as $key => $rating) : ?>
+							<div class="relative flex items-center">
+								<div class="relative flex text-yellow-100 w-fit overflow-hidden">
+									<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+										<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+									</svg>
+									<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+										<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+									</svg>
+									<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+										<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+									</svg>
+									<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+										<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+									</svg>
+									<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+										<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+									</svg>
+									<div class="absolute bg-yellow-900 top-0 left-0 bottom-0 right-0 mix-blend-color-burn" style="width:<?php echo ($rating / 5 * 100); ?>% ;"></div>
+								</div>
+								<div class="relative rounded-full h-2 w-full max-w-[10rem] bg-zinc-100 overflow-hidden ml-3">
+									<span class="absolute left-0 top-0 bottom-0 bg-yellow-300" style="width: <?php echo $product->get_rating_count($rating) > 0 ? number_format(($product->get_rating_count($rating) / $product->get_rating_count()) * 100, 2) : "0.00"; ?>%;"></span>
+								</div>
+								<span class="text-sm font-semibold m-0 px-2"><span class="font-extrabold mx-1"><?php echo "({$product->get_rating_count($rating)})"; ?></span>
+							</div>
+						<?php endforeach; ?>
+					</div>
+
 				</div>
 
 				<?php if ($product->get_rating_count() > 0) : ?>
