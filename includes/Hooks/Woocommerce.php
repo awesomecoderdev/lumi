@@ -195,14 +195,8 @@ add_action("woocommerce_single_product_cart", "woocommerce_simple_add_to_cart", 
 add_action("lumi_show_all_notices", "woocommerce_output_all_notices");
 
 
-
-/**
- * ======================================================================================
- * 		product after before contents
- * ======================================================================================
- */
-
-
+// remove all woocommerce style
+add_action('wp_enqueue_scripts', 'remove_woocommerce_styles', 100);
 function remove_woocommerce_styles()
 {
     if (class_exists('woocommerce')) {
@@ -213,9 +207,42 @@ function remove_woocommerce_styles()
     }
 }
 
-add_action('wp_enqueue_scripts', 'remove_woocommerce_styles', 100);
+// Add a custom metabox for the Additional Information
+add_action('add_meta_boxes', 'add_additional_information_metabox');
+function add_additional_information_metabox()
+{
+    add_meta_box(
+        'short_description_metabox',
+        __("Additional Information", "lumi"),
+        'render_additional_information_metabox',
+        'product',
+        'normal',
+        'high'
+    );
+}
 
+// Render the HTML editor for the Additional Information metabox
+function render_additional_information_metabox($post)
+{
+    // Get the current Additional Information content
+    $short_description = get_post_meta($post->ID, '_additional_information', true);
 
+    // Output the HTML editor
+    wp_editor($short_description, 'short_description_editor', array(
+        'textarea_name' => '_additional_information',
+        'media_buttons' => true,
+        'textarea_rows' => 10,
+    ));
+}
+
+// Save the content from the HTML editor to the Additional Information field
+add_action('save_post', 'save_additional_information_metabox');
+function save_additional_information_metabox($post_id)
+{
+    if (isset($_POST['_additional_information'])) {
+        update_post_meta($post_id, '_additional_information', wp_kses_post($_POST['_additional_information']));
+    }
+}
 
 /**
  * Add custom code before the woocommerce contents

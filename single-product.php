@@ -225,6 +225,10 @@ if (!defined('ABSPATH')) {
 				<?php echo apply_filters('the_content', $product->get_description()); ?>
 			</div>
 
+			<div id="info" class="single-product-section" style="display: none;">
+				<?php echo get_post_meta(get_the_ID(), "_additional_information", true); ?>
+			</div>
+
 			<div id="reviews" class="single-product-section" style="display: none;">
 				<div class="relative space-y-4">
 					<span class="text-2xl font-semibold"><?php _e("Customer Reviews", "lumi"); ?></span>
