@@ -574,3 +574,20 @@ form.lost_reset_password {
 .product-sizes .product-sizes-item.active {
 	@apply border-primary-500 text-primary-500;
 }
+
+.single-product-section-link.active {
+	@apply bg-primary-500 text-white;
+}
+
+/* reviews section */
+#reviews .woocommerce-product-reviews {
+	@apply relative space-y-4;
+}
+
+#reviews .woocommerce-product-rating {
+	@apply relative flex font-semibold text-base;
+}
+
+#reviews .woocommerce-product-rating .review-count {
+	@apply text-primary-500;
+}
