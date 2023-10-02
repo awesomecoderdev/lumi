@@ -282,43 +282,77 @@ if (!defined('ABSPATH')) {
 							</div>
 						<?php endforeach; ?>
 					</div>
-
 				</div>
 
 				<?php if ($product->get_rating_count() > 0) : ?>
-					<div class="woocommerce-product-reviews">
-						<div class="woocommerce-product-rating">
-							<!-- <?php echo wc_get_rating_html($product->get_average_rating()); ?>
-							<span class="review-count">
-								(<?php echo $product->get_rating_count(); ?> <?php _e('reviews', 'woocommerce'); ?>)
-							</span> -->
+					<?php
+					$args = array(
+						'post_type'   	=> 'product',
+						'post_id'     	=> $product->get_id(),
+						'status'      	=> 'approve',
+						// 'number'   	   => 5, // Number of reviews to display
+						'number'      	=> 24, // Number of reviews to display
+						'orderby'	  	=> "comment_date",
+						'order'	  		=> "DESC",
+					);
+
+					$reviews = new WP_Comment_Query();
+					$reviews = $reviews->query($args);
+					?>
+
+					<!-- <div class="woocommerce-product-rating">
+						<?php echo wc_get_rating_html($product->get_average_rating()); ?>
+						<span class="review-count">
+							(<?php echo $product->get_rating_count(); ?> <?php _e('reviews', 'woocommerce'); ?>)
+						</span>
+					</div> -->
+
+					<?php if ($reviews) : ?>
+						<div class="relative py-6 grid xl:grid-cols-3 lg:grid-cols-2 gap-4">
+							<?php foreach ($reviews as $review) : ?>
+								<?php clog($review); ?>
+								<div class="relative w-full rounded-lg border border-zinc-500/5 p-2.5">
+									<div class="absolute right-2.5 top-2.5">
+										<div class="relative flex items-center">
+											<div class="relative flex text-yellow-100 w-fit overflow-hidden">
+												<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+													<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+												</svg>
+												<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+													<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+												</svg>
+												<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+													<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+												</svg>
+												<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+													<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+												</svg>
+												<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+													<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+												</svg>
+												<div class="absolute bg-yellow-900 top-0 left-0 bottom-0 right-0 mix-blend-color-burn" style="width:<?php echo (intval(get_comment_meta($review->comment_ID, 'rating', true) ?? 0) / 5 * 100); ?>% ;"></div>
+											</div>
+										</div>
+									</div>
+
+									<div class="relative space-y-2">
+										<div class="relative flex space-x-2 items-center md:py-0 py-2">
+											<div class="relative flex items-center justify-center h-10 w-10 bg-zinc-100 overflow-hidden rounded-full">
+												<span class="uppercase font-extrabold text-slate-500 text-sm"><?php echo substr(esc_html($review->comment_author), 0, 1) ?? "L"; ?></span>
+											</div>
+											<span class="text-base font-semibold line-clamp-1"><?php echo esc_html($review->comment_author); ?></span>
+										</div>
+										<p class="text-xs font-medium"><?php echo esc_html($review->comment_content); ?></p>
+										<span class="text-[10px]"><?php echo date(get_option('date_format', "F j, Y"), strtotime($review->comment_date)); ?></span>
+									</div>
+								</div>
+							<?php endforeach; ?>
 						</div>
-						<?php
-						$args = array(
-							'post_type'   => 'product',
-							'post_id'     => $product->get_id(),
-							'status'      => 'approve',
-							'number'      => 5, // Number of reviews to display
-						);
+					<?php endif; ?>
 
-						$reviews = get_comments($args);
-
-						if ($reviews) :
-							foreach ($reviews as $review) :
-							// echo "<pre>";
-							// print_r($review);
-							// echo "</pre>";
-
-							// echo '<div class="review">';
-							// echo '<p class="review-author">' . esc_html($review->comment_author) . '</p>';
-							// echo '<div class="review-rating">' . wc_get_rating_html(intval(get_comment_meta($review->comment_ID, 'rating', true))) . '</div>';
-							// echo '<p class="review-text">' . esc_html($review->comment_content) . '</p>';
-							// echo '</div>';
-							endforeach;
-						else :
-							echo '<p>' . __('There are no reviews yet.', 'woocommerce') . '</p>';
-						endif;
-						?>
+				<?php else : ?>
+					<div class="relative">
+						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque culpa facilis nostrum molestiae consequuntur quos repellat molestias iusto quasi voluptatem at rerum, error nam earum explicabo natus assumenda excepturi illo?</p>
 					</div>
 				<?php endif; ?>
 			</div>
