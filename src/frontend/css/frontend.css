@@ -508,7 +508,7 @@ form.lost_reset_password {
 }
 
 .single-product-item h3.menu__name {
-	@apply lg:text-4xl md:text-3xl text-2xl font-bold line-clamp-2 mt-2 max-w-xs;
+	@apply xl:text-4xl lg:text-3xl md:text-3xl text-2xl font-bold line-clamp-2 mt-2 max-w-xs;
 }
 
 .single-product-item p {

@@ -745,6 +745,13 @@ if (!function_exists('get_product_gallery_images')) {
             //throw $th;
         }
 
+        if (count($output) <= 3) {
+            $range = range((count($output)), 5);
+            foreach ($range as $key => $value) {
+                $output[] = esc_url(wc_placeholder_img_src());
+            }
+        }
+
         return $output;
     }
 }

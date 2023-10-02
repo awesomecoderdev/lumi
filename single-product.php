@@ -40,16 +40,16 @@ if (!defined('ABSPATH')) {
 	</div>
 
 	<?php while (have_posts()) : the_post(); ?>
-		<div class="relative grid grid-cols-12 gap-4">
-			<div class="relative col-span-4 grid grid-cols-6 gap-4 h-full max-h-96">
+		<div class="relative grid xl:grid-cols-12 lg:grid-cols-10 gap-4">
+			<div class="relative xl:col-span-4 lg:col-span-10 xl:pb-0 lg:pb-10 pb-0 grid grid-cols-6 gap-4 h-full xl:max-h-96">
 				<div class="relative col-span-2">
 					<div class="absolute -top-5 flex w-full justify-center items-end h-14 bg-gradient-to-b from-white z-10">
 					</div>
-					<div class="relative grid gap-4 gallery max-h-96 overflow-scroll no-scrollbar">
+					<div class="relative grid gap-4 gallery xl:max-h-96 lg:max-h-[32rem] md:max-h-96 max-h-72 overflow-scroll no-scrollbar">
 						<?php foreach ($images as $key => $image) : ?>
-							<div class="relative h-28 gallery-item rounded-xl overflow-hidden cursor-pointer <?php echo $key == 0 ? "active" : "" ?>">
-								<img class="relative rounded-xl aspect-[5/4]" src="<?php echo $image; ?>" alt="<?php the_title() ?>">
-								<div class="gallery-shadow absolute rounded-xl inset-0 flex items-center justify-center bg-zinc-900/15 backdrop-filter">
+							<div class="relative xl:h-28 gallery-item rounded-xl overflow-hidden cursor-pointer border border-zinc-300/20 <?php echo $key == 0 ? "active" : "" ?>">
+								<img class="relative rounded-xl aspect-[4/4]" src="<?php echo $image; ?>" alt="<?php the_title() ?>">
+								<div class="gallery-shadow absolute rounded-xl inset-0 flex items-center justify-center bg-zinc-900/5 backdrop-filter">
 									<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 										<mask id="path-1-inside-1_28_3784" fill="white">
 											<path d="M0 5.00001C0 2.23858 2.23858 0 5 0H16.3333C19.0948 0 21.3333 2.23858 21.3333 5V16.3333C21.3333 19.0948 19.0948 21.3333 16.3333 21.3333H5.00001C2.23858 21.3333 0 19.0948 0 16.3333V5.00001Z" />
@@ -71,13 +71,13 @@ if (!defined('ABSPATH')) {
 					<img class="relative h-full rounded-xl aspect-[5/4] cursor-pointer" src="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="<?php the_title() ?>">
 				</div>
 			</div>
-			<div class="relative h-full col-span-5 flex items-center single-product-item">
+			<div class="relative xl:col-span-5 lg:col-span-6 h-full flex items-center single-product-item">
 				<div class="relative space-y-3 h-full overflow-hidden rounded-xl px-2 pb-2">
 					<?php do_action("woocommerce_single_product_summary") ?>
 				</div>
 			</div>
-			<div class="relative col-span-3 ">
-				<div class="relative rounded-xl border border-slate-200/50 px-5 py-4 pt-3 space-y-2">
+			<div class="relative xl:col-span-3 lg:col-span-4">
+				<div class="relative xl:h-auto h-full rounded-xl border border-slate-200/50 px-5 py-4 pt-3 space-y-2">
 					<p class="text-zinc-800"><?php _e("Interest free instalments available.", "lumi") ?></p>
 					<h2 class="text-zinc-900 text-2xl font-semibold"><?php _e("Shipping to UAE", "lumi") ?></h2>
 					<div class="relative space-y-2">
@@ -211,8 +211,8 @@ if (!defined('ABSPATH')) {
 		</div>
 	<?php endwhile; ?>
 
-	<div class="relative py-4">
-		<div class="relative px-4 py-2 border border-primary-500 flex items-center justify-between rounded-2xl">
+	<div class="relative xl:py-4 lg:py-10 py-5">
+		<div class="relative px-4 py-2 border border-primary-500 flex flex-wrap-reverse items-center justify-between rounded-2xl">
 			<a class="block py-2 px-5 min-w-[10rem] text-center rounded-full single-product-section-link active" href="#general"><?php _e("General Information", "lumi"); ?></a>
 			<a class="block py-2 px-5 min-w-[10rem] text-center rounded-full single-product-section-link" href="#info"><?php _e("Additional Information", "lumi"); ?></a>
 			<a class="block py-2 px-5 min-w-[10rem] text-center rounded-full single-product-section-link" href="#reviews"><?php _e("Reviews", "lumi"); ?></a>
