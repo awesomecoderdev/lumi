@@ -328,6 +328,7 @@ if (!function_exists('get_lumi_product_color')) {
         $default = "green";
 
         if ($id) {
+            $term = get_term($id);
             $color = get_term_meta($id, "color", true);
 
             if ($color) {

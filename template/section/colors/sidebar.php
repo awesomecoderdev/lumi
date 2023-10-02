@@ -2,7 +2,7 @@
     <h2 class="font-semibold text-base"><?php _e("Colors", "lumi"); ?></h2>
     <div class="relative mx-auto grid grid-cols-4 gap-3 py-2">
         <?php foreach (get_lumi_categories([
-            "taxonomy" => "product_color",
+            "taxonomy" => "pa_color", // old product_color
             "number" => 100,
         ]) as $key => $category) : ?>
             <a class="relative grid mx-auto" href="<?php echo get_lumi_filter_url($category); ?>">

@@ -79,7 +79,7 @@ if (!defined('ABSPATH')) {
                         'terms'    => $query->slug, // Custom taxonomy terms
                     ],
                     [
-                        'taxonomy' => 'product_color',
+                        'taxonomy' => "pa_color", // old product_color
                         'field'    => 'slug',
                         'terms'    => $colors ?? ["lumi"],
                     ],

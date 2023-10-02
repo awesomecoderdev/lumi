@@ -30,7 +30,8 @@
 
 
 // Replace the default slug with the custom color field in the term list table
-add_filter('manage_edit-product_color_columns', 'lumi_taxonomy_custom_column');
+// add_filter('manage_edit-product_color_columns', 'lumi_taxonomy_custom_column');
+add_filter('manage_edit-pa_color_columns', 'lumi_taxonomy_custom_column');
 function lumi_taxonomy_custom_column($columns)
 {
     $new_columns = [
@@ -46,7 +47,8 @@ function lumi_taxonomy_custom_column($columns)
 }
 
 // show the color in table
-add_filter('manage_product_color_custom_column', 'lumi_taxonomy_custom_column_data', 9999, 3);
+// add_filter('manage_product_color_custom_column', 'lumi_taxonomy_custom_column_data', 9999, 3);
+add_filter('manage_pa_color_custom_column', 'lumi_taxonomy_custom_column_data', 9999, 3);
 function lumi_taxonomy_custom_column_data($deprecated, $column_name, $term_id)
 {
     if ($column_name === 'color') {
@@ -95,14 +97,16 @@ function lumi_create_color_taxonomies()
         'public'                => false, // Disable the public slug
     );
 
-    register_taxonomy('product_color', 'product', $args);
+    // register_taxonomy('product_color', 'product', $args);
+    register_taxonomy('pa_color', 'product', $args);
 }
 // hook into the init action and call create_book_taxonomies when it fires
-add_action('init', 'lumi_create_color_taxonomies', 0);
+// add_action('init', 'lumi_create_color_taxonomies', 0);
 
 
 // Add custom field to term edit form
-add_action("product_color_add_form_fields", 'lumi_taxonomy_add_form_fields', 10);
+// add_action("product_color_add_form_fields", 'lumi_taxonomy_add_form_fields', 10);
+add_action("pa_color_add_form_fields", 'lumi_taxonomy_add_form_fields', 10);
 function lumi_taxonomy_add_form_fields($color)
 {
 ?>
@@ -116,7 +120,8 @@ function lumi_taxonomy_add_form_fields($color)
 <?php
 }
 
-add_action('product_color_edit_form_fields', 'lumi_taxonomy_edit_form_fields', 10, 2);
+// add_action('product_color_edit_form_fields', 'lumi_taxonomy_edit_form_fields', 10, 2);
+add_action('pa_color_edit_form_fields', 'lumi_taxonomy_edit_form_fields', 10, 2);
 function lumi_taxonomy_edit_form_fields($color, $taxonomy)
 {
     $color = get_lumi_product_color($color->term_id);
@@ -133,11 +138,13 @@ function lumi_taxonomy_edit_form_fields($color, $taxonomy)
 }
 
 // Save custom field when editing term
-add_action('edited_product_color', 'lumi_taxonomy_save_custom_fields', 10);
-add_action('create_product_color', 'lumi_taxonomy_save_custom_fields', 10);
+// add_action('edited_product_color', 'lumi_taxonomy_save_custom_fields', 10);
+// add_action('create_product_color', 'lumi_taxonomy_save_custom_fields', 10);
+add_action('edited_pa_color', 'lumi_taxonomy_save_custom_fields', 10);
+add_action('create_pa_color', 'lumi_taxonomy_save_custom_fields', 10);
 function lumi_taxonomy_save_custom_fields($term_id)
 {
-    if (isset($_POST['color'], $_POST["taxonomy"]) && $_POST["taxonomy"] == "product_color") {
+    if (isset($_POST['color'], $_POST["taxonomy"]) && $_POST["taxonomy"] == "pa_color") { // previous "product_color"
         $color = sanitize_text_field($_POST['color']);
         update_term_meta($term_id, 'color', $color);
     }
