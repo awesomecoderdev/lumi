@@ -35,8 +35,8 @@ if (!defined('ABSPATH')) {
         <div class="relative md:col-span-5 col-span-1 max-sm:hidden">
             <div class="relative max-w-sm mx-auto flex flex-col justify-end bg-gray-200 overflow-hidden bg-img-cover bg-center bg-no-repeat rounded-xl h-full w-full aspect-[4/3]" style="background: url(<?php echo url("img/auth/banner.png") ?>);">
                 <div class="relative p-4 py-6 text-white">
-                    <h2 class=" text-3xl font-semibold"><?php _e("Welcome to Lumi", "lumi"); ?></h2>
-                    <p class="lead text-base font-medium"><?php _e("Luxury shopping without limits.", "lumi") ?></p>
+                    <h2 class=" text-3xl font-semibold"><?php _e("Create an account", "lumi"); ?></h2>
+                    <p class="lead text-sm font-medium"><?php _e("Enjoy Exclusive offers; orders History & Address book , Save item in wishlist and much more .", "lumi") ?></p>
                     <div class="relative flex items-center gap-2 pt-2">
                         <span class="h-3 w-3 rounded-full bg-slate-50"></span>
                         <span class="h-3 w-3 rounded-full bg-slate-50"></span>
