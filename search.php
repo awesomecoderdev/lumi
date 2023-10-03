@@ -64,11 +64,12 @@ if (!defined('ABSPATH')) {
                 // "post__in" => lumi_get_wishlist()
                 'posts_per_page' => 12, // Adjust the number of posts per page as needed
                 'paged' => $paged, // Use the current page number
-                's' => get_search_query(),
             ];
             $colors = isset($_GET["colors"]) && !empty($_GET["colors"]) ? sanitize_text_field(strtolower($_GET["colors"])) : null;
 
-
+            if (isset($_GET["s"]) && !empty($_GET["s"])) {
+                $props['s'] = get_search_query();
+            }
 
             if ($colors) {
                 $colors = explode(",", $colors);
@@ -181,7 +182,6 @@ if (!defined('ABSPATH')) {
 
             <?php else : ?>
                 <div class="relative w-full flex justify-center items-center h-full">
-
                     <div class="relative max-w-sm space-y-2">
                         <div class="relative flex items-center justify-center rounded-full bg-primary-50/15 overflow-hidden p-20">
                             <svg class="h-full w-full text-primary-500" width="141" height="67" viewBox="0 0 141 67" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -198,11 +198,8 @@ if (!defined('ABSPATH')) {
                                 <path d="M127.02 42.3754C124.011 44.7348 125.663 49.9844 129.497 49.9844C133.036 49.9844 135.101 46.6812 133.508 43.5551C132.092 40.8418 129.556 40.3699 127.02 42.3754ZM130.618 44.7348C131.443 45.5605 130.972 47.0352 129.91 47.0352C128.848 47.0352 128.258 46.0324 128.671 44.9707C129.025 43.909 129.733 43.85 130.618 44.7348Z" fill="#92B193" />
                                 <path d="M76.824 54.1133C57.1822 54.8211 33.2935 57.4164 14.0057 60.9555C0.262298 63.4918 -0.858404 63.9047 0.380268 65.7922C0.734174 66.441 2.56269 66.2641 9.93574 64.7895C26.9822 61.4274 46.86 58.95 67.0916 57.5934C77.1189 56.9446 112.51 57.1805 122.419 58.0063C126.43 58.3602 126.666 58.3012 126.666 57.1805C126.666 56.4727 126.489 55.8239 126.253 55.7059C125.545 55.293 107.909 54.1723 98.0584 53.9364C93.2217 53.8184 83.6662 53.8774 76.824 54.1133Z" fill="#92B193" />
                             </svg>
-
                         </div>
-
                         <div class="text-base py-4 font-semibold text-center"><?php _e("Your search", "lumi") ?> <strong>“<?php echo get_search_query(); ?>”</strong> <?php _e('didn’t match any products.', 'lumi') ?></div>
-
                         <div class="relative flex justify-center">
                             <button class="relative flex items-center bg-primary-500 rounded-full px-4 py-2 text-sm text-slate-50 mx-auto  space-x-2" onclick="history.back();">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
@@ -211,9 +208,7 @@ if (!defined('ABSPATH')) {
                                 <?php _e("Go Back", "lumi") ?>
                             </button>
                         </div>
-
                     </div>
-
                 </div>
             <?php endif; ?>
         </div>

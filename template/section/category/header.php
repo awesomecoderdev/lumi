@@ -18,7 +18,7 @@
 </section> -->
 
 <?php if (lumi_path("categories") || lumi_path("brand")) : ?>
-    <div class="relative border-b border-primary-50/50 dark:border-slate-50/25"></div>
+    <div class="relative border-b border-primary-50/50 dark:border-slate-50/25 md:pb-0 pb-2"></div>
 <?php endif; ?>
 
 

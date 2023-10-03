@@ -63,11 +63,11 @@ if (!defined('ABSPATH')) {
                 <div class="lg:w-[60%] w-1/2 relative flex lg:justify-between justify-start items-center space-x-4">
                     <a href="<?php echo site_url("/") ?>"><img class="h-auto lg:w-[120px] w-20" src="<?php echo url("img/logo.png") ?>" alt="<?php echo bloginfo("title") ?>"></a>
                     <div class="relative border border-primary-100 text-slate-600 dark:text-white rounded-full py-0.5 px-3 xl:w-[420px] lg:w-96 w-full">
-                        <svg class="absolute left-2.5 top-[50%] translate-y-[-50%]" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="absolute h-6 w-6 text-slate-300 left-2.5 top-[50%] translate-y-[-50%]" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M21.7555 20.6065L18.3182 17.2458L18.2376 17.1233C18.0878 16.9742 17.883 16.8902 17.6692 16.8902C17.4554 16.8902 17.2505 16.9742 17.1007 17.1233C14.1795 19.8033 9.67815 19.949 6.58201 17.4637C3.48586 14.9784 2.75567 10.6334 4.87568 7.31017C6.9957 3.98697 11.3081 2.71685 14.9528 4.34214C18.5976 5.96743 20.4438 9.98379 19.267 13.7276C19.1823 13.9981 19.2515 14.2922 19.4487 14.4992C19.6459 14.7062 19.9411 14.7946 20.223 14.7311C20.505 14.6676 20.7309 14.4619 20.8156 14.1914C22.2224 9.74864 20.0977 4.96755 15.8161 2.94106C11.5345 0.914562 6.38084 2.25082 3.68905 6.08542C0.99727 9.92001 1.57518 15.1021 5.04893 18.2795C8.52268 21.4569 13.8498 21.6759 17.5841 18.7949L20.6277 21.7705C20.942 22.0765 21.4502 22.0765 21.7645 21.7705C22.0785 21.4602 22.0785 20.9606 21.7645 20.6503L21.7555 20.6065Z" fill="currentColor" />
                         </svg>
                         <form class="relative overflow-hidden m-0 p-0 pl-5" action="<?php echo get_lumi_filter_url() ?>" method="GET">
-                            <input type="text" name="s" id="" placeholder="<?php _e('search for product', 'lumi') ?>" value="<?php echo get_search_query(); ?>" class="bg-transparent outline-none border-none border-transparent outline-transparent focus:outline-none focus-visible:outline-none focus:ring-transparent w-full">
+                            <input type="text" name="s" id="" placeholder="<?php _e('search for product', 'lumi') ?>" value="<?php echo get_search_query(); ?>" class="bg-transparent outline-none border-none border-transparent outline-transparent focus:outline-none focus-visible:outline-none focus:ring-transparent w-full text-zinc-500">
                         </form>
                     </div>
                 </div>
