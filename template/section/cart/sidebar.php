@@ -1,4 +1,4 @@
-<div class="relative p-4 rounded border text-base font-semibold space-y-4">
+<div class="relative p-4 rounded border text-base font-semibold space-y-4 xl:sticky md:sticky md:top-20 md:mt-5">
     <?php foreach (lumi_get_cart() as $key => $item) : ?>
         <?php
         // Get product details

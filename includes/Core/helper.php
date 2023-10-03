@@ -354,26 +354,43 @@ if (!function_exists('get_lumi_product_color')) {
  *
  */
 if (!function_exists('get_lumi_filter_url')) {
-    function get_lumi_filter_url($term)
+    function get_lumi_filter_url($term = null)
     {
         $query = [];
         $object = get_queried_object();
-        $url = $object && is_a($object, 'WP_Term') ? get_term_link($object) : get_term_link($term);
+        $url = $object && is_a($object, 'WP_Term') ? get_term_link($object) : site_url("/");
         $color = isset($_GET["colors"]) && !empty($_GET["colors"]) ? sanitize_text_field(strtolower($_GET["colors"])) : null;
+        $search = isset($_GET["s"]) && !empty($_GET["s"]) ? sanitize_text_field(get_search_query()) : null;
         if ($color) {
             $colors = explode(",", $color);
 
             $colors = array_values(array_unique($colors));
 
-            if (!in_array("$term->slug", $colors)) {
-                $colors = array_merge($colors, [$term->slug]);
+            if (isset($term->slug)) {
+                if (!in_array("$term->slug", $colors)) {
+                    $colors = array_merge($colors, [$term->slug]);
+                } else {
+                    unset($colors[array_search("$term->slug", $colors)]);
+                }
+                $query["colors"] = is_array($colors) ? implode(",", $colors) : "$term->slug";
             } else {
-                unset($colors[array_search("$term->slug", $colors)]);
+                if (is_array($colors)) {
+                    $query["colors"] = implode(",", $colors);
+                }
             }
-            $query["colors"] = is_array($colors) ? implode(",", $colors) : "$term->slug";
         } else {
-            $query["colors"] = "$term->slug";
+            if (isset($term->slug)) {
+                $query["colors"] = "$term->slug";
+            }
         }
+
+
+        if ($term) {
+            if ($search) {
+                $query["s"] = $search;
+            }
+        }
+
 
         $params = http_build_query($query);
 

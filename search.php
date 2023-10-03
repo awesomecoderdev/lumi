@@ -33,7 +33,7 @@ if (!defined('ABSPATH')) {
 <main id="main" class="<?php echo lumi_container("not-prose"); ?>">
     <div class="relative w-full grid xl:grid-cols-10 lg:grid-cols-8 gap-8">
 
-        <div class="relative xl:col-span-2 lg:col-span-2 space-y-3 lg:p-4 lg:pb-0 lg:pl-0 font-normal lg:border-r">
+        <div class="relative xl:col-span-2 lg:col-span-2 space-y-3 lg:p-4 lg:pb-0 lg:pl-0 font-normal lg:border-r ">
             <!-- start:category sidebar -->
             <?php get_template_part("template/section/category/sidebar", null, [
                 "class" => "relative"
@@ -64,7 +64,7 @@ if (!defined('ABSPATH')) {
                 // "post__in" => lumi_get_wishlist()
                 'posts_per_page' => 12, // Adjust the number of posts per page as needed
                 'paged' => $paged, // Use the current page number
-                's' => get_search_query()
+                's' => get_search_query(),
             ];
             $colors = isset($_GET["colors"]) && !empty($_GET["colors"]) ? sanitize_text_field(strtolower($_GET["colors"])) : null;
 
@@ -76,11 +76,11 @@ if (!defined('ABSPATH')) {
                 $props['tax_query'] = [
                     // 'relation' => 'OR', // Use 'AND' if you want posts that have all specified terms.
                     'relation' => 'AND', // Change to 'OR' if you want posts that match either taxonomy term.
-                    [
-                        'taxonomy' => $query->taxonomy,
-                        'field'    => 'slug',
-                        'terms'    => $query->slug, // Custom taxonomy terms
-                    ],
+                    // [
+                    //     'taxonomy' => $query?->taxonomy ?? "pa_color",
+                    //     'field'    => 'slug',
+                    //     'terms'    => $query->slug, // Custom taxonomy terms
+                    // ],
                     [
                         'taxonomy' => "pa_color", // old product_color
                         'field'    => 'slug',
@@ -182,7 +182,7 @@ if (!defined('ABSPATH')) {
                 <div class="relative w-full flex justify-center items-center h-full">
 
                     <div class="relative max-w-sm space-y-2">
-                        <div class="relative h-40 w-40 rounded-full bg-primary-50/15 overflow-hidden p-20">
+                        <div class="relative flex items-center justify-center rounded-full bg-primary-50/15 overflow-hidden p-20">
                             <svg class="h-full w-full text-primary-500" width="141" height="67" viewBox="0 0 141 67" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M16.3651 1.14544C9.75881 3.74075 3.86037 11.5267 1.26506 21.0822C-0.268534 26.8626 -0.150565 36.2411 1.61897 40.724C4.98108 49.5126 11.2334 52.1669 19.1963 48.156C23.9151 45.7966 28.1619 41.1368 31.1701 34.9435C34.2373 28.5142 35.417 22.9697 35.1221 15.4786C34.9451 10.288 34.7092 9.2263 33.1756 6.39505C30.8162 2.08919 27.926 0.26067 23.2072 0.0247345C20.6119 -0.093235 18.7244 0.201687 16.3651 1.14544ZM28.4569 5.15637C31.1112 7.6927 32.2908 11.4087 32.2908 16.9532C32.2908 28.9271 25.9795 41.5497 18.0166 45.5017C12.4131 48.3329 7.93029 46.9763 5.276 41.6677C0.439279 31.8763 3.86037 14.7118 12.1182 7.45676C17.8987 2.38411 24.6229 1.44036 28.4569 5.15637Z" fill="#92B193" />
                                 <path d="M17.6627 7.2798C9.58187 11.2907 4.45023 24.0314 6.33773 35.1794C7.98929 45.0298 13.7108 46.8583 20.7299 39.7802C26.3924 34.0587 29.6366 24.9161 29.2237 15.7735C28.8108 6.45401 24.9768 3.62277 17.6627 7.2798ZM25.3307 11.0548C28.1619 16.6583 25.2127 29.8708 19.6682 36.713C17.3088 39.5442 13.2389 41.6677 11.7643 40.7829C9.10999 39.0724 8.28421 28.4552 10.3487 21.8489C12.767 14.122 18.1936 8.51847 22.8534 8.87238C23.9151 8.93136 24.6229 9.58019 25.3307 11.0548Z" fill="#92B193" />
@@ -197,6 +197,7 @@ if (!defined('ABSPATH')) {
                                 <path d="M127.02 42.3754C124.011 44.7348 125.663 49.9844 129.497 49.9844C133.036 49.9844 135.101 46.6812 133.508 43.5551C132.092 40.8418 129.556 40.3699 127.02 42.3754ZM130.618 44.7348C131.443 45.5605 130.972 47.0352 129.91 47.0352C128.848 47.0352 128.258 46.0324 128.671 44.9707C129.025 43.909 129.733 43.85 130.618 44.7348Z" fill="#92B193" />
                                 <path d="M76.824 54.1133C57.1822 54.8211 33.2935 57.4164 14.0057 60.9555C0.262298 63.4918 -0.858404 63.9047 0.380268 65.7922C0.734174 66.441 2.56269 66.2641 9.93574 64.7895C26.9822 61.4274 46.86 58.95 67.0916 57.5934C77.1189 56.9446 112.51 57.1805 122.419 58.0063C126.43 58.3602 126.666 58.3012 126.666 57.1805C126.666 56.4727 126.489 55.8239 126.253 55.7059C125.545 55.293 107.909 54.1723 98.0584 53.9364C93.2217 53.8184 83.6662 53.8774 76.824 54.1133Z" fill="#92B193" />
                             </svg>
+
                         </div>
 
                         <div class="text-base py-4 font-semibold text-center"><?php _e("Your search", "lumi") ?> <strong>“<?php echo get_search_query(); ?>”</strong> <?php _e('didn’t match any products.', 'lumi') ?></div>

@@ -118,7 +118,7 @@ if (!defined('ABSPATH')) {
             <!-- end:cart body -->
         </div>
         <!-- start:category sidebar -->
-        <div class="relative lg:col-span-3 space-y-3 font-normal" id="lumi-cart-sidebar">
+        <div class="relative lg:col-span-3 space-y-3 font-normal " id="lumi-cart-sidebar">
             <!-- start:category sidebar -->
             <?php get_template_part("template/section/cart/sidebar", null, []); ?>
             <!-- start:category sidebar -->

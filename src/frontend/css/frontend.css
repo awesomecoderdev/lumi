@@ -536,8 +536,13 @@ form.lost_reset_password {
 	@apply font-semibold text-sm;
 }
 
+.single-product-item form.cart,
 .single-product-item a {
 	@apply text-primary-500;
+}
+
+.single-product-item form.cart {
+	@apply font-semibold;
 }
 
 .single-product-item img,

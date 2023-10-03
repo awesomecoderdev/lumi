@@ -51,7 +51,7 @@ if (!defined('ABSPATH')) {
 					</div>
 					<div class="relative grid gap-4 gallery xl:max-h-96 lg:max-h-[32rem] md:max-h-96 max-h-72 overflow-scroll no-scrollbar">
 						<?php foreach ($images as $key => $image) : ?>
-							<div class="relative xl:h-28 gallery-item rounded-xl overflow-hidden cursor-pointer border border-zinc-300/20 <?php echo $key == 0 ? "active" : "" ?>">
+							<div class="relative xl:h-28 gallery-item rounded-xl overflow-hidden cursor-pointer border border-zinc-300/20 single-product-image-trigger <?php echo $key == 0 ? "active" : "" ?>" data-id="#single-product-image-<?php echo $key; ?>">
 								<img class="relative rounded-xl aspect-[4/4]" src="<?php echo $image; ?>" alt="<?php the_title() ?>">
 								<div class="gallery-shadow absolute rounded-xl inset-0 flex items-center justify-center bg-zinc-900/5 backdrop-filter">
 									<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -71,8 +71,10 @@ if (!defined('ABSPATH')) {
 						</svg>
 					</div>
 				</div>
-				<div class="relative col-span-4">
-					<img class="relative h-full rounded-xl aspect-[5/4] cursor-pointer" src="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="<?php the_title() ?>">
+				<div class="relative col-span-4 rounded-xl overflow-hidden border border-zinc-100/50">
+					<?php foreach ($images as $key => $image) : ?>
+						<img id="single-product-image-<?php echo $key; ?>" class="single-product-image relative h-full rounded-xl aspect-[5/4] cursor-pointer" <?php echo $key != 0 ? 'style="display: none;"' : "" ?> src="<?php echo $image; ?>" alt="<?php the_title() ?>">
+					<?php endforeach; ?>
 				</div>
 			</div>
 			<div class="relative xl:col-span-5 lg:col-span-6 h-full flex items-center single-product-item">

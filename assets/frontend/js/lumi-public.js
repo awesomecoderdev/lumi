@@ -647,4 +647,15 @@ $(document).ready(function () {
 			}); // End ajax
 		},
 	});
+
+	// single product trigger
+	$(document).on("click", ".single-product-image-trigger", function (e) {
+		e.preventDefault();
+		$(".single-product-image-trigger").removeClass("active");
+		$(this).addClass("active");
+
+		let current = $(this).attr("data-id");
+		$(".single-product-image").hide();
+		$(current).show();
+	});
 });
