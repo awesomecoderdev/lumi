@@ -582,26 +582,34 @@ $(document).ready(function () {
 				data: form,
 				success: function (response) {
 					if (response.success) {
-						$.toast({
-							heading: lumi.toast.success.heading,
-							text: response.message,
-							bgColor: "#059669",
-							textColor: "white",
-							position: "bottom-right",
-							afterHidden: function () {
-								location.reload();
-							},
-						});
+						try {
+							$.toast({
+								heading: lumi.toast.success.heading,
+								text: response.message,
+								bgColor: "#059669",
+								textColor: "white",
+								position: "bottom-right",
+								afterHidden: function () {
+									location.reload();
+								},
+							});
+						} catch (error) {
+							location.reload();
+						}
 					} else {
 						if (response?.errors) {
 							response?.errors?.map((error) => {
-								$.toast({
-									heading: lumi.toast.error.heading,
-									text: error,
-									bgColor: "#e11d48",
-									textColor: "white",
-									position: "bottom-right",
-								});
+								try {
+									$.toast({
+										heading: lumi.toast.error.heading,
+										text: error,
+										bgColor: "#e11d48",
+										textColor: "white",
+										position: "bottom-right",
+									});
+								} catch (error) {
+									// skip
+								}
 							});
 						}
 					}

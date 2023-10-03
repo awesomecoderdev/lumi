@@ -51,7 +51,7 @@ if (!defined('ABSPATH')) {
                 <div class="relative grid">
                     <label for="email"><?php _e("Email Address", "lumi") ?></label>
                     <div class="relative border border-primary-50 rounded-lg">
-                        <div class="absolute z-50 left-2 top-1/2 transform translate-y-[-50%] w-20">
+                        <div class="absolute pointer-events-none z-50 left-2 top-1/2 transform translate-y-[-50%] w-20">
                             <div class="relative h-full w-full flex items-center text-primary-500 space-x-2">
                                 <svg class="h-6 w-6" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M19.875 4.5H4.125C3.08947 4.5 2.25 5.33947 2.25 6.375V17.625C2.25 18.6605 3.08947 19.5 4.125 19.5H19.875C20.9105 19.5 21.75 18.6605 21.75 17.625V6.375C21.75 5.33947 20.9105 4.5 19.875 4.5Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
@@ -67,7 +67,7 @@ if (!defined('ABSPATH')) {
                     <label for="password"><?php _e("Password", "lumi") ?></label>
                     <a class="text-red-600 absolute right-2 text-xs " href="<?php echo site_url("/my-account/lost-password") ?>"><?php _e("Forget password ?", "lumi") ?></a>
                     <div class="relative border border-primary-50 rounded-lg">
-                        <div class="absolute z-50 left-2 top-1/2 transform translate-y-[-50%] w-20">
+                        <div class="absolute pointer-events-none z-50 left-2 top-1/2 transform translate-y-[-50%] w-20">
                             <div class="relative h-full w-full flex items-center text-primary-500 space-x-2">
                                 <svg class="h-6 w-6" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M15.75 9.75V5.29688C15.75 4.30231 15.3549 3.34849 14.6517 2.64522C13.9484 1.94196 12.9946 1.54688 12 1.54688C11.0054 1.54688 10.0516 1.94196 9.34835 2.64522C8.64509 3.34849 8.25 4.30231 8.25 5.29688V9.75" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />

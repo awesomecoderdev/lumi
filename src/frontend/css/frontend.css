@@ -278,8 +278,13 @@ figure {
 }
 
 /* woocommerce pages */
-.my-account-page:not(.lost-password-page) .woocommerce {
+.my-account-page.is-logged-in:not(.lost-password-page) .woocommerce {
 	@apply relative grid xl:grid-cols-10 gap-6;
+	/* @apply relative grid gap-6; */
+}
+
+.my-account-page:not(.is-not-logged-in) .woocommerce {
+	@apply relative grid gap-6;
 }
 
 .my-account-page .woocommerce .woocommerce-MyAccount-navigation {
