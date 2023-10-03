@@ -1,6 +1,6 @@
 <div class="relative <?php echo isset($args["class"]) ? $args["class"] : "" ?>">
     <h2 class="font-semibold text-base"><?php _e("Colors", "lumi"); ?></h2>
-    <div class="relative mx-auto grid grid-cols-4 gap-3 py-2">
+    <div class="relative mx-auto grid lg:grid-cols-4 md:grid-cols-12 grid-cols-6 gap-3 py-2">
         <?php foreach (get_lumi_categories([
             "taxonomy" => "pa_color", // old product_color
             "number" => 100,

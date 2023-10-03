@@ -601,3 +601,13 @@ form.lost_reset_password {
 #reviews .woocommerce-product-rating .review-count {
 	@apply text-primary-500;
 }
+
+.product-loop-price ins,
+.product-loop-price bdi {
+	@apply no-underline font-bold text-primary-500;
+}
+
+.product-loop-price del,
+.product-loop-price del bdi {
+	@apply text-sm font-semibold italic text-red-500;
+}

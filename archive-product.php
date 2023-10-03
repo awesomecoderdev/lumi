@@ -89,7 +89,7 @@ if (!defined('ABSPATH')) {
                                 </div>
                             </button>
                             <img class="rounded-xl xl:aspect-[3/4] lg:aspect-[3/4] md:aspect-[3/4] w-full  bg-slate-100 dark:bg-slate-400 cursor-pointer" src="<?php the_post_thumbnail_url() ?>" alt="<?php the_title(); ?>">
-                            <div class="relative w-full flex justify-between items-center py-2 ">
+                            <div class="relative w-full flex justify-between items-center pt-2 ">
                                 <a href="<?php the_permalink() ?>" class="not-prose text-sm font-semibold">
                                     <?php the_title(); ?>
                                 </a>
@@ -105,6 +105,7 @@ if (!defined('ABSPATH')) {
                                     </svg>
                                 </button>
                             </div>
+                            <a href="<?php the_permalink() ?>" class="text-sm font-semibold product-loop-price"><?php echo $product->get_price_html(); ?></a>
                         </form>
                     <?php endwhile; ?>
                 <?php endif; ?>

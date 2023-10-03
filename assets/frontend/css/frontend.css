@@ -2974,6 +2974,23 @@ form.lost_reset_password > :not([hidden]) ~ :not([hidden]){
 	--tw-text-opacity: 1;
 	color: rgb(146 177 147 / var(--tw-text-opacity));
 }
+.product-loop-price ins,
+.product-loop-price bdi{
+	font-weight: 700;
+	--tw-text-opacity: 1;
+	color: rgb(146 177 147 / var(--tw-text-opacity));
+	-webkit-text-decoration-line: none;
+	        text-decoration-line: none;
+}
+.product-loop-price del,
+.product-loop-price del bdi{
+	font-size: 0.875rem;
+	line-height: 1.5rem;
+	font-weight: 600;
+	font-style: italic;
+	--tw-text-opacity: 1;
+	color: rgb(239 68 68 / var(--tw-text-opacity));
+}
 :is(.dark .dark\:prose-invert){
 	--tw-prose-body: var(--tw-prose-invert-body);
 	--tw-prose-headings: var(--tw-prose-invert-headings);
@@ -3185,6 +3202,9 @@ form.lost_reset_password > :not([hidden]) ~ :not([hidden]){
 	.md\:grid-cols-10{
 		grid-template-columns: repeat(10, minmax(0, 1fr));
 	}
+	.md\:grid-cols-12{
+		grid-template-columns: repeat(12, minmax(0, 1fr));
+	}
 	.md\:grid-cols-2{
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
@@ -3230,9 +3250,6 @@ form.lost_reset_password > :not([hidden]) ~ :not([hidden]){
 	}
 }
 @media (min-width: 1024px){
-	.lg\:sticky{
-		position: sticky;
-	}
 	.lg\:col-span-10{
 		grid-column: span 10 / span 10;
 	}
