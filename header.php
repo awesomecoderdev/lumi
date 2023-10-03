@@ -149,11 +149,11 @@ if (!defined('ABSPATH')) {
                     </div>
                 </div>
 
-                <div class="relative w-full flex justify-between items-center space-x-3 text-slate-600 dark:text-white font-normal leading-normal">
+                <div class="relative w-full flex justify-between items-center space-x-3 text-slate-600 dark:text-white font-normal leading-normal <?php echo lumi_path("my-account")  ? "hidden" : "" ?>">
                     <a href="<?php echo site_url("/") ?>" class="relative py-2 px-3 border-b-2 <?php echo is_front_page() || is_shop() ? "text-primary-500 dark:text-primary-500 border-primary-50 dark:border-primary-500" : "border-slate-100 dark:border-primary-50/5" ?>">All</a>
                     <a href="<?php echo site_url("/categories/woman") ?>" class="relative py-2 px-3 border-b-2 <?php echo lumi_path("woman") ? "text-primary-500 dark:text-primary-500 border-primary-50 dark:border-primary-500" : "border-slate-100 dark:border-primary-50/5" ?>">Woman</a>
-                    <a href="<?php echo site_url("/categories/man") ?>" class="relative py-2 px-3 border-b-2 <?php echo lumi_path("man")  ? "text-primary-500 dark:text-primary-500 border-primary-50 dark:border-primary-500" : "border-slate-100 dark:border-primary-50/5" ?>">Men</a>
-                    <a href="<?php echo site_url("/categories/kids") ?>" class="relative py-2 px-3 border-b-2 <?php echo lumi_path("kids")  ? "text-primary-500 dark:text-primary-500 border-primary-50 dark:border-primary-500" : "border-slate-100 dark:border-primary-50/5" ?>">Kids</a>
+                    <a href="<?php echo site_url("/categories/man") ?>" class="relative py-2 px-3 border-b-2 <?php echo lumi_path("man") ? "text-primary-500 dark:text-primary-500 border-primary-50 dark:border-primary-500" : "border-slate-100 dark:border-primary-50/5" ?>">Men</a>
+                    <a href="<?php echo site_url("/categories/kids") ?>" class="relative py-2 px-3 border-b-2 <?php echo lumi_path("kids") ? "text-primary-500 dark:text-primary-500 border-primary-50 dark:border-primary-500" : "border-slate-100 dark:border-primary-50/5" ?>">Kids</a>
                 </div>
             </div>
 

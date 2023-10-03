@@ -36,7 +36,7 @@ if (!defined('ABSPATH')) {
             <div class="relative max-w-sm mx-auto flex flex-col justify-end bg-gray-200 overflow-hidden bg-img-cover bg-center bg-no-repeat rounded-xl h-full w-full aspect-[4/3]" style="background: url(<?php echo url("img/auth/banner.png") ?>);">
                 <div class="relative p-4 py-6 text-white">
                     <h2 class=" text-3xl font-semibold"><?php _e("Welcome to Lumi", "lumi"); ?></h2>
-                    <p class="lead text-base font-medium">Luxury shopping without limits.</p>
+                    <p class="lead text-base font-medium"><?php _e("Luxury shopping without limits.", "lumi") ?></p>
                     <div class="relative flex items-center gap-2 pt-2">
                         <span class="h-3 w-3 rounded-full bg-slate-50"></span>
                         <span class="h-3 w-3 rounded-full bg-slate-50"></span>
@@ -90,19 +90,19 @@ if (!defined('ABSPATH')) {
                 </div>
                 <div class="flex items-center py-2">
                     <input id="rememberme" type="checkbox" name="rememberme" value="forever" class="cursor-pointer w-4 h-4 text-primary-600 bg-gray-100 border-gray-300 rounded focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                    <label for="rememberme" class="cursor-pointer ml-2 text-sm font-medium text-slate-600 dark:text-gray-300">Keep me signed in.</label>
+                    <label for="rememberme" class="cursor-pointer ml-2 text-sm font-medium text-slate-600 dark:text-gray-300"><?php _e('Keep me signed in.', 'lumi') ?></label>
                 </div>
 
                 <div class="relative w-full">
                     <button class="mx-auto block bg-primary-500 text-white w-full rounded-md overflow-hidden py-1" type="submit">Sign In</button>
-                    <p class="text-center py-2 text-slate-600">Don’t have an account yet? <a class="text-primary-500" href="<?php echo site_url("/register") ?>">Sign Up now</a></p>
+                    <p class="text-center py-2 text-slate-600"><?php _e('Don’t have an account yet? ', 'lumi') ?> <a class="text-primary-500" href="<?php echo site_url("/register") ?>"><?php _e('Sign Up now', 'lumi') ?></a></p>
                 </div>
 
 
                 <div class="relative space-y-4">
                     <div class="flex items-center gap-3">
                         <span class="h-[0.5px] bg-primary-400 w-full"></span>
-                        <span>or</span>
+                        <span><?php _e('or', 'lumi') ?></span>
                         <span class="h-[0.5px] bg-primary-400 w-full"></span>
                     </div>
                     <a class="flex items-center justify-center gap-2 border rounded-lg p-2" href="<?php echo (new Authorization())->getOauthLoginUrl() ?>">

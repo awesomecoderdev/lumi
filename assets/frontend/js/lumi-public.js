@@ -541,6 +541,22 @@ $(document).ready(function () {
 		}
 	});
 
+	// confirmed password show hidden
+	$(document).on("click", ".confirmed-password-integrator", function (e) {
+		e.preventDefault();
+		let type = $("#confirm_password").attr("type");
+
+		if (type == "password") {
+			$("#confirm_password").attr("type", "text");
+			$("#confirmed-password-hidden").addClass("hidden");
+			$("#confirmed-password-show").removeClass("hidden");
+		} else {
+			$("#confirm_password").attr("type", "password");
+			$("#confirmed-password-hidden").removeClass("hidden");
+			$("#confirmed-password-show").addClass("hidden");
+		}
+	});
+
 	// customer login
 	$("#login-form").validate({
 		rules: {
