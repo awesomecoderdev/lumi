@@ -6,12 +6,12 @@
     <h2 class="font-semibold text-base"><?php _e("Designers", "lumi"); ?></h2>
     <div class="relative grid border-b">
         <?php foreach ($categories as $key => $category) : ?>
-            <a class="relative flex justify-between items-center <?php echo $key >= 6 ? "hidden sidebar-tags" : "" ?>" href="<?php echo get_term_link($category); ?>">
+            <a class="relative flex justify-between items-center <?php echo $key >= 10 ? "hidden sidebar-tags" : "" ?>" href="<?php echo get_term_link($category); ?>">
                 <span><?php echo $category->name; ?></span>
                 <span>(<?php echo $category->count; ?>)</span>
             </a>
         <?php endforeach; ?>
-        <?php if (count($categories) > 5) : ?>
+        <?php if (count($categories) > 10) : ?>
             <div class="relative w-full flex items-center justify-center mx-auto py-3 cursor-pointer" id="sidebar-tags-dropdown">
                 <div class="relative bg-primary-500 rounded-full">
                     <svg class="transform sidebar-categories-arrow" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
