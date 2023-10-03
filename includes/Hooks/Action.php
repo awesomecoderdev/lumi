@@ -149,3 +149,15 @@ function lumi_taxonomy_save_custom_fields($term_id)
         update_term_meta($term_id, 'color', $color);
     }
 }
+
+// custom smtp
+add_action('phpmailer_init', 'mailtrap');
+function mailtrap($phpmailer)
+{
+    $phpmailer->isSMTP();
+    $phpmailer->Host = 'sandbox.smtp.mailtrap.io';
+    $phpmailer->SMTPAuth = true;
+    $phpmailer->Port = 2525;
+    $phpmailer->Username = '5948630cbab798';
+    $phpmailer->Password = '5df707ab01e1b4';
+}

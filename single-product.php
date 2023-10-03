@@ -27,7 +27,7 @@ if (!defined('ABSPATH')) {
 
 <?php get_header(); ?>
 
-<main id="main" class="<?php echo lumi_container("py-10 not-prose"); ?>">
+<main id="main" class="<?php echo lumi_container("not-prose"); ?>">
 	<?php
 
 	$product = wc_get_product(get_the_ID());
@@ -35,9 +35,13 @@ if (!defined('ABSPATH')) {
 
 	?>
 
-	<div class="relative py-5 z-10">
-		<?php do_action("lumi_show_all_notices"); ?>
-	</div>
+	<?php if (wc_notice_count()) : ?>
+		<div class="relative py-5 z-10">
+			<?php do_action("lumi_show_all_notices"); ?>
+		</div>
+	<?php else : ?>
+		<div class="h-4"></div>
+	<?php endif; ?>
 
 	<?php while (have_posts()) : the_post(); ?>
 		<div class="relative grid xl:grid-cols-12 lg:grid-cols-10 gap-4">
