@@ -31,9 +31,9 @@ if (!defined('ABSPATH')) {
 
 <main id="main" class="<?php echo lumi_container("py-10 not-prose"); ?>">
 
-    <div class="relative grid xl:grid-cols-10 gap-10">
-        <div class="relative col-span-5">
-            <div class="relative max-w-sm mx-auto flex flex-col justify-end bg-gray-200 overflow-hidden bg-img-cover bg-center bg-no-repeat rounded-xl h-[90vh] w-full aspect-[4/3]" style="background: url(<?php echo url("img/auth/banner.png") ?>);">
+    <div class="relative grid xl:grid-cols-10 md:grid-cols-10 gap-10">
+        <div class="relative md:col-span-5 col-span-1 max-sm:hidden">
+            <div class="relative max-w-sm mx-auto flex flex-col justify-end bg-gray-200 overflow-hidden bg-img-cover bg-center bg-no-repeat rounded-xl h-full w-full aspect-[4/3]" style="background: url(<?php echo url("img/auth/banner.png") ?>);">
                 <div class="relative p-4 py-6 text-white">
                     <h2 class=" text-3xl font-semibold"><?php _e("Welcome to Lumi", "lumi"); ?></h2>
                     <p class="lead text-base font-medium">Luxury shopping without limits.</p>
@@ -45,7 +45,7 @@ if (!defined('ABSPATH')) {
                 </div>
             </div>
         </div>
-        <div class="relative col-span-5 space-y-5">
+        <div class="relative md:col-span-5  col-span-1 space-y-5">
             <h1 class="text-3xl font-semibold"><?php _e("Sign In to Lumi", "lumi") ?></h1>
             <form id="login-form" action="javascript:void(0)" method="POST" class="relative space-y-3 max-w-sm">
                 <div class="relative grid">

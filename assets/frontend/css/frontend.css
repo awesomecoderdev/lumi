@@ -1271,6 +1271,9 @@ body{
 .col-span-6{
 	grid-column: span 6 / span 6;
 }
+.col-span-1{
+	grid-column: span 1 / span 1;
+}
 .m-0{
 	margin: 0px;
 }
@@ -1404,9 +1407,6 @@ body{
 }
 .h-\[72px\]{
 	height: 72px;
-}
-.h-\[90vh\]{
-	height: 90vh;
 }
 .h-auto{
 	height: auto;
@@ -3107,6 +3107,9 @@ form.lost_reset_password > :not([hidden]) ~ :not([hidden]){
 	--tw-ring-offset-color: #1f2937;
 }
 @media not all and (min-width: 640px){
+	.max-sm\:hidden{
+		display: none;
+	}
 	.max-sm\:space-y-4 > :not([hidden]) ~ :not([hidden]){
 		--tw-space-y-reverse: 0;
 		margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
@@ -3129,6 +3132,12 @@ form.lost_reset_password > :not([hidden]) ~ :not([hidden]){
 	}
 }
 @media (min-width: 768px){
+	.md\:col-span-10{
+		grid-column: span 10 / span 10;
+	}
+	.md\:col-span-5{
+		grid-column: span 5 / span 5;
+	}
 	.md\:mt-14{
 		margin-top: 3.5rem;
 	}
@@ -3173,6 +3182,9 @@ form.lost_reset_password > :not([hidden]) ~ :not([hidden]){
 	}
 	.md\:grid-cols-5{
 		grid-template-columns: repeat(5, minmax(0, 1fr));
+	}
+	.md\:grid-cols-10{
+		grid-template-columns: repeat(10, minmax(0, 1fr));
 	}
 	.md\:flex-col{
 		flex-direction: column;
