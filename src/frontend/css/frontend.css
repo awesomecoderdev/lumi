@@ -378,9 +378,12 @@ div.woocommerce-message {
 }
 
 div.woocommerce-message a {
-	@apply py-2 text-emerald-700 text-base font-semibold italic px-2 underline;
+	@apply py-2 text-emerald-600 text-sm font-semibold italic px-2 underline;
 }
 .woocommerce-notices-wrapper .woocommerce-error {
+	@apply list-none px-0;
+}
+.woocommerce-error {
 	@apply list-none px-0;
 }
 
@@ -488,10 +491,12 @@ form.lost_reset_password {
 	@apply bg-primary-400 rounded-xl px-3 py-1.5 text-sm text-white font-semibold;
 }
 
+.checkout-page .woocommerce-shipping-fields,
 .checkout-page .woocommerce-billing-fields {
 	@apply relative;
 }
 
+.checkout-page .woocommerce-shipping-fields .form-row,
 .checkout-page .woocommerce-billing-fields .form-row {
 	@apply grid xl:grid-cols-8 md:grid-cols-4 gap-2;
 }
@@ -500,7 +505,12 @@ form.lost_reset_password {
 .checkout-page .form-row span input {
 	@apply w-full;
 }
-
+.woocommerce-additional-fields textarea {
+	@apply relative w-full max-w-md border border-primary-500 hover:border-primary-100 rounded-lg;
+}
+.col2-set {
+	@apply grid xl:grid-cols-2 grid-cols-1;
+}
 .checkout-page .form-row label {
 	@apply xl:col-span-3 md:col-span-2 text-sm font-medium flex items-center;
 }
@@ -509,6 +519,40 @@ form.lost_reset_password {
 	@apply xl:col-span-4 md:col-span-2 rounded-lg;
 }
 
+.checkout-page input,
+.checkout-page select {
+	@apply xl:col-span-4 md:col-span-2 border border-primary-500 hover:border-primary-100 rounded-lg;
+}
+
+.checkout-page .checkbox {
+	@apply flex items-center space-x-2 cursor-pointer;
+}
+.checkout-page .checkbox span {
+	@apply text-sm font-semibold;
+}
+.checkout-page input[type="checkbox"] {
+	@apply w-4 h-4 text-primary-600  border-gray-300 rounded  focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600;
+}
+.checkout-page .select2-selection {
+	@apply h-10;
+}
+.select2-container--default
+	.select2-selection--single
+	.select2-selection__rendered {
+	line-height: 40px;
+}
+
+.select2-container--default
+	.select2-selection--single
+	.select2-selection__arrow {
+	height: 37px;
+}
+.screen-reader-text {
+	@apply block h-full w-full p-0;
+	position: relative !important;
+	display: block !important;
+	clip-path: none !important;
+}
 .woocommerce-breadcrumb {
 	@apply flex;
 }
