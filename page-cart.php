@@ -56,6 +56,19 @@ if (!defined('ABSPATH')) {
                     $product_price = $product->get_price();
                     $product_sku = $product->get_sku();
 
+                    echo "<pre>";
+                    // print_r($item);
+                    echo "</pre>";
+
+                    $color = wc_get_product_terms($product->get_id(), 'pa_color', [
+                        "number" => 1,
+                        "slug" => isset($item['color']) ? sanitize_text_field($item['color']) : "awesomecoder",
+                    ])[0] ?? null;
+                    $size = wc_get_product_terms($product->get_id(), 'pa_size', [
+                        "number" => 1,
+                        "slug" => isset($item['size']) ? sanitize_text_field($item['size']) : "awesomecoder",
+                    ])[0] ?? null;
+
                     ?>
                     <div class="relative add-to-cart-from-wishlist flex justify-between items-end rounded-lg" id="cart-item-<?php echo $product_id ?>">
                         <div class="relative h-full w-full md:grid grid-cols-3 gap-4">
@@ -65,6 +78,26 @@ if (!defined('ABSPATH')) {
                                     <h2 class="md:text-lg text-sm font-semibold line-clamp-2 xl:w-56 md:w-40">
                                         <?php echo $product_name; ?>
                                     </h2>
+
+                                    <div class="relative space-y-2">
+                                        <?php if ($color) : ?>
+                                            <div class="relative flex items-center justify-between gap-3 w-24 ">
+                                                <span class="font-semibold text-sm"><?php _e('Color', 'lumi') ?>:</span>
+                                                <div class="w-6 h-6 flex justify-center items-center cursor-pointer rounded-full border product-colors-item " style="background: <?php echo get_lumi_product_color($color->term_id) ?>;">
+                                                </div>
+                                            </div>
+                                        <?php endif; ?>
+
+                                        <?php if ($size) : ?>
+                                            <div class="relative flex items-center justify-between gap-3 w-24 ">
+                                                <span class="font-semibold text-sm"><?php _e('Size', 'lumi') ?> : </span>
+                                                <div class="w-6 h-6 flex justify-center items-center cursor-pointer overflow-hidden rounded-lg border-2 product-sizes-item  ">
+                                                    <span class="text-[10px] font-bold"><?php echo strtoupper(substr($size->name, 0, 2)); ?></span>
+                                                </div>
+                                            </div>
+                                        <?php endif; ?>
+
+                                    </div>
                                     <div class="relative md:hidden flex justify-start items-center">
                                         <span class="text-xl font-medium">
                                             <?php echo wc_price($product_price); ?>

@@ -206,11 +206,59 @@ if (!defined('ABSPATH')) {
 					</div>
 
 					<?php if ($product?->is_in_stock()) : ?>
+						<?php
+
+						$color = wc_get_product_terms($product->get_id(), 'pa_color', [
+							"number" => 1
+						])[0] ?? null;
+						$size = wc_get_product_terms($product->get_id(), 'pa_size', [
+							"number" => 1
+						])[0] ?? null;
+						$product_id = $product->get_id();
+						$product_name = $product->get_name();
+						$product_price = $product->get_price();
+						$product_sku = $product->get_sku();
+						?>
 						<p class="text-zinc-800 font-semibold"><?php _e("Available in stock.", "lumi") ?></p>
-						<?php do_action("woocommerce_single_product_cart") ?>
+
+						<form class="cart" action="<?php the_permalink() ?>" method="POST" enctype="multipart/form-data">
+							<?php if (isset($color->slug)) : ?>
+								<input type="hidden" id="lumi-color" name="color" value="<?php echo $color->slug; ?>">
+							<?php endif; ?>
+							<?php if (isset($size->slug)) : ?>
+								<input type="hidden" id="lumi-size" name="size" value="<?php echo $size->slug; ?>">
+							<?php endif; ?>
+							<?php if ($product_sku) : ?>
+								<input type="hidden" name="product_sku" value="<?php echo $product_sku; ?>">
+							<?php endif; ?>
+							<input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
+							<input type="hidden" id="quantity" class="input-text qty text button" name="quantity" value="1" aria-label="Product quantity" size="4" min="1" max="1" step="1" placeholder="" inputmode="numeric" autocomplete="off">
+							<div class="relative flex justify-between items-center gap-4">
+								<button type="submit" name="add-to-cart" value="<?php the_ID() ?>" class="relative w-full bg-primary-500 px-5 py-1.5 flex justify-center items-center gap-2 text-white rounded-xl">
+									<?php _e("Add to Bag", "lumi") ?>
+									<svg class="h-6 w-6 p-1 pointer-events-none" width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M14.651 5.5984C14.651 3.21232 12.7167 1.27799 10.3307 1.27799C9.18168 1.27316 8.07806 1.72619 7.26387 2.53695C6.44968 3.3477 5.992 4.44939 5.992 5.5984M14.5137 20.5H6.16592C3.09955 20.5 0.747152 19.3924 1.41534 14.9348L2.19338 8.89359C2.60528 6.66934 4.02404 5.81808 5.26889 5.81808H15.4474C16.7105 5.81808 18.0469 6.73341 18.5229 8.89359L19.3009 14.9348C19.8684 18.889 17.5801 20.5 14.5137 20.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+										<path d="M13.296 10.102H13.251" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+										<path d="M7.46601 10.102H7.42001" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+									</svg>
+								</button>
+								<button class="cursor-pointer" id="add-to-wishlist" data-product="<?php the_ID() ?>">
+									<div class="relative glass rounded-full flex justify-center items-center p-1 text-zinc-600">
+										<?php if (!in_array(get_the_ID(), lumi_get_wishlist())) : ?>
+											<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-69 product-wishlist-item product-wishlist-<?php the_ID() ?>">
+												<path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+											</svg>
+										<?php else : ?>
+											<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-69 product-wishlist-item product-wishlist-<?php the_ID() ?> text-red-500">
+												<path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+											</svg>
+										<?php endif ?>
+									</div>
+								</button>
+							</div>
+						</form>
 					<?php else : ?>
 						<p class="text-zinc-800 font-semibold"><?php _e("Out of stock.", "lumi") ?></p>
-						<?php do_action("woocommerce_single_product_cart") ?>
 					<?php endif; ?>
 				</div>
 			</div>
@@ -259,8 +307,6 @@ if (!defined('ABSPATH')) {
 						</div>
 						<span class="text-sm font-semibold m-0 px-2"><span class="font-extrabold mx-1"><?php echo $product->get_average_rating() ? $product->get_average_rating() : "0.00"; ?></span> <?php echo  "(" . __("Total ", "lumi") . " " . $product->get_rating_count() . " " . __("reviews ", "lumi") . ")"; ?></span>
 					</div>
-
-
 
 					<div class="relative grid">
 						<div class="relative">

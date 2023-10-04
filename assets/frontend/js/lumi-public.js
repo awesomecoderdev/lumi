@@ -658,4 +658,22 @@ $(document).ready(function () {
 		$(".single-product-image").hide();
 		$(current).show();
 	});
+
+	// select color
+	$(document).on("click", "#product-colors-item", function (e) {
+		e.preventDefault();
+		$(".product-colors-item").removeClass("active");
+		$(this).addClass("active");
+		let color = $(this).attr("data-color");
+		$("#lumi-color").val(color);
+	});
+
+	// select size
+	$(document).on("click", "#product-sizes-item", function (e) {
+		e.preventDefault();
+		$(".product-sizes-item").removeClass("active");
+		$(this).addClass("active");
+		let size = $(this).attr("data-size");
+		$("#lumi-size").val(size);
+	});
 });
