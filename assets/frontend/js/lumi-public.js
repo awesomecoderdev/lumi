@@ -425,9 +425,11 @@ $(document).ready(function () {
 	// increment cart quantity
 	$(document).on("click", "#cart-quantity-increment", function (e) {
 		e.preventDefault();
-		let quantity = parseInt($(this).siblings("#cart-quantity").val() ?? 1);
+		let el = $(this).siblings(".quantity").find(".cart-quantity");
+
+		let quantity = parseInt(el.val() ?? 1);
 		let product_id = $(this).attr("data-product");
-		$(this).siblings("#cart-quantity").val(++quantity);
+		el.val(++quantity);
 
 		$.ajax({
 			type: "POST",
@@ -475,11 +477,13 @@ $(document).ready(function () {
 	// decrement cart quantity
 	$(document).on("click", "#cart-quantity-decrement", function (e) {
 		e.preventDefault();
-		let quantity = parseInt($(this).siblings("#cart-quantity").val() ?? 1);
+		let el = $(this).siblings(".quantity").find(".cart-quantity");
+
+		let quantity = parseInt(el.val() ?? 1);
 		let product_id = $(this).attr("data-product");
 
 		if (quantity > 1) {
-			$(this).siblings("#cart-quantity").val(--quantity);
+			el.val(--quantity);
 		}
 
 		$.ajax({

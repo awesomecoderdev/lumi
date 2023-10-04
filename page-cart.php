@@ -26,7 +26,7 @@ if (!defined('ABSPATH')) {
 
 <?php get_header(); ?>
 
-<main id="main" class="<?php echo lumi_container("lg:py-10 py-4 not-prose"); ?> <?php echo count(lumi_get_cart()) == 0 ? "hidden" : "" ?>">
+<form id="cart" class="<?php echo lumi_container("lg:py-10 py-4 not-prose"); ?> <?php echo count(lumi_get_cart()) == 0 ? "hidden" : "" ?>">
     <div class="relative w-full grid lg:grid-cols-10 gap-8 py-3">
         <!-- start:cart body -->
 
@@ -48,103 +48,204 @@ if (!defined('ABSPATH')) {
                 <?php foreach (lumi_get_cart() as $key => $item) : ?>
                     <?php
                     // Get product details
-                    $product = wc_get_product($item["product_id"]);
+                    $product = apply_filters('woocommerce_cart_item_product', $item['data'], $item, $key);
+                    // $product = wc_get_product($item["product_id"]);
 
                     // You can access product data like this:
-                    $product_id = $product->get_id();
-                    $product_name = $product->get_name();
+                    $product_id = apply_filters('woocommerce_cart_item_product_id', $item['product_id'], $item, $key);
+                    // $product_id = $product->get_id();
+                    // $product_name = $product->get_name();
+                    $product_name = apply_filters('woocommerce_cart_item_name', $product->get_name(), $item, $key);
+
                     $product_price = $product->get_price();
                     $product_sku = $product->get_sku();
-
-                    echo "<pre>";
-                    // print_r($item);
-                    echo "</pre>";
 
                     $color = wc_get_product_terms($product->get_id(), 'pa_color', [
                         "number" => 1,
                         "slug" => isset($item['color']) ? sanitize_text_field($item['color']) : "awesomecoder",
                     ])[0] ?? null;
+
                     $size = wc_get_product_terms($product->get_id(), 'pa_size', [
                         "number" => 1,
                         "slug" => isset($item['size']) ? sanitize_text_field($item['size']) : "awesomecoder",
                     ])[0] ?? null;
 
                     ?>
-                    <div class="relative add-to-cart-from-wishlist flex justify-between items-end rounded-lg" id="cart-item-<?php echo $product_id ?>">
-                        <div class="relative h-full w-full md:grid grid-cols-3 gap-4">
-                            <div class="relative flex md:items-center gap-4">
-                                <?php echo str_replace("<img", "<img class=\"rounded-xl xl:aspect-[4/3] lg:aspect-[4/3] md:aspect-[4/3] sm:w-36 w-24 bg-slate-100 dark:bg-slate-400 cursor-pointer\" alt=\"$product_name\"", $product->get_image()); ?>
-                                <div class="relative max-sm:space-y-4">
-                                    <h2 class="md:text-lg text-sm font-semibold line-clamp-2 xl:w-56 md:w-40">
-                                        <?php echo $product_name; ?>
-                                    </h2>
 
-                                    <div class="relative space-y-2">
-                                        <?php if ($color) : ?>
-                                            <div class="relative flex items-center justify-between gap-3 w-24 ">
-                                                <span class="font-semibold text-sm"><?php _e('Color', 'lumi') ?>:</span>
-                                                <div class="w-6 h-6 flex justify-center items-center cursor-pointer rounded-full border product-colors-item " style="background: <?php echo get_lumi_product_color($color->term_id) ?>;">
+                    <?php if ($product && $product->exists() && $item['quantity'] > 0 && apply_filters('woocommerce_cart_item_visible', true, $item, $key)) : ?>
+                        <?php
+                        $product_permalink = apply_filters('woocommerce_cart_item_permalink', $product->is_visible() ? $product->get_permalink($item) : '', $item, $key);
+                        ?>
+                        <div class="relative add-to-cart-from-wishlist flex justify-between items-end rounded-lg" id="cart-item-<?php echo $product_id ?>">
+                            <div class="relative h-full w-full md:grid grid-cols-3 gap-4">
+                                <div class="relative flex md:items-center gap-4">
+                                    <?php echo str_replace("<img", "<img class=\"rounded-xl xl:aspect-[4/3] lg:aspect-[4/3] md:aspect-[4/3] sm:w-36 w-24 bg-slate-100 dark:bg-slate-400 cursor-pointer\" alt=\"$product_name\"", $product->get_image()); ?>
+                                    <div class="relative max-sm:space-y-2">
+                                        <h2 class="md:text-lg text-sm font-semibold line-clamp-2 xl:w-56 md:w-40">
+                                            <?php
+                                            if (!$product_permalink) {
+                                                echo wp_kses_post($product_name . '&nbsp;');
+                                            } else {
+                                                /**
+                                                 * This filter is documented above.
+                                                 *
+                                                 * @since 2.1.0
+                                                 */
+                                                echo wp_kses_post(apply_filters('woocommerce_cart_item_name', sprintf('<a href="%s">%s</a>', esc_url($product_permalink), $product->get_name()), $item, $key));
+                                            }
+
+                                            do_action('woocommerce_after_cart_item_name', $item, $key);
+
+                                            // Meta data.
+                                            echo wc_get_formatted_cart_item_data($item); // PHPCS: XSS ok.
+
+                                            // Backorder notification.
+                                            if ($product->backorders_require_notification() && $product->is_on_backorder($item['quantity'])) {
+                                                echo wp_kses_post(apply_filters('woocommerce_cart_item_backorder_notification', '<p class="backorder_notification">' . esc_html__('Available on backorder', 'woocommerce') . '</p>', $product_id));
+                                            }
+                                            ?>
+                                        </h2>
+
+                                        <div class="relative space-y-2">
+                                            <?php if ($color) : ?>
+                                                <div class="relative flex items-center justify-between gap-3 w-24 ">
+                                                    <span class="font-semibold text-sm"><?php _e('Color', 'lumi') ?>:</span>
+                                                    <div class="w-6 h-6 flex justify-center items-center cursor-pointer rounded-full border product-colors-item " style="background: <?php echo get_lumi_product_color($color->term_id) ?>;">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        <?php endif; ?>
+                                            <?php endif; ?>
 
-                                        <?php if ($size) : ?>
-                                            <div class="relative flex items-center justify-between gap-3 w-24 ">
-                                                <span class="font-semibold text-sm"><?php _e('Size', 'lumi') ?> : </span>
-                                                <div class="w-6 h-6 flex justify-center items-center cursor-pointer overflow-hidden rounded-lg border-2 product-sizes-item  ">
-                                                    <span class="text-[10px] font-bold"><?php echo strtoupper(substr($size->name, 0, 2)); ?></span>
+                                            <?php if ($size) : ?>
+                                                <div class="relative flex items-center justify-between gap-3 w-24 ">
+                                                    <span class="font-semibold text-sm"><?php _e('Size', 'lumi') ?> : </span>
+                                                    <div class="w-6 h-6 flex justify-center items-center cursor-pointer overflow-hidden rounded-lg border-2 product-sizes-item  ">
+                                                        <span class="text-[10px] font-bold"><?php echo strtoupper(substr($size->name, 0, 2)); ?></span>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        <?php endif; ?>
+                                            <?php endif; ?>
 
-                                    </div>
-                                    <div class="relative md:hidden flex justify-start items-center">
-                                        <span class="text-xl font-medium">
-                                            <?php echo wc_price($product_price); ?>
-                                        </span>
-                                    </div>
-                                    <div class="relative md:hidden flex justify-between gap-4">
-                                        <div class="relative flex items-center">
-                                            <button class="h-5 w-5 border flex justify-center items-center" id="cart-quantity-decrement" data-product="<?php echo $product_id; ?>">-</button>
-                                            <input name="quantity" value="<?php echo $item["quantity"] ?? 1 ?>" id="cart-quantity" class="pointer-events-none p-0 m-0 w-10 h-5 leading-none text-xs px-2 border bg-transparent placeholder:text-primary-300 text-primary-500 font-semibold outline-none border-none border-transparent outline-transparent focus:outline-none focus-visible:outline-none focus:ring-transparent text-center" type="number" min="1">
-                                            <button class="h-5 w-5 border flex justify-center items-center" id="cart-quantity-increment" data-product="<?php echo $product_id; ?>">+</button>
                                         </div>
-                                        <div class="relative flex justify-center items-center space-x-2" id="remove-from-wishlist" data-product="<?php echo $product_id; ?>">
-                                            <svg class="h-4 w-4 pointer-events-none" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M12.6001 18H5.31008C3.82508 18 2.65508 16.785 2.65508 15.345V7.2C2.65508 6.93 2.83508 6.75 3.10508 6.75C3.37508 6.75 3.55508 6.93 3.55508 7.2V15.345C3.55508 16.335 4.36508 17.1 5.31008 17.1H12.6001C13.5901 17.1 14.3551 16.29 14.3551 15.345V7.2C14.3551 6.93 14.5351 6.75 14.8051 6.75C15.0751 6.75 15.2551 6.93 15.2551 7.2V15.345C15.2551 16.785 14.0401 18 12.6001 18ZM14.9851 2.205H11.5651C11.3401 0.945 10.2601 0 8.95508 0C7.65008 0 6.57008 0.945 6.34508 2.205H2.92508C1.89008 2.205 1.08008 3.015 1.08008 4.05C1.08008 5.085 1.89008 5.85 2.92508 5.85H15.0301C16.0651 5.85 16.8751 5.04 16.8751 4.005C16.8751 2.97 16.0201 2.205 14.9851 2.205ZM8.95508 0.9C9.76508 0.9 10.4401 1.44 10.6201 2.205H7.24508C7.47008 1.44 8.14508 0.9 8.95508 0.9ZM14.9851 4.95H2.92508C2.43008 4.95 1.98008 4.545 1.98008 4.005C1.98008 3.51 2.38508 3.06 2.92508 3.06H15.0301C15.5251 3.06 15.9751 3.465 15.9751 4.005C15.9301 4.545 15.5251 4.95 14.9851 4.95Z" fill="currentColor" />
-                                                <path d="M5.80498 15.7949C5.53498 15.7949 5.35498 15.6149 5.35498 15.3449V7.82988C5.35498 7.55988 5.53498 7.37988 5.80498 7.37988C6.07498 7.37988 6.25498 7.55988 6.25498 7.82988V15.3449C6.25498 15.5699 6.02998 15.7949 5.80498 15.7949ZM12.105 15.7949C11.835 15.7949 11.655 15.6149 11.655 15.3449V7.82988C11.655 7.55988 11.835 7.37988 12.105 7.37988C12.375 7.37988 12.555 7.55988 12.555 7.82988V15.3449C12.555 15.5699 12.33 15.7949 12.105 15.7949ZM8.95498 15.7949C8.68498 15.7949 8.50498 15.6149 8.50498 15.3449V7.82988C8.50498 7.55988 8.68498 7.37988 8.95498 7.37988C9.22498 7.37988 9.40498 7.55988 9.40498 7.82988V15.3449C9.40498 15.5699 9.17998 15.7949 8.95498 15.7949Z" fill="currentColor" />
-                                            </svg>
-                                            <span class="pointer-events-none">
-                                                <?php _e("Remove", "lumi") ?>
+                                        <div class="relative md:hidden flex justify-start items-center">
+                                            <span class="text-xl font-medium">
+                                                <?php echo wc_price($product_price); ?>
                                             </span>
                                         </div>
+                                        <div class="relative md:hidden flex justify-between gap-4">
+                                            <div class="relative flex items-center">
+                                                <button class="h-5 w-5 border flex justify-center items-center" id="cart-quantity-decrement" data-product="<?php echo $product_id; ?>">-</button>
+                                                <!-- <input name="quantity" value="<?php echo $item["quantity"] ?? 1 ?>" id="cart-quantity" class="pointer-events-none p-0 m-0 w-10 h-5 leading-none text-xs px-2 border bg-transparent placeholder:text-primary-300 text-primary-500 font-semibold outline-none border-none border-transparent outline-transparent focus:outline-none focus-visible:outline-none focus:ring-transparent text-center" type="number" min="1"> -->
+
+                                                <?php
+                                                if ($product->is_sold_individually()) {
+                                                    $min_quantity = 1;
+                                                    $max_quantity = 1;
+                                                } else {
+                                                    $min_quantity = 0;
+                                                    $max_quantity = $product->get_max_purchase_quantity();
+                                                }
+
+                                                $product_quantity = woocommerce_quantity_input(
+                                                    array(
+                                                        'input_name'   => "cart[{$key}][qty]",
+                                                        'input_value'  => $item['quantity'],
+                                                        'max_value'    => $max_quantity,
+                                                        'min_value'    => $min_quantity,
+                                                        'product_name' => $product_name,
+                                                    ),
+                                                    $product,
+                                                    false
+                                                );
+
+                                                echo apply_filters('woocommerce_cart_item_quantity', $product_quantity, $key, $item); // PHPCS: XSS ok.
+                                                ?>
+                                                <button class="h-5 w-5 border flex justify-center items-center" id="cart-quantity-increment" data-product="<?php echo $product_id; ?>">+</button>
+                                            </div>
+
+                                            <?php echo apply_filters( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                                'woocommerce_cart_item_remove_link',
+                                                sprintf(
+                                                    '<a href="%s" class="remove relative flex justify-center items-center space-x-2" aria-label="%s" data-product_id="%s" data-product_sku="%s">
+                                                    <svg class="h-4 w-4 pointer-events-none" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M12.6001 18H5.31008C3.82508 18 2.65508 16.785 2.65508 15.345V7.2C2.65508 6.93 2.83508 6.75 3.10508 6.75C3.37508 6.75 3.55508 6.93 3.55508 7.2V15.345C3.55508 16.335 4.36508 17.1 5.31008 17.1H12.6001C13.5901 17.1 14.3551 16.29 14.3551 15.345V7.2C14.3551 6.93 14.5351 6.75 14.8051 6.75C15.0751 6.75 15.2551 6.93 15.2551 7.2V15.345C15.2551 16.785 14.0401 18 12.6001 18ZM14.9851 2.205H11.5651C11.3401 0.945 10.2601 0 8.95508 0C7.65008 0 6.57008 0.945 6.34508 2.205H2.92508C1.89008 2.205 1.08008 3.015 1.08008 4.05C1.08008 5.085 1.89008 5.85 2.92508 5.85H15.0301C16.0651 5.85 16.8751 5.04 16.8751 4.005C16.8751 2.97 16.0201 2.205 14.9851 2.205ZM8.95508 0.9C9.76508 0.9 10.4401 1.44 10.6201 2.205H7.24508C7.47008 1.44 8.14508 0.9 8.95508 0.9ZM14.9851 4.95H2.92508C2.43008 4.95 1.98008 4.545 1.98008 4.005C1.98008 3.51 2.38508 3.06 2.92508 3.06H15.0301C15.5251 3.06 15.9751 3.465 15.9751 4.005C15.9301 4.545 15.5251 4.95 14.9851 4.95Z" fill="currentColor" />
+                                                        <path d="M5.80498 15.7949C5.53498 15.7949 5.35498 15.6149 5.35498 15.3449V7.82988C5.35498 7.55988 5.53498 7.37988 5.80498 7.37988C6.07498 7.37988 6.25498 7.55988 6.25498 7.82988V15.3449C6.25498 15.5699 6.02998 15.7949 5.80498 15.7949ZM12.105 15.7949C11.835 15.7949 11.655 15.6149 11.655 15.3449V7.82988C11.655 7.55988 11.835 7.37988 12.105 7.37988C12.375 7.37988 12.555 7.55988 12.555 7.82988V15.3449C12.555 15.5699 12.33 15.7949 12.105 15.7949ZM8.95498 15.7949C8.68498 15.7949 8.50498 15.6149 8.50498 15.3449V7.82988C8.50498 7.55988 8.68498 7.37988 8.95498 7.37988C9.22498 7.37988 9.40498 7.55988 9.40498 7.82988V15.3449C9.40498 15.5699 9.17998 15.7949 8.95498 15.7949Z" fill="currentColor" />
+                                                    </svg>
+                                                    <span class="pointer-events-none">
+                                                        ' . __("Remove", "lumi") . '
+                                                    </span>
+                                                </a>',
+                                                    esc_url(wc_get_cart_remove_url($key)),
+                                                    /* translators: %s is the product name */
+                                                    esc_attr(sprintf(__('Remove %s from cart', 'woocommerce'), wp_strip_all_tags($product_name))),
+                                                    esc_attr($product_id),
+                                                    esc_attr($product->get_sku())
+                                                ),
+                                                $key
+                                            ); ?>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="relative md:flex hidden justify-center items-end flex-col space-y-2 cursor-pointer">
-                                <div class="relative flex items-center">
-                                    <button class="h-5 w-5 border flex justify-center items-center" id="cart-quantity-decrement" data-product="<?php echo $product_id; ?>">-</button>
-                                    <input name="quantity" value="<?php echo $item["quantity"] ?? 1 ?>" id="cart-quantity" class="pointer-events-none p-0 m-0 w-10 h-5 leading-none text-xs px-2 border bg-transparent placeholder:text-primary-300 text-primary-500 font-semibold outline-none border-none border-transparent outline-transparent focus:outline-none focus-visible:outline-none focus:ring-transparent text-center" type="number" min="1">
-                                    <button class="h-5 w-5 border flex justify-center items-center" id="cart-quantity-increment" data-product="<?php echo $product_id; ?>">+</button>
-                                </div>
+                                <div class="relative md:flex hidden justify-center items-end flex-col space-y-2 cursor-pointer">
+                                    <div class="relative flex items-center">
+                                        <button class="h-5 w-5 border flex justify-center items-center" id="cart-quantity-decrement" data-product="<?php echo $product_id; ?>">-</button>
+                                        <!-- <input name="quantity" value="<?php echo $item["quantity"] ?? 1 ?>" id="cart-quantity" class="pointer-events-none p-0 m-0 w-10 h-5 leading-none text-xs px-2 border bg-transparent placeholder:text-primary-300 text-primary-500 font-semibold outline-none border-none border-transparent outline-transparent focus:outline-none focus-visible:outline-none focus:ring-transparent text-center" type="number" min="1"> -->
 
-                                <div class="relative flex justify-center items-center space-x-2" id="remove-from-wishlist" data-product="<?php echo $product_id; ?>">
-                                    <svg class="h-4 w-4 pointer-events-none" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M12.6001 18H5.31008C3.82508 18 2.65508 16.785 2.65508 15.345V7.2C2.65508 6.93 2.83508 6.75 3.10508 6.75C3.37508 6.75 3.55508 6.93 3.55508 7.2V15.345C3.55508 16.335 4.36508 17.1 5.31008 17.1H12.6001C13.5901 17.1 14.3551 16.29 14.3551 15.345V7.2C14.3551 6.93 14.5351 6.75 14.8051 6.75C15.0751 6.75 15.2551 6.93 15.2551 7.2V15.345C15.2551 16.785 14.0401 18 12.6001 18ZM14.9851 2.205H11.5651C11.3401 0.945 10.2601 0 8.95508 0C7.65008 0 6.57008 0.945 6.34508 2.205H2.92508C1.89008 2.205 1.08008 3.015 1.08008 4.05C1.08008 5.085 1.89008 5.85 2.92508 5.85H15.0301C16.0651 5.85 16.8751 5.04 16.8751 4.005C16.8751 2.97 16.0201 2.205 14.9851 2.205ZM8.95508 0.9C9.76508 0.9 10.4401 1.44 10.6201 2.205H7.24508C7.47008 1.44 8.14508 0.9 8.95508 0.9ZM14.9851 4.95H2.92508C2.43008 4.95 1.98008 4.545 1.98008 4.005C1.98008 3.51 2.38508 3.06 2.92508 3.06H15.0301C15.5251 3.06 15.9751 3.465 15.9751 4.005C15.9301 4.545 15.5251 4.95 14.9851 4.95Z" fill="currentColor" />
-                                        <path d="M5.80498 15.7949C5.53498 15.7949 5.35498 15.6149 5.35498 15.3449V7.82988C5.35498 7.55988 5.53498 7.37988 5.80498 7.37988C6.07498 7.37988 6.25498 7.55988 6.25498 7.82988V15.3449C6.25498 15.5699 6.02998 15.7949 5.80498 15.7949ZM12.105 15.7949C11.835 15.7949 11.655 15.6149 11.655 15.3449V7.82988C11.655 7.55988 11.835 7.37988 12.105 7.37988C12.375 7.37988 12.555 7.55988 12.555 7.82988V15.3449C12.555 15.5699 12.33 15.7949 12.105 15.7949ZM8.95498 15.7949C8.68498 15.7949 8.50498 15.6149 8.50498 15.3449V7.82988C8.50498 7.55988 8.68498 7.37988 8.95498 7.37988C9.22498 7.37988 9.40498 7.55988 9.40498 7.82988V15.3449C9.40498 15.5699 9.17998 15.7949 8.95498 15.7949Z" fill="currentColor" />
-                                    </svg>
-                                    <span class="pointer-events-none">
-                                        <?php _e("Remove", "lumi") ?>
+                                        <?php
+                                        if ($product->is_sold_individually()) {
+                                            $min_quantity = 1;
+                                            $max_quantity = 1;
+                                        } else {
+                                            $min_quantity = 0;
+                                            $max_quantity = $product->get_max_purchase_quantity();
+                                        }
+
+                                        $product_quantity = woocommerce_quantity_input(
+                                            array(
+                                                'input_name'   => "cart[{$key}][qty]",
+                                                'input_value'  => $item['quantity'],
+                                                'max_value'    => $max_quantity,
+                                                'min_value'    => $min_quantity,
+                                                'product_name' => $product_name,
+                                            ),
+                                            $product,
+                                            false
+                                        );
+
+                                        echo str_replace('class="input-text qty text"', 'class="cart-quantity pointer-events-none p-0 m-0 w-10 h-5 leading-none text-xs px-2 border bg-transparent placeholder:text-primary-300 text-primary-500 font-semibold outline-none border-none border-transparent outline-transparent focus:outline-none focus-visible:outline-none focus:ring-transparent text-center"', apply_filters('woocommerce_cart_item_quantity', $product_quantity, $key, $item)); // PHPCS: XSS ok.
+                                        ?>
+                                        <button class="h-5 w-5 border flex justify-center items-center" id="cart-quantity-increment" data-product="<?php echo $product_id; ?>">+</button>
+                                    </div>
+                                    <?php echo apply_filters( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                                        'woocommerce_cart_item_remove_link',
+                                        sprintf(
+                                            '<a href="%s" class="remove relative flex justify-center items-center space-x-2" aria-label="%s" data-product_id="%s" data-product_sku="%s">
+                                                    <svg class="h-4 w-4 pointer-events-none" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M12.6001 18H5.31008C3.82508 18 2.65508 16.785 2.65508 15.345V7.2C2.65508 6.93 2.83508 6.75 3.10508 6.75C3.37508 6.75 3.55508 6.93 3.55508 7.2V15.345C3.55508 16.335 4.36508 17.1 5.31008 17.1H12.6001C13.5901 17.1 14.3551 16.29 14.3551 15.345V7.2C14.3551 6.93 14.5351 6.75 14.8051 6.75C15.0751 6.75 15.2551 6.93 15.2551 7.2V15.345C15.2551 16.785 14.0401 18 12.6001 18ZM14.9851 2.205H11.5651C11.3401 0.945 10.2601 0 8.95508 0C7.65008 0 6.57008 0.945 6.34508 2.205H2.92508C1.89008 2.205 1.08008 3.015 1.08008 4.05C1.08008 5.085 1.89008 5.85 2.92508 5.85H15.0301C16.0651 5.85 16.8751 5.04 16.8751 4.005C16.8751 2.97 16.0201 2.205 14.9851 2.205ZM8.95508 0.9C9.76508 0.9 10.4401 1.44 10.6201 2.205H7.24508C7.47008 1.44 8.14508 0.9 8.95508 0.9ZM14.9851 4.95H2.92508C2.43008 4.95 1.98008 4.545 1.98008 4.005C1.98008 3.51 2.38508 3.06 2.92508 3.06H15.0301C15.5251 3.06 15.9751 3.465 15.9751 4.005C15.9301 4.545 15.5251 4.95 14.9851 4.95Z" fill="currentColor" />
+                                                        <path d="M5.80498 15.7949C5.53498 15.7949 5.35498 15.6149 5.35498 15.3449V7.82988C5.35498 7.55988 5.53498 7.37988 5.80498 7.37988C6.07498 7.37988 6.25498 7.55988 6.25498 7.82988V15.3449C6.25498 15.5699 6.02998 15.7949 5.80498 15.7949ZM12.105 15.7949C11.835 15.7949 11.655 15.6149 11.655 15.3449V7.82988C11.655 7.55988 11.835 7.37988 12.105 7.37988C12.375 7.37988 12.555 7.55988 12.555 7.82988V15.3449C12.555 15.5699 12.33 15.7949 12.105 15.7949ZM8.95498 15.7949C8.68498 15.7949 8.50498 15.6149 8.50498 15.3449V7.82988C8.50498 7.55988 8.68498 7.37988 8.95498 7.37988C9.22498 7.37988 9.40498 7.55988 9.40498 7.82988V15.3449C9.40498 15.5699 9.17998 15.7949 8.95498 15.7949Z" fill="currentColor" />
+                                                    </svg>
+                                                    <span class="pointer-events-none">
+                                                        ' . __("Remove", "lumi") . '
+                                                    </span>
+                                                </a>',
+                                            esc_url(wc_get_cart_remove_url($key)),
+                                            /* translators: %s is the product name */
+                                            esc_attr(sprintf(__('Remove %s from cart', 'woocommerce'), wp_strip_all_tags($product_name))),
+                                            esc_attr($product_id),
+                                            esc_attr($product->get_sku())
+                                        ),
+                                        $key
+                                    ); ?>
+                                </div>
+                                <div class="relative  md:flex hidden justify-center items-center">
+                                    <span class="text-xl font-medium">
+                                        <?php echo wc_price($product_price); ?>
                                     </span>
                                 </div>
                             </div>
-                            <div class="relative  md:flex hidden justify-center items-center">
-                                <span class="text-xl font-medium">
-                                    <?php echo wc_price($product_price); ?>
-                                </span>
-                            </div>
                         </div>
-                    </div>
+                    <?php else : ?>
+
+                    <?php endif; ?>
+
                 <?php endforeach; ?>
                 <!-- end for large device -->
             </div>
@@ -159,7 +260,7 @@ if (!defined('ABSPATH')) {
         <!-- start:category sidebar -->
 
     </div>
-</main>
+</form>
 
 
 <section id="empty-cart-page" class="relative py-10 md:mt-14 mt-10 prose dark:prose-invert min-h-[calc(60vh-112px)] lg:px-8 sm:px-7 xs:px-5 px-4 xl:overflow-visible overflow-hidden not-prose bg-[#F4FFFB] flex justify-center items-center <?php echo count(lumi_get_cart()) != 0 ? "hidden" : "" ?>">

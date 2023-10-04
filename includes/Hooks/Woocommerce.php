@@ -284,33 +284,50 @@ function save_gift_wrapping_field($cart_item_data, $product_id)
 
 // Display the custom field in the cart and checkout
 // add_filter('woocommerce_get_item_data', 'display_gift_wrapping_cart', 10, 2);
-// function display_gift_wrapping_cart($data, $cart_item)
-// {
-//     if (isset($cart_item['color'])) {
-//         $data[] = array(
-//             'key'   => __('Color', 'lumi'),
-//             'value' => $cart_item['color'],
-//         );
-//     }
+function display_gift_wrapping_cart($data, $cart_item)
+{
+    echo "<pre>";
+    print_r($cart_item);
+    echo "</pre>";
 
-//     if (isset($cart_item['size'])) {
-//         $data[] = array(
-//             'key'   => __('Size', 'lumi'),
-//             'value' => $cart_item['size'],
-//         );
-//     }
+    $data[] = array(
+        'key'   => 'Custom Key',
+        'value' => "sadfasdf",
+    );
 
-//     return $data;
-// }
+    if (isset($cart_item['color'])) {
+        $data[] = array(
+            'key'   => __('Color', 'lumi'),
+            'value' => $cart_item['color'],
+        );
+    }
+
+    if (isset($cart_item['size'])) {
+        $data[] = array(
+            'key'   => __('Size', 'lumi'),
+            'value' => $cart_item['size'],
+        );
+    }
+
+    return $data;
+}
 
 // Save the custom field data to the order
-// add_action('woocommerce_add_order_item_meta', 'save_gift_wrapping_to_order', 10, 2);
-// function save_gift_wrapping_to_order($item_id, $values)
-// {
-//     if (isset($values['gift_wrapping'])) {
-//         wc_add_order_item_meta($item_id, __('Gift Wrapping', 'text-domain'), $values['gift_wrapping']);
-//     }
-// }
+// add_action('woocommerce_after_order_itemmeta', 'save_gift_wrapping_to_order', 10, 3);
+function save_gift_wrapping_to_order($item_id, $item, $product)
+{
+    // Check if the product has the custom data
+    // $custom_data = get_post_meta($product->get_id(), 'color', true);
+
+    echo "<pre>";
+    print_r($item);
+    echo "</pre>";
+
+    // if (isset($values['color'])) {
+    //     wc_add_order_item_meta($item_id, __('Color', 'lumi'), $values['color']);
+    // }
+}
+
 
 /**
  * ======================================================================================
