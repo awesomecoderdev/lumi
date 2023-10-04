@@ -2818,7 +2818,6 @@ form.lost_reset_password > :not([hidden]) ~ :not([hidden]){
 .woocommerce-additional-fields textarea{
 	position: relative;
 	width: 100%;
-	max-width: 28rem;
 	border-radius: var(--radius);
 	border-width: 1px;
 	--tw-border-opacity: 1;
@@ -2831,6 +2830,7 @@ form.lost_reset_password > :not([hidden]) ~ :not([hidden]){
 .col2-set{
 	display: grid;
 	grid-template-columns: repeat(1, minmax(0, 1fr));
+	gap: 1.25rem;
 }
 @media (min-width: 1280px){
 	.col2-set{
@@ -2838,6 +2838,7 @@ form.lost_reset_password > :not([hidden]) ~ :not([hidden]){
 	}
 }
 .checkout-page .form-row label{
+	grid-column: span 1 / span 1;
 	display: flex;
 	align-items: center;
 	font-size: 0.875rem;
@@ -2851,7 +2852,7 @@ form.lost_reset_password > :not([hidden]) ~ :not([hidden]){
 }
 @media (min-width: 1280px){
 	.checkout-page .form-row label{
-		grid-column: span 3 / span 3;
+		grid-column: span 4 / span 4;
 	}
 }
 .checkout-page .form-row span{

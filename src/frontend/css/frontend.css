@@ -506,13 +506,13 @@ form.lost_reset_password {
 	@apply w-full;
 }
 .woocommerce-additional-fields textarea {
-	@apply relative w-full max-w-md border border-primary-500 hover:border-primary-100 rounded-lg;
+	@apply relative w-full border border-primary-500 hover:border-primary-100 rounded-lg;
 }
 .col2-set {
-	@apply grid xl:grid-cols-2 grid-cols-1;
+	@apply grid xl:grid-cols-2 grid-cols-1 gap-5;
 }
 .checkout-page .form-row label {
-	@apply xl:col-span-3 md:col-span-2 text-sm font-medium flex items-center;
+	@apply xl:col-span-4 md:col-span-2 col-span-1 text-sm font-medium flex items-center;
 }
 
 .checkout-page .form-row span {
