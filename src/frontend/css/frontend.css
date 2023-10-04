@@ -373,22 +373,38 @@ figure {
 	@apply space-y-4;
 }
 
-.my-account-page div.woocommerce-message {
-	@apply py-2 text-primary-500 text-base;
+div.woocommerce-message {
+	@apply py-2 text-emerald-500 text-sm font-semibold;
 }
 
-.my-account-page .woocommerce-notices-wrapper .woocommerce-error {
+div.woocommerce-message a {
+	@apply py-2 text-emerald-700 text-base font-semibold italic px-2 underline;
+}
+.woocommerce-notices-wrapper .woocommerce-error {
 	@apply list-none px-0;
 }
 
-.my-account-page .woocommerce-notices-wrapper .woocommerce-error li {
+.woocommerce-notices-wrapper .woocommerce-error li {
 	@apply relative pl-5 text-red-500 before:content-["\eda4"] before:text-base before:absolute before:left-0;
 }
 
-.my-account-page .woocommerce-notices-wrapper .woocommerce-error li::before {
+.woocommerce-notices-wrapper .woocommerce-error li::before {
 	font-family: boxicons !important;
 }
+.woocommerce-notices-wrapper .woocommerce-error {
+	@apply list-none px-0;
+}
 
+.woocommerce-error li {
+	@apply relative pl-5 text-red-500 before:content-["\eda4"] before:text-base before:absolute before:left-0;
+}
+
+.woocommerce-error li::before {
+	font-family: boxicons !important;
+}
+.woocommerce-error li strong {
+	@apply text-red-600;
+}
 .woocommerce-address-fields {
 	@apply w-full relative;
 }

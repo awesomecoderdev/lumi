@@ -29,6 +29,7 @@ if (!defined('ABSPATH')) {
 <form id="cart" class="<?php echo lumi_container("lg:py-10 py-4 not-prose"); ?> <?php echo count(lumi_get_cart()) == 0 ? "hidden" : "" ?>">
     <div class="relative w-full grid lg:grid-cols-10 gap-8 py-3">
         <!-- start:cart body -->
+        <?php wp_nonce_field('woocommerce-cart', 'woocommerce-cart-nonce'); ?>
 
         <div class="relative lg:col-span-7">
             <div class="relative py-4 grid gap-4">
@@ -260,6 +261,8 @@ if (!defined('ABSPATH')) {
         <!-- start:category sidebar -->
 
     </div>
+    <?php do_action('woocommerce_after_cart_table'); ?>
+
 </form>
 
 
