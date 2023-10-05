@@ -9,6 +9,7 @@ module.exports = {
 		"./includes/Hooks/*.php",
 		"./includes/Hooks/*.php",
 		"./template/**/*.php",
+		"./woocommerce/**/*.php",
 		"./*.php",
 	],
 	theme: {

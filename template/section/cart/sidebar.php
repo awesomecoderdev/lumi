@@ -10,10 +10,36 @@
         $product_price = $product->get_price();
         $product_sku = $product->get_sku();
 
+        $color = wc_get_product_terms($product->get_id(), 'pa_color', [
+            "number" => 1,
+            "slug" => isset($item['color']) ? sanitize_text_field($item['color']) : "awesomecoder",
+        ])[0] ?? null;
+
+        $size = wc_get_product_terms($product->get_id(), 'pa_size', [
+            "number" => 1,
+            "slug" => isset($item['size']) ? sanitize_text_field($item['size']) : "awesomecoder",
+        ])[0] ?? null;
+
+
         ?>
 
         <div class="relative flex justify-between items-center">
-            <h2 class="text-slate-500 text-sm"><?php echo $product_name; ?> <span class="text-xs font-normal"> x <?php echo $item["quantity"] ?? 1 ?></span></h2>
+            <h2 class="text-slate-500 text-sm"><?php echo $product_name; ?>
+                <?php if ($color || $size) : ?>
+                    <span class="text-[10px] font-medium">
+                        [
+                        <?php if ($color) : ?>
+                            <?php echo $color->name; ?>
+                        <?php endif; ?>
+                        <?php if ($size) : ?>
+                            , <?php echo $size->name; ?>
+                        <?php endif; ?>
+                        ]
+                    </span>
+                <?php endif; ?>
+
+                <span class="text-xs font-normal"> x <?php echo $item["quantity"] ?? 1 ?></span>
+            </h2>
             <span class="text-black"><?php echo wc_price($item["line_total"] ?? $product_price); ?></span>
         </div>
     <?php endforeach; ?>
