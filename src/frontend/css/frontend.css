@@ -698,3 +698,35 @@ form.lost_reset_password {
 .checkout-order-footer tr {
 	@apply border-b border-primary-300/50;
 }
+
+/* order review */
+.wc-item-meta {
+	@apply list-none px-2 py-2 m-0;
+}
+
+.wc-item-meta li {
+	@apply flex items-center gap-3 p-0 m-0;
+}
+
+.wc-item-meta li:last-child {
+	@apply flex items-center gap-3 p-0 m-0;
+}
+
+.wc-item-meta li p {
+	@apply p-0 m-0;
+}
+
+.amount {
+	@apply text-sm font-semibold;
+}
+
+.wc-item-meta li div {
+	@apply flex items-center gap-3;
+}
+.wc-item-meta li div p {
+	@apply hidden;
+}
+
+.woocommerce-customer-details .woocommerce-column__title {
+	@apply my-2;
+}
