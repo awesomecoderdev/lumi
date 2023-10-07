@@ -245,6 +245,47 @@ function save_additional_information_metabox($post_id)
 }
 
 
+// Save the metadata from cart to order
+add_filter('woocommerce_checkout_create_order_line_item', 'copy_cart_item_metadata_to_order', 10, 4);
+function copy_cart_item_metadata_to_order($item, $cart_item_key, $values, $order)
+{
+    if (isset($values["product_id"])) {
+        $product_id = $values["product_id"];
+
+        if (isset($values["color"], $values["color_id"])) {
+            $color = wc_get_product_terms($product_id, 'pa_color', [
+                "number" => 1,
+                "term_id" => isset($values['color_id']) ? sanitize_text_field($values['color_id']) : "awesomecoder",
+            ])[0] ?? null;
+            $color_code = get_lumi_product_color($color->term_id);
+            $item->add_meta_data('Color',  "<div style='display:flex;'> <span>$color->name</span> <div style='height:20px;width:20px;border:1px solid;border-radius:100%;background: $color_code;'></div></div>", true);
+        }
+
+        if (isset($values["size"], $values["size_id"])) {
+            $size = wc_get_product_terms($product_id, 'pa_size', [
+                "number" => 1,
+                "term_id" => isset($values['size_id']) ? sanitize_text_field($values['size_id']) : "awesomecoder",
+            ])[0] ?? null;
+            $item->add_meta_data('Size', strtoupper(substr($size->name, 0, 2)), true);
+        }
+    }
+
+
+    // if (isset($values["color"])) {
+    //     $item->add_meta_data('_color', $values["color"], true);
+    // }
+    // if (isset($values["color_id"])) {
+    //     $item->add_meta_data('_color_id', $values["color_id"], true);
+    // }
+    // if (isset($values["size"])) {
+    //     $item->add_meta_data('_size', $values["size"], true);
+    // }
+    // if (isset($values["size_id"])) {
+    //     $item->add_meta_data('_size_id', $values["size_id"], true);
+    // }
+    return $item;
+}
+
 
 /**
  *  Save the custom field data when the product is added to the cart
@@ -327,7 +368,6 @@ function save_gift_wrapping_to_order($item_id, $item, $product)
     //     wc_add_order_item_meta($item_id, __('Color', 'lumi'), $values['color']);
     // }
 }
-
 
 /**
  * ======================================================================================

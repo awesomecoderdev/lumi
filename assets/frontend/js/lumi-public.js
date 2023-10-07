@@ -529,6 +529,27 @@ $(document).ready(function () {
 		}); // End ajax
 	});
 
+	// increment product quantity
+	$(document).on("click", "#product-quantity-increment", function (e) {
+		e.preventDefault();
+		let el = $(this).siblings("#product-quantity");
+
+		let quantity = parseInt(el.val() ?? 1);
+		el.val(++quantity);
+	});
+
+	// decrement product quantity
+	$(document).on("click", "#product-quantity-decrement", function (e) {
+		e.preventDefault();
+		let el = $(this).siblings("#product-quantity");
+
+		let quantity = parseInt(el.val() ?? 1);
+
+		if (quantity > 1) {
+			el.val(--quantity);
+		}
+	});
+
 	// password show hidden
 	$(document).on("click", ".password-integrator", function (e) {
 		e.preventDefault();

@@ -694,3 +694,7 @@ form.lost_reset_password {
 .product-loop-price del bdi {
 	@apply text-sm font-semibold italic text-red-500;
 }
+
+.checkout-order-footer tr {
+	@apply border-b border-primary-300/50;
+}

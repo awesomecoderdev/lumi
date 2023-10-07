@@ -219,7 +219,6 @@ if (!defined('ABSPATH')) {
 						$product_price = $product->get_price();
 						$product_sku = $product->get_sku();
 						?>
-						<p class="text-zinc-800 font-semibold"><?php _e("Available in stock.", "lumi") ?></p>
 
 						<form class="cart" action="<?php the_permalink() ?>" method="POST" enctype="multipart/form-data">
 							<?php if (isset($color->slug)) : ?>
@@ -233,6 +232,14 @@ if (!defined('ABSPATH')) {
 							<?php endif; ?>
 							<input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
 							<input type="hidden" id="quantity" class="input-text qty text button" name="quantity" value="1" aria-label="Product quantity" size="4" min="1" max="1" step="1" placeholder="" inputmode="numeric" autocomplete="off">
+							<div class="relative flex justify-between items-center py-4">
+								<p class="text-zinc-800 font-semibold"><?php _e("Available in stock.", "lumi") ?></p>
+								<div class="relative flex items-center">
+									<button class="h-5 w-5 border flex justify-center items-center cursor-pointer overflow-hidden" id="product-quantity-decrement">-</button>
+									<input name="quantity" value="1" id="product-quantity" class="pointer-events-none p-0 m-0 w-10 h-5 leading-none text-xs px-2 border bg-transparent placeholder:text-primary-300 text-primary-500 font-semibold outline-none border-none border-transparent outline-transparent focus:outline-none focus-visible:outline-none focus:ring-transparent text-center" type="number" min="1">
+									<button class="h-5 w-5 border flex justify-center items-center cursor-pointer overflow-hidden" id="product-quantity-increment">+</button>
+								</div>
+							</div>
 							<div class="relative flex justify-between items-center gap-4">
 								<button type="submit" name="add-to-cart" value="<?php the_ID() ?>" class="relative w-full bg-primary-500 px-5 py-1.5 flex justify-center items-center gap-2 text-white rounded-xl">
 									<?php _e("Add to Bag", "lumi") ?>
