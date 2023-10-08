@@ -407,7 +407,7 @@ div.woocommerce-message a {
 }
 
 .woocommerce-notices-wrapper .woocommerce-error li {
-	@apply relative pl-5 text-red-500 before:content-["\eda4"] before:text-base before:absolute before:left-0;
+	@apply relative ltr:pl-5 rtl:pr-5 text-red-500 before:content-["\eda4"] before:text-base before:absolute ltr:before:left-0 rtl:before:right-0;
 }
 
 .woocommerce-notices-wrapper .woocommerce-error li::before {
@@ -418,7 +418,7 @@ div.woocommerce-message a {
 }
 
 .woocommerce-error li {
-	@apply relative pl-5 text-red-500 before:content-["\eda4"] before:text-base before:absolute before:left-0;
+	@apply relative ltr:pl-5 rtl:pr-5 text-red-500 before:content-["\eda4"] before:text-base before:absolute ltr:before:left-0 rtl:before:right-0;
 }
 
 .woocommerce-error li::before {

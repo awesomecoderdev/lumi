@@ -702,3 +702,10 @@ $(document).ready(function () {
 		$("#lumi-size").val(size);
 	});
 });
+
+$(document).ready(function () {
+	$(document).on("submit", "#", function (e) {
+		e.preventDefault();
+		$(".message").last().after("hello");
+	});
+});

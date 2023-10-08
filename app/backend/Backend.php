@@ -155,8 +155,8 @@ class Backend
 
 		$icon = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBzdHlsZT0iZmlsbDojYTdhYWFkIj48cGF0aCBkPSJNOSA5aDZ2Nkg5eiI+PC9wYXRoPjxwYXRoIGQ9Ik0yMCA2YzAtMS4xMDMtLjg5Ny0yLTItMmgtMlYyaC0ydjJoLTRWMkg4djJINmMtMS4xMDMgMC0yIC44OTctMiAydjJIMnYyaDJ2NEgydjJoMnYyYzAgMS4xMDMuODk3IDIgMiAyaDJ2Mmgydi0yaDR2Mmgydi0yaDJjMS4xMDMgMCAyLS44OTcgMi0ydi0yaDJ2LTJoLTJ2LTRoMlY4aC0yVjZ6TTYgMThWNmgxMmwuMDAyIDEySDZ6Ij48L3BhdGg+PC9zdmc+";
 		$menu = new AdminPage(__("Lumi", 'lumi'), fn () => lumi_resource());
-		Menu::register(new Menu($menu, 'lumi', __("Lumi", 'lumi'), "manage_options", $icon, 50));
-		SubMenu::registerFor("lumi", SubMenu::page($menu, "hello", __("Lumi", 'lumi'), "manage_options",));
+		// Menu::register(new Menu($menu, 'lumi', __("Lumi", 'lumi'), "manage_options", $icon, 50));
+		// SubMenu::registerFor("lumi", SubMenu::page($menu, "hello", __("Lumi", 'lumi'), "manage_options",));
 
 
 		// // add menu on adminbar
